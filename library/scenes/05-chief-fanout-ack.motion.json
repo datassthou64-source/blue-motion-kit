@@ -1,0 +1,11 @@
+{
+  "duration": 8.7,
+  "maxStaticSec": 1.5,
+  "assertions": [
+    {"type":"appearsBy","selector":"#cf-me","bySec":0.9},
+    {"type":"appearsBy","selector":"#cf-hub","bySec":1.2},
+    {"type":"appearsBy","selector":"#cf-b0","bySec":1.6},
+    {"type":"before","first":"#cf-req","second":"#cf-b0"},
+    {"type":"staysInFrame","selector":"#cf-hub"}
+  ]
+}

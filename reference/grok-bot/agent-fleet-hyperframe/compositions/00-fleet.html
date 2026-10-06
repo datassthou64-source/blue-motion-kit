@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #fl-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #fl-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 50%,rgba(0,22,66,.30),rgba(0,22,66,.80))}
+    .gb-av{width:100%;height:100%;display:block}
+
+    /* ---- fleet card (one Grok Bot agent) ---- */
+    .gb-card{position:absolute;width:336px;height:250px;border-radius:26px;background:#161618;
+      border:1px solid rgba(255,255,255,.16);box-shadow:0 30px 68px rgba(0,8,32,.78),0 0 46px rgba(95,230,253,.14);
+      overflow:hidden;transform-origin:50% 50%}
+    .gb-card-top{position:absolute;left:0;right:0;top:0;height:46px;background:#1D1D20;
+      border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:flex-end;padding:0 16px}
+    .gb-dot{width:11px;height:11px;border-radius:50%;background:#34C759;box-shadow:0 0 12px rgba(52,199,89,.7)}
+    .gb-card-body{position:absolute;left:0;right:0;top:46px;bottom:52px;display:grid;place-items:center}
+    .gb-brand{display:block;width:126px;height:126px}
+    .gb-name{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:20px;font-weight:600;color:#E8E8EA}
+    .fl-glow{position:absolute;inset:-2px;border-radius:27px;pointer-events:none;
+      box-shadow:0 0 0 2px rgba(95,230,253,.85),0 0 46px rgba(95,230,253,.6);opacity:0}
+    .fl-label{position:absolute;width:336px;text-align:center;font-size:26px;font-weight:900;
+      letter-spacing:.14em;text-transform:uppercase;opacity:0;
+      text-shadow:0 0 24px rgba(0,0,0,.8),0 0 40px rgba(255,255,255,.2)}
+
+    /* ---- hero: the Grok Bot app ---- */
+    #fl-hero{position:absolute;left:372px;top:196px;width:1176px;height:690px;border-radius:16px;
+      background:#0E0E10;border:1px solid rgba(255,255,255,.16);overflow:hidden;transform-origin:50% 50%;
+      box-shadow:0 44px 104px rgba(0,8,32,.82),0 0 70px rgba(95,230,253,.16)}
+    .gb-side{position:absolute;left:0;top:0;bottom:0;width:322px;background:#161618;border-right:1px solid rgba(255,255,255,.07)}
+    .gb-side-top{position:absolute;left:18px;right:18px;top:18px;height:34px;display:flex;align-items:center;justify-content:space-between}
+    .gb-chip{width:74px;height:30px;border-radius:9px;background:#2A2A2E}
+    .gb-plus{width:22px;height:22px;position:relative}
+    .gb-plus:before,.gb-plus:after{content:"";position:absolute;background:#9A9AA0;border-radius:2px}
+    .gb-plus:before{left:0;right:0;top:10px;height:2px}
+    .gb-plus:after{top:0;bottom:0;left:10px;width:2px}
+    .gb-search{position:absolute;left:18px;right:18px;top:62px;height:42px;border-radius:11px;background:#232327;display:flex;align-items:center;gap:10px;padding:0 14px}
+    .gb-mag{width:15px;height:15px;border:2px solid #86868C;border-radius:50%;position:relative}
+    .gb-mag:after{content:"";position:absolute;right:-5px;bottom:-3px;width:7px;height:2px;background:#86868C;transform:rotate(45deg)}
+    .gb-search-lbl{font-size:16px;color:#9E9EA4}
+    .gb-rows{position:absolute;left:10px;right:10px;top:118px}
+    .gb-row{position:relative;height:58px;display:flex;align-items:center;gap:13px;padding:0 10px;border-radius:11px}
+    .gb-row-on{background:#2C2C30}
+    .gb-row-av{position:relative;display:block;width:44px;height:44px;flex:0 0 44px}
+    .gb-online{position:absolute;right:0;bottom:2px;width:11px;height:11px;border-radius:50%;background:#34C759;border:2px solid #161618}
+    .gb-row-txt{display:flex;flex-direction:column;gap:7px;flex:1;min-width:0}
+    .gb-row-name{font-size:16px;font-weight:600;color:#EDEDEF;white-space:nowrap;overflow:hidden}
+    .gb-row-snip{display:block;height:7px;border-radius:4px;background:#3C3C42}
+    .gb-row-time{font-size:13px;color:#9C9CA2;white-space:nowrap}
+    .gb-side-foot{position:absolute;left:20px;bottom:22px;display:flex;flex-direction:column;gap:16px}
+    .gb-foot{display:flex;align-items:center;gap:11px;font-size:15px;color:#C8C8CC}
+    .gb-foot span{width:26px;height:26px;border-radius:50%;background:#2E2E33;display:grid;place-items:center;font-size:11px;color:#B0B0B6}
+    .gb-main{position:absolute;left:322px;right:0;top:0;bottom:0;background:#0E0E10}
+    .gb-top{position:absolute;left:0;right:0;top:0;height:56px;display:flex;align-items:center;gap:11px;padding:0 22px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .gb-top-av{display:block;width:26px;height:26px}
+    .gb-top-name{font-size:17px;font-weight:600;color:#EDEDEF}
+    .gb-chat{position:absolute;left:26px;right:26px;top:74px;bottom:86px;display:flex;flex-direction:column;gap:14px}
+    .gb-bub{border-radius:15px;background:#26262A}
+    .gb-bub-r{align-self:flex-end;background:#333338}
+    .gb-compose{position:absolute;left:26px;right:26px;bottom:20px;height:52px;border-radius:14px;background:#232327;display:flex;align-items:center;gap:13px;padding:0 16px}
+    .gb-compose i{width:26px;height:26px;border-radius:50%;background:#3A3A40;display:block}
+    .gb-compose-lbl{font-size:16px;color:#8A8A90}
+
+    /* ---- routes + core ---- */
+    #fl-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+    .fl-path{fill:none;stroke:#5FE6FD;stroke-width:5;stroke-linecap:round;filter:drop-shadow(0 0 14px rgba(95,230,253,.75))}
+    .fl-tok{fill:#5FE6FD;filter:drop-shadow(0 0 20px rgba(95,230,253,.95));opacity:0}
+    .fl-halo{fill:rgba(95,230,253,.22);opacity:0;filter:blur(2px)}
+    #fl-core{position:absolute;left:836px;top:714px;width:248px;height:248px;border-radius:50%;
+      border:5px solid #FDFDFD;background:rgba(0,22,66,.86);
+      box-shadow:inset 0 0 82px rgba(1,183,249,.34),0 0 62px rgba(95,230,253,.30);display:grid;place-items:center;opacity:0}
+    #fl-ring{position:absolute;inset:26px;border-radius:50%;border:4px dashed rgba(95,230,253,.72)}
+  </style>
+
+  <div data-hf-id="fl-root" id="fl-root" data-composition-id="fleet" data-start="0" data-duration="7.1" data-width="1920" data-height="1080">
+    <div data-hf-id="fl-shade" id="fl-shade"></div>
+
+    <svg data-hf-id="fl-svg" id="fl-svg" viewBox="0 0 1920 1080"><path data-hf-id="hf-xdez" class="fl-path" id="fl-path-0" d="M 212.0 608 C 212.0 666.3, 960 666.3, 960 708" /><path data-hf-id="hf-1q47" class="fl-path" id="fl-path-1" d="M 586.0 562 C 586.0 645.6, 960 645.6, 960 708" /><path data-hf-id="hf-58ae" class="fl-path" id="fl-path-2" d="M 960.0 520 C 960.0 626.7, 960 626.7, 960 708" /><path data-hf-id="hf-2ujj" class="fl-path" id="fl-path-3" d="M 1334.0 562 C 1334.0 645.6, 960 645.6, 960 708" /><path data-hf-id="hf-8hwt" class="fl-path" id="fl-path-4" d="M 1708.0 608 C 1708.0 666.3, 960 666.3, 960 708" /><circle data-hf-id="hf-tts4" class="fl-halo" id="fl-halo-0" r="34" /><circle data-hf-id="hf-hgl7" class="fl-tok" id="fl-tok-0" r="13" /><circle data-hf-id="hf-3lj7" class="fl-halo" id="fl-halo-1" r="34" /><circle data-hf-id="hf-eezw" class="fl-tok" id="fl-tok-1" r="13" /><circle data-hf-id="hf-mfdy" class="fl-halo" id="fl-halo-2" r="34" /><circle data-hf-id="hf-5szt" class="fl-tok" id="fl-tok-2" r="13" /><circle data-hf-id="hf-jlsd" class="fl-halo" id="fl-halo-3" r="34" /><circle data-hf-id="hf-l5jm" class="fl-tok" id="fl-tok-3" r="13" /><circle data-hf-id="hf-4uvk" class="fl-halo" id="fl-halo-4" r="34" /><circle data-hf-id="hf-3wav" class="fl-tok" id="fl-tok-4" r="13" /></svg>
+    <div data-hf-id="fl-core" id="fl-core"><div data-hf-id="hf-3tf2" id="fl-ring"></div></div>
+
+    <div data-hf-id="hf-oraw" class="gb-card" id="fl-term-0" style="left:44px;top:296px">
+      <div data-hf-id="hf-fzx4" class="gb-card-top"><span data-hf-id="hf-wp7g" class="gb-dot"></span></div>
+      <div data-hf-id="hf-lrcz" class="gb-card-body"><span data-hf-id="hf-x0td" class="gb-brand" id="fl-logo-0"><svg data-hf-id="hf-d9cd" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-6ijf" d="M60 8 C84 34, 106 54, 106 72 A46 46 0 0 1 14 72 C14 54 36 34 60 8 Z" fill="#9A7355" /><ellipse data-hf-id="hf-qhm5" cx="47" cy="76" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-9bdg" cx="75" cy="76" rx="6.6" ry="9.4" fill="#141418" /></svg></span></div>
+      <div data-hf-id="hf-ua83" class="gb-name">Ezra</div>
+      <div data-hf-id="hf-if9d" class="fl-glow" id="fl-glow-0"></div>
+    </div>
+    <div data-hf-id="hf-yf71" class="fl-label" id="fl-label-0" style="left:44px;top:568px">EMAIL</div>
+    <div data-hf-id="hf-2um8" class="gb-card" id="fl-term-1" style="left:418px;top:250px">
+      <div data-hf-id="hf-bfn4" class="gb-card-top"><span data-hf-id="hf-y0lw" class="gb-dot"></span></div>
+      <div data-hf-id="hf-v2o3" class="gb-card-body"><span data-hf-id="hf-w95k" class="gb-brand" id="fl-logo-1"><svg data-hf-id="hf-lupt" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-eocz" d="M60 8 C84 34, 106 54, 106 72 A46 46 0 0 1 14 72 C14 54 36 34 60 8 Z" fill="#2F7CF6" /><ellipse data-hf-id="hf-jj35" cx="47" cy="76" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-jn58" cx="75" cy="76" rx="6.6" ry="9.4" fill="#141418" /></svg></span></div>
+      <div data-hf-id="hf-ijml" class="gb-name">Robby</div>
+      <div data-hf-id="hf-hnlk" class="fl-glow" id="fl-glow-1"></div>
+    </div>
+    <div data-hf-id="hf-xga0" class="fl-label" id="fl-label-1" style="left:418px;top:522px">RESEARCH</div>
+    <div data-hf-id="hf-n1ez" class="gb-card" id="fl-term-2" style="left:792px;top:208px">
+      <div data-hf-id="hf-a8q1" class="gb-card-top"><span data-hf-id="hf-wtot" class="gb-dot"></span></div>
+      <div data-hf-id="hf-uod2" class="gb-card-body"><span data-hf-id="hf-4x1f" class="gb-brand" id="fl-logo-2"><svg data-hf-id="hf-n1mw" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-42v1" x="9" y="20" width="102" height="82" rx="38" fill="#8E8E93" /><ellipse data-hf-id="hf-qfyn" cx="45" cy="61" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-e39u" cx="77" cy="61" rx="6.6" ry="9.4" fill="#141418" /></svg></span></div>
+      <div data-hf-id="hf-bs6o" class="gb-name">Lincoln</div>
+      <div data-hf-id="hf-qbhf" class="fl-glow" id="fl-glow-2"></div>
+    </div>
+    <div data-hf-id="hf-bq7y" class="fl-label" id="fl-label-2" style="left:792px;top:480px">LINKEDIN</div>
+    <div data-hf-id="hf-ygnv" class="gb-card" id="fl-term-3" style="left:1166px;top:250px">
+      <div data-hf-id="hf-an12" class="gb-card-top"><span data-hf-id="hf-x7zu" class="gb-dot"></span></div>
+      <div data-hf-id="hf-ua21" class="gb-card-body"><span data-hf-id="hf-0yxe" class="gb-brand" id="fl-logo-3"><svg data-hf-id="hf-mnbv" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-8816" d="M60 13 C66 13 70 16 73 21 L108 88 C113 97 108 108 97 108 L23 108 C12 108 7 97 12 88 L47 21 C50 16 54 13 60 13 Z" fill="#A56BF5" /><ellipse data-hf-id="hf-bsv8" cx="50" cy="80" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-vggs" cx="72" cy="80" rx="6.6" ry="9.4" fill="#141418" /></svg></span></div>
+      <div data-hf-id="hf-g93c" class="gb-name">Sam</div>
+      <div data-hf-id="hf-mdde" class="fl-glow" id="fl-glow-3"></div>
+    </div>
+    <div data-hf-id="hf-u7ic" class="fl-label" id="fl-label-3" style="left:1166px;top:522px">SCRIPTS</div>
+    <div data-hf-id="hf-c2hq" class="gb-card" id="fl-term-4" style="left:1540px;top:296px">
+      <div data-hf-id="hf-9g3z" class="gb-card-top"><span data-hf-id="hf-z7iz" class="gb-dot"></span></div>
+      <div data-hf-id="hf-tvr0" class="gb-card-body"><span data-hf-id="hf-i77p" class="gb-brand" id="fl-logo-4"><svg data-hf-id="hf-knsq" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-9tpj" d="M60 13 C66 13 70 16 73 21 L108 88 C113 97 108 108 97 108 L23 108 C12 108 7 97 12 88 L47 21 C50 16 54 13 60 13 Z" fill="#56C36A" /><ellipse data-hf-id="hf-p6zg" cx="50" cy="80" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-kn4k" cx="72" cy="80" rx="6.6" ry="9.4" fill="#141418" /></svg></span></div>
+      <div data-hf-id="hf-u8dd" class="gb-name">Harry</div>
+      <div data-hf-id="hf-3lnp" class="fl-glow" id="fl-glow-4"></div>
+    </div>
+    <div data-hf-id="hf-5qd8" class="fl-label" id="fl-label-4" style="left:1540px;top:568px">DEALS</div>
+
+    <div data-hf-id="fl-hero" id="fl-hero">
+      <div data-hf-id="hf-1if5" class="gb-side">
+        <div data-hf-id="hf-w9bj" class="gb-side-top"><span data-hf-id="hf-zs35" class="gb-chip"></span><span data-hf-id="hf-jk1v" class="gb-plus"></span></div>
+        <div data-hf-id="hf-4rwk" class="gb-search"><span data-hf-id="hf-nxls" class="gb-mag"></span><span data-hf-id="hf-8ori" class="gb-search-lbl">Search</span></div>
+        <div data-hf-id="hf-aauf" class="gb-rows">
+        <div data-hf-id="hf-27q7" class="gb-row gb-row-on" id="gb-row-0">
+          <span data-hf-id="hf-wndn" class="gb-row-av"><svg data-hf-id="hf-k9hp" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-j05t" x="9" y="20" width="102" height="82" rx="38" fill="#8E8E93" /><ellipse data-hf-id="hf-965r" cx="45" cy="61" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-rsye" cx="77" cy="61" rx="6.6" ry="9.4" fill="#141418" /></svg><i data-hf-id="hf-ingl" class="gb-online"></i></span>
+          <span data-hf-id="hf-z0ke" class="gb-row-txt"><span data-hf-id="hf-3vea" class="gb-row-name">Lincoln</span><i data-hf-id="hf-hxml" class="gb-row-snip" style="width:78%"></i></span>
+          <span data-hf-id="hf-poan" class="gb-row-time">1:28 PM</span>
+        </div>
+        <div data-hf-id="hf-n2g8" class="gb-row" id="gb-row-1">
+          <span data-hf-id="hf-37ob" class="gb-row-av"><svg data-hf-id="hf-lges" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-312r" d="M60 8 C84 34, 106 54, 106 72 A46 46 0 0 1 14 72 C14 54 36 34 60 8 Z" fill="#2F7CF6" /><ellipse data-hf-id="hf-kq08" cx="47" cy="76" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-ig85" cx="75" cy="76" rx="6.6" ry="9.4" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-cxvm" class="gb-row-txt"><span data-hf-id="hf-asic" class="gb-row-name">Robby The Res…</span><i data-hf-id="hf-vfrp" class="gb-row-snip" style="width:70%"></i></span>
+          <span data-hf-id="hf-taj8" class="gb-row-time">1:23 PM</span>
+        </div>
+        <div data-hf-id="hf-vqc3" class="gb-row" id="gb-row-2">
+          <span data-hf-id="hf-2tda" class="gb-row-av"><svg data-hf-id="hf-l23r" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><ellipse data-hf-id="hf-iu2c" cx="60" cy="60" rx="52" ry="33" fill="#F08A2A" /><ellipse data-hf-id="hf-sd45" cx="47" cy="60" rx="6.2" ry="8.6" fill="#141418" /><ellipse data-hf-id="hf-yq94" cx="75" cy="60" rx="6.2" ry="8.6" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-dc6n" class="gb-row-txt"><span data-hf-id="hf-c62u" class="gb-row-name">Atlas</span><i data-hf-id="hf-q36w" class="gb-row-snip" style="width:64%"></i></span>
+          <span data-hf-id="hf-qkt4" class="gb-row-time">1:16 PM</span>
+        </div>
+        <div data-hf-id="hf-rs82" class="gb-row" id="gb-row-3">
+          <span data-hf-id="hf-2f29" class="gb-row-av"><svg data-hf-id="hf-pfh2" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-vbmj" d="M60 8 C84 34, 106 54, 106 72 A46 46 0 0 1 14 72 C14 54 36 34 60 8 Z" fill="#9A7355" /><ellipse data-hf-id="hf-kbp7" cx="47" cy="76" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-iuj6" cx="75" cy="76" rx="6.6" ry="9.4" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-dqho" class="gb-row-txt"><span data-hf-id="hf-6xc0" class="gb-row-name">Ezra The Email…</span><i data-hf-id="hf-mq9l" class="gb-row-snip" style="width:74%"></i></span>
+          <span data-hf-id="hf-s59h" class="gb-row-time">12:42 PM</span>
+        </div>
+        <div data-hf-id="hf-b845" class="gb-row" id="gb-row-4">
+          <span data-hf-id="hf-20r8" class="gb-row-av"><svg data-hf-id="hf-p161" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-zdda" d="M60 13 C66 13 70 16 73 21 L108 88 C113 97 108 108 97 108 L23 108 C12 108 7 97 12 88 L47 21 C50 16 54 13 60 13 Z" fill="#A56BF5" /><ellipse data-hf-id="hf-o02d" cx="50" cy="80" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-jg7h" cx="72" cy="80" rx="6.6" ry="9.4" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-e4sp" class="gb-row-txt"><span data-hf-id="hf-48vf" class="gb-row-name">Sam the scripter</span><i data-hf-id="hf-uqpw" class="gb-row-snip" style="width:60%"></i></span>
+          <span data-hf-id="hf-m1ee" class="gb-row-time">12:41 PM</span>
+        </div>
+        <div data-hf-id="hf-88uk" class="gb-row" id="gb-row-5">
+          <span data-hf-id="hf-1mg7" class="gb-row-av"><svg data-hf-id="hf-vjoj" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-cje6" d="M60 10 L102 34 L102 86 L60 110 L18 86 L18 34 Z" fill="#3EBFA0" /><ellipse data-hf-id="hf-dee0" cx="47" cy="62" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-9dk9" cx="75" cy="62" rx="6.6" ry="9.4" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-ej3q" class="gb-row-txt"><span data-hf-id="hf-47da" class="gb-row-name">New Bot</span><i data-hf-id="hf-qt8y" class="gb-row-snip" style="width:44%"></i></span>
+          <span data-hf-id="hf-inej" class="gb-row-time">12:40 PM</span>
+        </div>
+        <div data-hf-id="hf-j4c7" class="gb-row" id="gb-row-6">
+          <span data-hf-id="hf-1856" class="gb-row-av"><svg data-hf-id="hf-vxzk" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-gy95" d="M34 50 C30 30 52 18 66 30 C82 18 102 30 98 50 C114 58 108 84 90 84 L34 84 C14 84 12 58 34 50 Z" fill="#8B5CF6" /><ellipse data-hf-id="hf-t91u" cx="48" cy="60" rx="6.2" ry="8.8" fill="#141418" /><ellipse data-hf-id="hf-uwj7" cx="76" cy="60" rx="6.2" ry="8.8" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-exer" class="gb-row-txt"><span data-hf-id="hf-5gww" class="gb-row-name">Grok</span><i data-hf-id="hf-xpyj" class="gb-row-snip" style="width:72%"></i></span>
+          <span data-hf-id="hf-77dn" class="gb-row-time">10:58 AM</span>
+        </div>
+        <div data-hf-id="hf-f686" class="gb-row" id="gb-row-7">
+          <span data-hf-id="hf-0tu5" class="gb-row-av"><svg data-hf-id="hf-ur2h" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-fryf" d="M60 13 C66 13 70 16 73 21 L108 88 C113 97 108 108 97 108 L23 108 C12 108 7 97 12 88 L47 21 C50 16 54 13 60 13 Z" fill="#56C36A" /><ellipse data-hf-id="hf-oede" cx="50" cy="80" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-juii" cx="72" cy="80" rx="6.6" ry="9.4" fill="#141418" /></svg></span>
+          <span data-hf-id="hf-fbps" class="gb-row-txt"><span data-hf-id="hf-6s6j" class="gb-row-name">Harry</span><i data-hf-id="hf-1o7e" class="gb-row-snip" style="width:66%"></i></span>
+          <span data-hf-id="hf-wat3" class="gb-row-time">10:18 AM</span>
+        </div></div>
+        <div data-hf-id="hf-45d2" class="gb-side-foot">
+          <div data-hf-id="hf-ex30" class="gb-foot"><span data-hf-id="hf-uckh"></span>Plugins</div>
+          <div data-hf-id="hf-58fc" class="gb-foot"><span data-hf-id="hf-cr5p">PL</span>Account</div>
+        </div>
+      </div>
+      <div data-hf-id="hf-conz" class="gb-main">
+        <div data-hf-id="hf-uj8p" class="gb-top"><span data-hf-id="hf-jz8s" class="gb-top-av"><svg data-hf-id="hf-v5di" class="gb-av" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect data-hf-id="hf-k72w" x="9" y="20" width="102" height="82" rx="38" fill="#8E8E93" /><ellipse data-hf-id="hf-8ruq" cx="45" cy="61" rx="6.6" ry="9.4" fill="#141418" /><ellipse data-hf-id="hf-s79f" cx="77" cy="61" rx="6.6" ry="9.4" fill="#141418" /></svg></span><span data-hf-id="hf-ze5f" class="gb-top-name">Lincoln</span></div>
+        <div data-hf-id="hf-ofzm" class="gb-chat"><div data-hf-id="hf-6sde" class="gb-bub gb-bub-l" style="width:58%;height:78px"></div><div data-hf-id="hf-zr02" class="gb-bub gb-bub-r" style="width:44%;height:46px"></div><div data-hf-id="hf-ed13" class="gb-bub gb-bub-l" style="width:66%;height:100px"></div><div data-hf-id="hf-993v" class="gb-bub gb-bub-l" style="width:52%;height:46px"></div><div data-hf-id="hf-wm0h" class="gb-bub gb-bub-r" style="width:38%;height:46px"></div><div data-hf-id="hf-hwc7" class="gb-bub gb-bub-l" style="width:62%;height:78px"></div></div>
+        <div data-hf-id="hf-qtok" class="gb-compose"><i data-hf-id="hf-wt6k"></i><span data-hf-id="hf-4eas" class="gb-compose-lbl">Message Lincoln</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({paused:true});
+    const SL = [[212.0, 421.0], [586.0, 375.0], [960.0, 333.0], [1334.0, 375.0], [1708.0, 421.0]];
+    const SRC = [[434, 512], [434, 396], [434, 338], [434, 570], [434, 744]];
+
+    document.querySelectorAll("#fl-svg .fl-path").forEach(function(p){
+      var L = p.getTotalLength();
+      p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+    });
+
+    /* each agent waits inside its row in the app sidebar */
+    for (var i=0;i<5;i++) {
+      gsap.set("#fl-term-"+i, {opacity:0, scale:.18, x: SRC[i][0]-SL[i][0], y: SRC[i][1]-SL[i][1]});
+      gsap.set("#fl-label-"+i, {opacity:0, y:142});
+    }
+
+    /* 1 — the app stands up */
+    tl.fromTo("#fl-hero", {opacity:0, scale:.72, y:70}, {opacity:1, scale:1, y:0, duration:.6, ease:"expo.out"}, .02);
+    tl.fromTo(".gb-row", {opacity:0, x:-18}, {opacity:1, x:0, duration:.26, ease:"power2.out", stagger:.055}, .40);
+    tl.fromTo(".gb-bub", {opacity:0, y:16}, {opacity:1, y:0, duration:.26, ease:"power2.out", stagger:.05}, .62);
+
+    /* 2 — "agent fleet": the agents step out of the app */
+    tl.to("#fl-hero", {opacity:0, scale:.9, duration:.34, ease:"power2.in"}, 1.40);
+    for (var i=0;i<5;i++) {
+      tl.to("#fl-term-"+i, {opacity:1, scale:1, x:0, y:126, duration:.80, ease:"power3.out"}, 1.42 + Math.abs(i-2)*.075);
+    }
+
+    /* 3 — "various functions": each agent takes its job */
+    for (var i=0;i<5;i++) {
+      var t = 2.30 + i*.115;
+      tl.to("#fl-label-"+i, {opacity:1, y:126, duration:.34, ease:"power3.out"}, t);
+      tl.fromTo("#fl-logo-"+i, {scale:.62}, {scale:1.13, duration:.34, ease:"back.out(2.2)"}, t);
+      tl.to("#fl-logo-"+i, {scale:1, duration:.36, ease:"power3.out"}, t+.34);
+      tl.fromTo("#fl-glow-"+i, {opacity:0}, {opacity:1, duration:.18, ease:"power2.out"}, t);
+      tl.to("#fl-glow-"+i, {opacity:0, duration:.75, ease:"power2.in"}, t+.24);
+    }
+
+    /* 4 — "your business": the fleet lifts, routes draw into one core */
+    for (var i=0;i<5;i++) {
+      tl.to("#fl-term-"+i, {y:0, duration:.62, ease:"power3.out"}, 3.24 + Math.abs(i-2)*.05);
+      tl.to("#fl-label-"+i, {y:0, duration:.62, ease:"power3.out"}, 3.24 + Math.abs(i-2)*.05);
+    }
+    tl.fromTo("#fl-core", {opacity:0, scale:.6}, {opacity:1, scale:1, duration:.55, ease:"back.out(1.5)"}, 3.36);
+    tl.fromTo("#fl-ring", {rotate:0}, {rotate:150, duration:3.6, ease:"none"}, 3.5);
+    for (var i=0;i<5;i++) {
+      tl.to("#fl-path-"+i, {strokeDashoffset:0, duration:.72, ease:"power2.inOut"}, 3.62 + Math.abs(i-2)*.08);
+    }
+
+    /* 5 — "run your business": the work flows down every route */
+    var FLP = [];
+    for (var i=0;i<5;i++) FLP.push(document.getElementById("fl-path-"+i));
+    function flRide(i, st) {
+      var path = FLP[i], L = path.getTotalLength();
+      var tok = document.getElementById("fl-tok-"+i);
+      var halo = document.getElementById("fl-halo-"+i);
+      var prox = {p:0};
+      tl.fromTo(prox, {p:0}, {p:1, duration:.86, ease:"none",
+        onUpdate:function(){
+          var pt = path.getPointAtLength(prox.p*L);
+          tok.setAttribute("cx", pt.x); tok.setAttribute("cy", pt.y);
+          halo.setAttribute("cx", pt.x); halo.setAttribute("cy", pt.y);
+        }}, st);
+      tl.fromTo([tok, halo], {opacity:0}, {opacity:1, duration:.12, ease:"power2.out"}, st);
+      tl.to(tok, {opacity:0, duration:.16, ease:"power2.in"}, st+.72);
+      tl.to(halo, {opacity:0, duration:.16, ease:"power2.in"}, st+.72);
+    }
+    for (var i=0;i<5;i++) for (var k=0;k<3;k++) flRide(i, 4.30 + k*.66 + Math.abs(i-2)*.09);
+    tl.to("#fl-core", {boxShadow:"inset 0 0 110px rgba(1,183,249,.62),0 0 96px rgba(95,230,253,.55)", duration:1.2, ease:"power2.out"}, 4.5);
+
+    /* 6 — "in 2026": the core is fully lit and the fleet is the system */
+    tl.to("#fl-core", {boxShadow:"inset 0 0 130px rgba(1,183,249,.82),0 0 118px rgba(95,230,253,.72)", duration:.75, ease:"power2.out"}, 6.02);
+
+    window.__timelines["fleet"] = tl;
+  </script>
+</template>
+</body></html>

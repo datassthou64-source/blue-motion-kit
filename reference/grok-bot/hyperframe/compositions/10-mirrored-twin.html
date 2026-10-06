@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s10-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s10-shade{position:absolute;inset:0;background:radial-gradient(ellipse 68% 68% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s10-fig{position:absolute;width:260px;height:400px;opacity:0}
+    .s10-head{position:absolute;left:75px;top:0;width:110px;height:110px;border-radius:50%;border:6px solid #fdfdfd;background:rgba(0,22,66,.86)}
+    .s10-body{position:absolute;left:20px;top:140px;width:220px;height:260px;border-radius:110px 110px 34px 34px;border:6px solid #fdfdfd;background:rgba(0,22,66,.86)}
+    .s10-you{left:430px;top:340px}
+    .s10-twin{left:1180px;top:352px;width:380px;height:376px}
+    .s10-mon{position:absolute;left:0;top:0;width:380px;height:238px;border-radius:22px;border:6px solid #5fe6fd;background:rgba(0,22,66,.86);box-shadow:0 0 46px rgba(95,230,253,.5),inset 0 0 46px rgba(1,183,249,.3)}
+    .s10-scr{position:absolute;left:34px;height:14px;border-radius:7px;background:rgba(95,230,253,.7)}
+    .s10-neck{position:absolute;left:158px;top:238px;width:64px;height:70px;background:rgba(0,22,66,.86);border-left:6px solid #5fe6fd;border-right:6px solid #5fe6fd}
+    .s10-foot{position:absolute;left:74px;top:302px;width:232px;height:22px;border-radius:11px;background:#5fe6fd;box-shadow:0 0 26px rgba(95,230,253,.7)}
+    .s10-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s10-teth{fill:none;stroke:#5fe6fd;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.7));opacity:0}
+    .s10-lbl{position:absolute;font-size:32px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.85),0 4px 18px rgba(0,0,0,.6);opacity:0}
+    .s10-l1{left:560px;top:790px}.s10-l2{left:1370px;top:790px;color:#5fe6fd;text-shadow:0 0 26px rgba(0,0,0,.9),0 0 44px rgba(95,230,253,.45)}
+  </style>
+  <div data-hf-id="s10-root" id="s10-root" data-composition-id="s10" data-start="0" data-duration="6.2" data-width="1920" data-height="1080">
+    <div data-hf-id="s10-shade" id="s10-shade" class="s10-shade"></div>
+    <svg data-hf-id="s10-svg" id="s10-svg" class="s10-svg" viewBox="0 0 1920 1080">
+      <line data-hf-id="s10-teth" id="s10-teth" class="s10-teth" x1="690" y1="520" x2="1180" y2="471"/>
+    </svg>
+    <div data-hf-id="s10-you" id="s10-you" class="s10-fig s10-you"><i data-hf-id="s10-yh" id="s10-yh" class="s10-head"></i><i data-hf-id="s10-yb" id="s10-yb" class="s10-body"></i></div>
+    <div data-hf-id="s10-twin" id="s10-twin" class="s10-fig s10-twin"><i data-hf-id="s10-mon" id="s10-mon" class="s10-mon"><i data-hf-id="s10-sc1" id="s10-sc1" class="s10-scr" style="top:56px;width:230px"></i><i data-hf-id="s10-sc2" id="s10-sc2" class="s10-scr" style="top:96px;width:290px"></i><i data-hf-id="s10-sc3" id="s10-sc3" class="s10-scr" style="top:136px;width:180px"></i></i><i data-hf-id="s10-neck" id="s10-neck" class="s10-neck"></i><i data-hf-id="s10-foot" id="s10-foot" class="s10-foot"></i></div>
+    <div data-hf-id="s10-l1" id="s10-l1" class="s10-lbl s10-l1">YOU</div>
+    <div data-hf-id="s10-l2" id="s10-l2" class="s10-lbl s10-l2">YOUR FIRST AGENT</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s10=gsap.timeline({paused:true});
+    gsap.set(["#s10-l1","#s10-l2"],{xPercent:-50});
+
+    s10.fromTo("#s10-you",{opacity:0,scale:.78,y:36},{opacity:1,scale:1,y:0,duration:.55,ease:"power3.out"},.08);
+    s10.fromTo("#s10-l1",{opacity:0,y:16},{opacity:1,y:0,duration:.34,ease:"power3.out"},.42);
+    /* the twin splits out of you */
+    s10.fromTo("#s10-twin",{opacity:0,x:-800,scale:.8},{opacity:1,x:0,scale:1,duration:.9,ease:"power3.out"},.95);
+    s10.fromTo("#s10-l2",{opacity:0,y:16},{opacity:1,y:0,duration:.34,ease:"power3.out"},1.7);
+    s10.set("#s10-teth",{opacity:1},1.55);
+    s10.fromTo("#s10-teth",{attr:{x2:690}},{attr:{x2:1180,y2:471},duration:.6,ease:"power2.inOut"},1.55);
+
+    /* it moves independently but the tether never breaks */
+    s10.to("#s10-twin",{y:-120,duration:1.1,ease:"sine.inOut"},2.5);
+    s10.to("#s10-teth",{attr:{y2:351},duration:1.1,ease:"sine.inOut"},2.5);
+    s10.to("#s10-twin",{y:90,x:60,duration:1.2,ease:"sine.inOut"},3.6);
+    s10.to("#s10-teth",{attr:{y2:561,x2:1240},duration:1.2,ease:"sine.inOut"},3.6);
+    s10.to("#s10-twin",{y:0,x:0,duration:.9,ease:"sine.inOut"},4.8);
+    s10.to("#s10-teth",{attr:{y2:471,x2:1180},duration:.9,ease:"sine.inOut"},4.8);
+    window.__timelines["s10"]=s10;
+  </script>
+</template>
+</body></html>

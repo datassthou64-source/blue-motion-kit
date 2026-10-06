@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s06-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s06-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.76))}
+    .s06-win{position:absolute;left:510px;top:250px;width:900px;height:540px;border-radius:28px;border:3px solid rgba(253,253,253,.62);background:rgba(4,26,72,.62);box-shadow:inset 0 0 90px rgba(1,183,249,.14);overflow:hidden;opacity:0}
+    .s06-head{position:absolute;left:0;top:0;width:900px;height:62px;background:rgba(0,22,66,.7);border-bottom:2px solid rgba(253,253,253,.3)}
+    .s06-dot{position:absolute;top:23px;width:16px;height:16px;border-radius:50%;background:rgba(253,253,253,.66)}
+    .s06-msg{position:absolute;height:26px;border-radius:13px;background:rgba(253,253,253,.42)}
+    .s06-shard{position:absolute;border-radius:22px;border:3px solid rgba(253,253,253,.6);background:rgba(4,26,72,.6);opacity:0}
+    .s06-node{position:absolute;width:200px;height:96px;border-radius:48px;border:5px solid #fdfdfd;background:rgba(0,22,66,.82);box-shadow:0 0 36px rgba(95,230,253,.24);display:grid;place-items:center;opacity:0}
+    .s06-pip{width:26px;height:26px;border-radius:50%;background:#5fe6fd;box-shadow:0 0 24px rgba(95,230,253,.8)}
+    .s06-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s06-rail{fill:none;stroke:rgba(253,253,253,.6);stroke-width:5;stroke-linecap:round;opacity:0}
+    .s06-lbl{position:absolute;left:960px;top:840px;font-size:34px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.85),0 4px 18px rgba(0,0,0,.6);opacity:0}
+    .s06-pay{position:absolute;left:960px;top:846px;font-size:66px;font-weight:900;letter-spacing:.14em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7),0 0 48px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s06-root" id="s06-root" data-composition-id="s06" data-start="0" data-duration="6.56" data-width="1920" data-height="1080">
+    <div data-hf-id="s06-shade" id="s06-shade" class="s06-shade"></div>
+    <div data-hf-id="s06-win" id="s06-win" class="s06-win">
+      <i data-hf-id="s06-head" id="s06-head" class="s06-head"></i>
+      <i data-hf-id="s06-d1" id="s06-d1" class="s06-dot" style="left:26px"></i><i data-hf-id="s06-d2" id="s06-d2" class="s06-dot" style="left:58px"></i><i data-hf-id="s06-d3" id="s06-d3" class="s06-dot" style="left:90px"></i>
+      <i data-hf-id="s06-m1" id="s06-m1" class="s06-msg" style="left:60px;top:130px;width:420px"></i>
+      <i data-hf-id="s06-m2" id="s06-m2" class="s06-msg" style="left:420px;top:216px;width:420px"></i>
+      <i data-hf-id="s06-m3" id="s06-m3" class="s06-msg" style="left:60px;top:302px;width:330px"></i>
+      <i data-hf-id="s06-m4" id="s06-m4" class="s06-msg" style="left:480px;top:388px;width:360px"></i>
+    </div>
+    <i data-hf-id="s06-s1" id="s06-s1" class="s06-shard" style="left:510px;top:250px;width:300px;height:270px"></i>
+    <i data-hf-id="s06-s2" id="s06-s2" class="s06-shard" style="left:810px;top:250px;width:300px;height:270px"></i>
+    <i data-hf-id="s06-s3" id="s06-s3" class="s06-shard" style="left:1110px;top:250px;width:300px;height:270px"></i>
+    <i data-hf-id="s06-s4" id="s06-s4" class="s06-shard" style="left:510px;top:520px;width:300px;height:270px"></i>
+    <i data-hf-id="s06-s5" id="s06-s5" class="s06-shard" style="left:810px;top:520px;width:300px;height:270px"></i>
+    <i data-hf-id="s06-s6" id="s06-s6" class="s06-shard" style="left:1110px;top:520px;width:300px;height:270px"></i>
+    <svg data-hf-id="s06-svg" id="s06-svg" class="s06-svg" viewBox="0 0 1920 1080"><path data-hf-id="s06-rail" id="s06-rail" class="s06-rail" d="M270 748 C450 660 700 624 960 624 C1220 624 1470 660 1650 748"/></svg>
+    <div data-hf-id="s06-n1" id="s06-n1" class="s06-node" style="left:170px;top:700px"><i data-hf-id="s06-np1" id="s06-np1" class="s06-pip"></i></div>
+    <div data-hf-id="s06-n2" id="s06-n2" class="s06-node" style="left:460px;top:628px"><i data-hf-id="s06-np2" id="s06-np2" class="s06-pip"></i></div>
+    <div data-hf-id="s06-n3" id="s06-n3" class="s06-node" style="left:750px;top:576px"><i data-hf-id="s06-np3" id="s06-np3" class="s06-pip"></i></div>
+    <div data-hf-id="s06-n4" id="s06-n4" class="s06-node" style="left:1040px;top:576px"><i data-hf-id="s06-np4" id="s06-np4" class="s06-pip"></i></div>
+    <div data-hf-id="s06-n5" id="s06-n5" class="s06-node" style="left:1330px;top:628px"><i data-hf-id="s06-np5" id="s06-np5" class="s06-pip"></i></div>
+    <div data-hf-id="s06-n6" id="s06-n6" class="s06-node" style="left:1620px;top:700px"><i data-hf-id="s06-np6" id="s06-np6" class="s06-pip"></i></div>
+    <div data-hf-id="s06-lbl" id="s06-lbl" class="s06-lbl">CHAT WINDOW</div>
+    <div data-hf-id="s06-pay" id="s06-pay" class="s06-pay">NOT TRAPPED</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s06=gsap.timeline({paused:true});
+    gsap.set(["#s06-lbl","#s06-pay"],{xPercent:-50});
+    const s06n=["#s06-n1","#s06-n2","#s06-n3","#s06-n4","#s06-n5","#s06-n6"];
+    const s06s=["#s06-s1","#s06-s2","#s06-s3","#s06-s4","#s06-s5","#s06-s6"];
+    const s06m=[{x:-560,y:-260,r:-34},{x:-90,y:-420,r:16},{x:520,y:-280,r:38},{x:-620,y:300,r:26},{x:40,y:430,r:-18},{x:600,y:320,r:-42}];
+
+    s06.fromTo("#s06-win",{opacity:0,scale:.82},{opacity:1,scale:1,duration:.5,ease:"power3.out"},.05);
+    s06.fromTo("#s06-lbl",{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},.55);
+
+    /* shatter outward */
+    s06.set("#s06-win",{opacity:0},1.22);
+    s06.to("#s06-lbl",{opacity:0,duration:.2,ease:"power2.in"},1.2);
+    s06s.forEach((id,i)=>{
+      s06.set(id,{opacity:1},1.22);
+      s06.to(id,{x:s06m[i].x,y:s06m[i].y,rotation:s06m[i].r,scale:.5,opacity:0,duration:1.0,ease:"power2.out"},1.22);
+    });
+
+    /* the fleet rises out of the debris */
+    s06n.forEach((id,i)=>{
+      s06.fromTo(id,{opacity:0,y:320,scale:.72},{opacity:1,y:0,scale:1,duration:.7,ease:"power3.out"},1.85+i*.22);
+    });
+    const s06rail=document.getElementById("s06-rail"),s06RL=s06rail.getTotalLength();
+    s06rail.style.strokeDasharray=String(s06RL);s06rail.style.strokeDashoffset=String(s06RL);
+    s06.set("#s06-rail",{opacity:1},4.05);
+    s06.to("#s06-rail",{strokeDashoffset:0,duration:.85,ease:"power2.inOut"},4.05);
+    s06.to(s06n,{y:-46,duration:.7,ease:"power3.out",stagger:.05},4.4);
+    s06.to("#s06-rail",{y:-46,duration:.7,ease:"power3.out"},4.4);
+    s06.fromTo("#s06-pay",{opacity:0,scale:1.24},{opacity:1,scale:1,duration:.42,ease:"power4.out"},4.6);
+    s06.to([".s06-pip"],{scale:1.5,duration:.28,ease:"power2.out",stagger:.08,yoyo:true,repeat:1},4.7);
+    window.__timelines["s06"]=s06;
+  </script>
+</template>
+</body></html>

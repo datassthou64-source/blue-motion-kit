@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  10-twin-extension
+  ARGUMENT  "it should be an extension of literally you." A human figure and a
+            cyan counterpart start stacked, separate, and stay joined by one
+            tether that never breaks. A token crosses the tether and the
+            counterpart takes on its aura.
+  SWAP      CFG.leftLabel / CFG.rightLabel, and the right-hand mark (a real
+            product icon reads far better than the placeholder ring).
+  PREFIX    tw-
+  NOTE      the tether is the argument. If it ever breaks or fades out, the
+            scene now says "it replaces you" — the opposite claim.
+-->
+<template>
+  <style>
+    #tw-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #tw-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 48%,rgba(0,22,66,.30),rgba(0,22,66,.80))}
+    #tw-you{position:absolute;left:492px;top:286px;width:300px;height:392px;border-radius:60px;background:rgba(0,22,66,.80);border:5px solid rgba(253,253,253,.94);box-shadow:0 0 42px rgba(95,230,253,.18),0 26px 66px rgba(0,22,66,.55);display:grid;place-items:center;align-content:center;gap:26px;transform-origin:50% 50%;opacity:0}
+    #tw-head{width:94px;height:94px;border-radius:50%;border:5px solid rgba(253,253,253,.94)}
+    #tw-torso{width:178px;height:118px;border-radius:92px 92px 22px 22px;border:5px solid rgba(253,253,253,.94);border-bottom:0}
+    #tw-agent{position:absolute;left:1122px;top:326px;width:312px;height:312px;border-radius:70px;transform-origin:50% 50%;opacity:0}
+    #tw-mark{position:absolute;inset:0;width:312px;height:312px;display:grid;place-items:center;border-radius:70px;background:rgba(0,22,66,.86);border:5px solid rgba(253,253,253,.94)}
+    #tw-mark svg,#tw-mark img{width:58%;height:58%;object-fit:contain;display:block;color:#5FE6FD}
+    #tw-aura{position:absolute;inset:-26px;border-radius:92px;pointer-events:none;box-shadow:0 0 78px rgba(95,230,253,.42),0 26px 70px rgba(0,22,66,.6);opacity:0}
+    #tw-ring{position:absolute;inset:-46px;border-radius:110px;border:4px dashed rgba(95,230,253,.55);opacity:0}
+    #tw-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+    #tw-tether{fill:none;stroke:#5FE6FD;stroke-width:6;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 16px rgba(95,230,253,.75))}
+    #tw-tok{fill:#5FE6FD;opacity:0;filter:drop-shadow(0 0 22px rgba(95,230,253,.95))}
+    #tw-halo{fill:rgba(95,230,253,.22);opacity:0}
+    .tw-label{position:absolute;top:726px;width:300px;text-align:center;font-size:32px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;opacity:0;text-shadow:0 0 26px rgba(0,0,0,.78),0 4px 18px rgba(0,0,0,.6),0 0 44px rgba(255,255,255,.24)}
+    #tw-lab-you{left:492px}
+    #tw-lab-agent{left:1122px;width:312px;color:#5FE6FD;text-shadow:0 0 26px rgba(0,0,0,.78),0 0 42px rgba(95,230,253,.85),0 0 66px rgba(95,230,253,.45)}
+    .tw-tick{position:absolute;width:3px;height:26px;background:rgba(253,253,253,.34)}
+  </style>
+
+  <div data-hf-id="tw-root" id="tw-root" data-composition-id="twin-extension" data-start="0" data-duration="3.45" data-width="1920" data-height="1080">
+    <div data-hf-id="tw-shade" id="tw-shade"></div>
+
+    <i data-hf-id="tw-t1" class="tw-tick" style="left:180px;top:868px"></i>
+    <i data-hf-id="tw-t2" class="tw-tick" style="left:320px;top:868px"></i>
+    <i data-hf-id="tw-t3" class="tw-tick" style="left:1600px;top:868px"></i>
+    <i data-hf-id="tw-t4" class="tw-tick" style="left:1740px;top:868px"></i>
+
+    <svg data-hf-id="tw-svg" id="tw-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="tw-tether" id="tw-tether" d="M 792 482 L 1114 482"/>
+      <circle data-hf-id="tw-halo" id="tw-halo" r="42" cx="792" cy="482"/>
+      <circle data-hf-id="tw-tok" id="tw-tok" r="17" cx="792" cy="482"/>
+    </svg>
+
+    <div data-hf-id="tw-you" id="tw-you"><i data-hf-id="tw-head" id="tw-head"></i><i data-hf-id="tw-torso" id="tw-torso"></i></div>
+
+    <div data-hf-id="tw-agent" id="tw-agent">
+      <div data-hf-id="tw-aura" id="tw-aura"></div>
+      <div data-hf-id="tw-ring" id="tw-ring"></div>
+      <!-- REPLACE the inline mark with the product's real app icon -->
+      <div data-hf-id="tw-mark" id="tw-mark">
+        <svg data-hf-id="tw-mark-s" viewBox="0 0 120 120"><circle data-hf-id="tw-mark-c" cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width="9"/><circle data-hf-id="tw-mark-d" cx="60" cy="60" r="11" fill="currentColor"/></svg>
+      </div>
+    </div>
+
+    <div data-hf-id="tw-lab-you" id="tw-lab-you" class="tw-label">You</div>
+    <div data-hf-id="tw-lab-agent" id="tw-lab-agent" class="tw-label">Your Agent</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const twTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const TW = {
+      leftLabel:  "You",
+      rightLabel: "Your Agent",   // cyan side — the thing being introduced
+      splitAt: 0.70,              // when the two separate
+      crossAt: 1.60               // when the token crosses the tether
+    };
+    /* ================================================================= */
+
+    document.getElementById("tw-lab-you").textContent=TW.leftLabel;
+    document.getElementById("tw-lab-agent").textContent=TW.rightLabel;
+
+    gsap.set("#tw-you",{x:318});
+    gsap.set("#tw-agent",{x:-318});
+    gsap.set("#tw-tether",{strokeDasharray:322,strokeDashoffset:322});
+
+    twTl.fromTo("#tw-you",{opacity:0,scale:.72,y:40},{opacity:1,scale:1,y:0,duration:.5,ease:"back.out(1.5)"},.04);
+    twTl.fromTo("#tw-agent",{opacity:0,scale:.82},{opacity:1,scale:1,duration:.34,ease:"back.out(1.4)"},TW.splitAt-.10);
+
+    /* they peel apart — one object becoming two */
+    twTl.to("#tw-you",{x:0,duration:.74,ease:"power3.out"},TW.splitAt);
+    twTl.to("#tw-agent",{x:0,duration:.74,ease:"power3.out"},TW.splitAt);
+
+    /* and the tether draws, and never breaks */
+    twTl.to("#tw-tether",{opacity:1,duration:.1},TW.splitAt+.40);
+    twTl.to("#tw-tether",{strokeDashoffset:0,duration:.55,ease:"power2.inOut"},TW.splitAt+.40);
+    twTl.fromTo("#tw-ring",{opacity:0,scale:.82},{opacity:1,scale:1,duration:.5,ease:"power3.out"},TW.splitAt+.54);
+    twTl.fromTo("#tw-lab-you",{opacity:0,y:22},{opacity:1,y:0,duration:.38,ease:"power3.out"},TW.splitAt+.72);
+    twTl.fromTo("#tw-lab-agent",{opacity:0,y:22},{opacity:1,y:0,duration:.38,ease:"power3.out"},TW.splitAt+.84);
+
+    /* you cross into it */
+    twTl.to(["#tw-tok","#tw-halo"],{opacity:1,duration:.14},TW.crossAt);
+    twTl.to(["#tw-tok","#tw-halo"],{attr:{cx:1114},duration:.52,ease:"power1.inOut"},TW.crossAt+.02);
+    twTl.to(["#tw-tok","#tw-halo"],{opacity:0,duration:.16},TW.crossAt+.50);
+    twTl.fromTo("#tw-aura",{opacity:0},{opacity:1,duration:.32,ease:"power2.out"},TW.crossAt+.48);
+    twTl.to("#tw-ring",{scale:1.06,duration:.4,ease:"power2.out"},TW.crossAt+.48);
+    twTl.to("#tw-agent",{scale:1.05,duration:.22,ease:"power3.out"},TW.crossAt+.48);
+    twTl.to("#tw-agent",{scale:1,duration:.3,ease:"power2.out",overwrite:"auto"},TW.crossAt+.72);
+
+    window.__timelines["twin-extension"]=twTl;
+  </script>
+</template>
+</body></html>

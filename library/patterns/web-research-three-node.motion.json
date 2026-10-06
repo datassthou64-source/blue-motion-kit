@@ -1,0 +1,11 @@
+{
+  "duration": 6.39,
+  "maxStaticSec": 1.8,
+  "assertions": [
+    {"type":"appearsBy","selector":"#s6-core","bySec":1.0},
+    {"type":"appearsBy","selector":"#s6-left","bySec":1.4},
+    {"type":"appearsBy","selector":"#s6-right","bySec":1.5},
+    {"type":"staysInFrame","selector":".s6-side"},
+    {"type":"keepsMoving","selector":"#s6-lens","fromSec":1.4,"toSec":6.2}
+  ]
+}

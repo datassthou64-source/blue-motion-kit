@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s31-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s31-shade{position:absolute;inset:0;background:radial-gradient(ellipse 68% 70% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s31-core{position:absolute;left:270px;top:330px;width:300px;height:300px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.88);box-shadow:inset 0 0 84px rgba(1,183,249,.3),0 0 50px rgba(95,230,253,.28);opacity:0}
+    .s31-dring{position:absolute;inset:38px;border:4px dashed rgba(95,230,253,.72);border-radius:50%}
+    .s31-disc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:144px;height:144px;border-radius:50%;background:#fdfdfd;display:grid;place-items:center;box-shadow:0 0 30px rgba(0,22,66,.42)}
+    .s31-disc img{width:66%;height:66%;object-fit:contain}
+    .s31-cur{position:absolute;left:1350px;top:330px;width:300px;height:300px;border-radius:62px;border:5px solid #fdfdfd;background:#fdfdfd;display:grid;place-items:center;box-shadow:0 22px 56px rgba(0,22,66,.5);opacity:0}
+    .s31-cur img{width:60%;height:60%;object-fit:contain}
+    .s31-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s31-guide{fill:none;stroke:rgba(253,253,253,.44);stroke-width:5;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .s31-fl{fill:none;stroke:#5fe6fd;stroke-width:8;stroke-linecap:round;filter:drop-shadow(0 0 16px rgba(95,230,253,.8));opacity:0}
+    .s31-lbl{position:absolute;top:684px;font-size:32px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s31-lg{left:420px}.s31-lc{left:1500px}
+    .s31-notice{position:absolute;left:270px;top:186px;width:300px;height:96px;border-radius:48px;border:4px solid #5fe6fd;background:rgba(0,22,66,.9);box-shadow:0 0 40px rgba(95,230,253,.6);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.14em;color:#5fe6fd;opacity:0}
+    .s31-repo{position:absolute;left:1400px;top:742px;width:200px;height:130px;border-radius:24px;border:4px solid #5fe6fd;background:rgba(4,26,72,.85);box-shadow:0 0 40px rgba(95,230,253,.55);opacity:0}
+    .s31-repo i{position:absolute;left:22px;height:9px;border-radius:5px;background:rgba(95,230,253,.85)}
+    .s31-tag{position:absolute;left:1500px;top:900px;font-size:30px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.92),0 0 44px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s31-root" id="s31-root" data-composition-id="s31" data-start="0" data-duration="8.3" data-width="1920" data-height="1080">
+    <div data-hf-id="s31-shade" id="s31-shade" class="s31-shade"></div>
+    <svg data-hf-id="s31-svg" id="s31-svg" class="s31-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s31-g" id="s31-g" class="s31-guide" d="M570 480 L1350 480"/>
+      <path data-hf-id="s31-f" id="s31-f" class="s31-fl" d="M570 480 L1350 480"/>
+    </svg>
+    <div data-hf-id="s31-core" id="s31-core" class="s31-core"><i data-hf-id="s31-dring" id="s31-dring" class="s31-dring"></i><i data-hf-id="s31-disc" id="s31-disc" class="s31-disc"><img data-hf-id="s31-grok" id="s31-grok" src=".media/logos/grok.svg" alt=""></i></div>
+    <div data-hf-id="s31-cur" id="s31-cur" class="s31-cur"><img data-hf-id="s31-curimg" id="s31-curimg" src=".media/logos/cursor-mark.svg" alt=""></div>
+    <div data-hf-id="s31-lg" id="s31-lg" class="s31-lbl s31-lg">GROK BOT</div>
+    <div data-hf-id="s31-lc" id="s31-lc" class="s31-lbl s31-lc">CURSOR</div>
+    <div data-hf-id="s31-notice" id="s31-notice" class="s31-notice">IT NOTICES</div>
+    <div data-hf-id="s31-repo" id="s31-repo" class="s31-repo"><i data-hf-id="s31-r1" id="s31-r1" style="top:26px;width:120px"></i><i data-hf-id="s31-r2" id="s31-r2" style="top:56px;width:82px"></i><i data-hf-id="s31-r3" id="s31-r3" style="top:86px;width:104px"></i></div>
+    <div data-hf-id="s31-tag" id="s31-tag" class="s31-tag">STARTS A REPO</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s31=gsap.timeline({paused:true});
+    gsap.set(["#s31-lg","#s31-lc","#s31-tag"],{xPercent:-50});
+    function s31flow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2;el.style.strokeDashoffset=0;
+      s31.set(sel,{opacity:1},at);
+      s31.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      s31.set(sel,{opacity:0},at+dur);
+    }
+    s31.fromTo("#s31-core",{opacity:0,scale:.7},{opacity:1,scale:1,duration:.6,ease:"power3.out"},.08);
+    s31.fromTo("#s31-lg",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},.5);
+    s31.fromTo("#s31-notice",{opacity:0,y:-26,scale:.8},{opacity:1,y:0,scale:1,duration:.45,ease:"back.out(1.5)"},1.4);
+    s31.to("#s31-core",{boxShadow:"inset 0 0 84px rgba(1,183,249,.36),0 0 84px rgba(95,230,253,.55)",duration:.5,ease:"power2.out"},1.6);
+    s31.fromTo("#s31-cur",{opacity:0,scale:.7,x:80},{opacity:1,scale:1,x:0,duration:.6,ease:"power3.out"},3.2);
+    s31.fromTo("#s31-lc",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},3.62);
+    s31.fromTo("#s31-g",{opacity:0},{opacity:1,duration:.4,ease:"power2.out"},3.9);
+    /* it routes straight into Cursor */
+    s31flow("#s31-f",4.9,1.0);
+    s31.to("#s31-cur",{scale:1.08,duration:.2,ease:"power4.out"},5.82);
+    s31.to("#s31-cur",{scale:1,boxShadow:"0 0 84px rgba(95,230,253,.6),0 22px 56px rgba(0,22,66,.5)",duration:.4,ease:"power2.out"},6.03);
+    s31.to("#s31-notice",{opacity:.32,duration:.4,ease:"power2.in"},5.9);
+    /* and starts a repo there */
+    s31.fromTo("#s31-repo",{opacity:0,scale:.5,y:-40},{opacity:1,scale:1,y:0,duration:.5,ease:"back.out(1.4)"},6.4);
+    s31.fromTo("#s31-tag",{opacity:0,y:14,scale:1.14},{opacity:1,y:0,scale:1,duration:.4,ease:"power4.out"},6.8);
+    window.__timelines["s31"]=s31;
+  </script>
+</template>
+</body></html>

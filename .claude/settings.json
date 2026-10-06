@@ -1,0 +1,31 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git -C \"$CLAUDE_PROJECT_DIR\" pull --ff-only --quiet >/dev/null 2>&1 && echo 'kit: up to date with origin' || echo 'kit: could not auto-update (offline or local edits) — using the copy on disk'; [ -f \"$CLAUDE_PROJECT_DIR/editor.local.md\" ] || echo 'kit: editor.local.md missing — run the onboarding in CLAUDE.md first'",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npx hyperframes:*)",
+      "Bash(npx --yes hyperframes:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run check:*)",
+      "Bash(ffprobe:*)",
+      "Bash(bash setup.sh:*)",
+      "Bash(bash .claude/skills/blue-motion/scripts/:*)",
+      "Bash(python3 .claude/skills/blue-motion/scripts/:*)",
+      "Bash(git pull:*)",
+      "Bash(git status:*)",
+      "WebSearch",
+      "WebFetch"
+    ]
+  }
+}

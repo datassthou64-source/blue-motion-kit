@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s05-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s05-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 72% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.76))}
+    .s05-screen{position:absolute;left:610px;top:240px;width:700px;height:394px;border-radius:30px;border:5px solid #fdfdfd;background:transparent;box-shadow:0 0 44px rgba(95,230,253,.28);opacity:0}
+    .s05-fill{position:absolute;inset:0;border-radius:25px;background:rgba(4,26,72,.9)}
+    .s05-base{position:absolute;left:530px;top:640px;width:860px;height:26px;border-radius:13px;background:rgba(253,253,253,.86);box-shadow:0 0 26px rgba(95,230,253,.4);transform-origin:50% 50%;opacity:0}
+    .s05-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s05-guide{fill:none;stroke:rgba(253,253,253,.42);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .s05-flow{fill:none;stroke:#5fe6fd;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    .s05-plate{position:absolute;top:806px;width:180px;height:180px;border-radius:40px;border:4px solid #fdfdfd;display:grid;place-items:center;opacity:0}
+    .s05-glass{background:rgba(0,22,66,.85);box-shadow:0 0 36px rgba(95,230,253,.2),inset 0 0 50px rgba(1,183,249,.18)}
+    .s05-plate img{width:56%;height:56%;object-fit:contain}
+    .s05-pa{left:300px}.s05-pb{left:690px}.s05-pc{left:1080px}.s05-pd{left:1470px}
+    .s05-brk{position:absolute;width:34px;height:34px;border:4px solid #5fe6fd;opacity:0}
+    .s05-lbl{position:absolute;font-size:24px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 22px rgba(0,0,0,.85),0 3px 14px rgba(0,0,0,.7);opacity:0}
+    .s05-la{left:390px;top:1004px}.s05-lb{left:780px;top:1004px}.s05-lc{left:1170px;top:1004px}.s05-ld{left:1560px;top:1004px}
+    .s05-meta{position:absolute;left:1382px;top:420px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 22px rgba(0,0,0,.85);opacity:0}
+    .s05-art{position:absolute;left:912px;top:470px;width:96px;height:70px;border-radius:16px;border:3px solid #5fe6fd;background:rgba(0,22,66,.9);box-shadow:0 0 30px rgba(95,230,253,.7);opacity:0}
+    .s05-art i{position:absolute;left:14px;height:7px;border-radius:4px;background:#5fe6fd}
+    .s05-out{position:absolute;left:1560px;top:744px;font-size:26px;font-weight:900;letter-spacing:.14em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 24px rgba(0,0,0,.85),0 0 40px rgba(95,230,253,.5);opacity:0}
+  </style>
+  <div data-hf-id="s05-root" id="s05-root" data-composition-id="s05" data-start="0" data-duration="8.4" data-width="1920" data-height="1080">
+    <div data-hf-id="s05-shade" id="s05-shade" class="s05-shade"></div>
+    <svg data-hf-id="s05-svg" id="s05-svg" class="s05-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s05-g1" id="s05-g1" class="s05-guide" d="M880 668 C700 740 480 760 390 806"/>
+      <path data-hf-id="s05-g2" id="s05-g2" class="s05-guide" d="M925 670 C880 740 810 770 780 806"/>
+      <path data-hf-id="s05-g3" id="s05-g3" class="s05-guide" d="M995 670 C1040 740 1110 770 1170 806"/>
+      <path data-hf-id="s05-g4" id="s05-g4" class="s05-guide" d="M1040 668 C1220 740 1440 760 1560 806"/>
+      <path data-hf-id="s05-f1" id="s05-f1" class="s05-flow" d="M880 668 C700 740 480 760 390 806"/>
+      <path data-hf-id="s05-f2" id="s05-f2" class="s05-flow" d="M925 670 C880 740 810 770 780 806"/>
+      <path data-hf-id="s05-f3" id="s05-f3" class="s05-flow" d="M995 670 C1040 740 1110 770 1170 806"/>
+      <path data-hf-id="s05-f4" id="s05-f4" class="s05-flow" d="M1040 668 C1220 740 1440 760 1560 806"/>
+    </svg>
+    <div data-hf-id="s05-screen" id="s05-screen" class="s05-screen"><i data-hf-id="s05-fill" id="s05-fill" class="s05-fill"></i></div>
+    <div data-hf-id="s05-base" id="s05-base" class="s05-base"></div>
+    <div data-hf-id="s05-meta" id="s05-meta" class="s05-meta">OWN COMPUTER</div>
+    <div data-hf-id="s05-pa" id="s05-pa" class="s05-plate s05-glass s05-pa"><img data-hf-id="s05-chrome" id="s05-chrome" src=".media/logos/googlechrome-color.svg" alt=""></div>
+    <div data-hf-id="s05-pb" id="s05-pb" class="s05-plate s05-glass s05-pb"><img data-hf-id="s05-slack" id="s05-slack" src=".media/logos/slack.svg" alt=""></div>
+    <div data-hf-id="s05-pc" id="s05-pc" class="s05-plate s05-glass s05-pc"><img data-hf-id="s05-hub" id="s05-hub" src=".media/logos/hubspot.svg" alt=""></div>
+    <div data-hf-id="s05-pd" id="s05-pd" class="s05-plate s05-glass s05-pd"><img data-hf-id="s05-inst" id="s05-inst" src=".media/logos/instantly.svg" alt=""></div>
+    <i data-hf-id="s05-ka" id="s05-ka" class="s05-brk" style="left:282px;top:788px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="s05-kb" id="s05-kb" class="s05-brk" style="left:672px;top:788px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="s05-kc" id="s05-kc" class="s05-brk" style="left:1062px;top:788px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="s05-kd" id="s05-kd" class="s05-brk" style="left:1452px;top:788px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="s05-ka2" id="s05-ka2" class="s05-brk" style="left:448px;top:954px;border-left:none;border-top:none"></i>
+    <i data-hf-id="s05-kb2" id="s05-kb2" class="s05-brk" style="left:838px;top:954px;border-left:none;border-top:none"></i>
+    <i data-hf-id="s05-kc2" id="s05-kc2" class="s05-brk" style="left:1228px;top:954px;border-left:none;border-top:none"></i>
+    <i data-hf-id="s05-kd2" id="s05-kd2" class="s05-brk" style="left:1618px;top:954px;border-left:none;border-top:none"></i>
+    <div data-hf-id="s05-la" id="s05-la" class="s05-lbl s05-la">CHROME</div>
+    <div data-hf-id="s05-lb" id="s05-lb" class="s05-lbl s05-lb">SLACK</div>
+    <div data-hf-id="s05-lc" id="s05-lc" class="s05-lbl s05-lc">HUBSPOT</div>
+    <div data-hf-id="s05-ld" id="s05-ld" class="s05-lbl s05-ld">INSTANTLY</div>
+    <div data-hf-id="s05-art" id="s05-art" class="s05-art"><i data-hf-id="s05-ar1" id="s05-ar1" style="top:16px;width:62px"></i><i data-hf-id="s05-ar2" id="s05-ar2" style="top:32px;width:44px"></i><i data-hf-id="s05-ar3" id="s05-ar3" style="top:48px;width:54px"></i></div>
+    <div data-hf-id="s05-out" id="s05-out" class="s05-out">OUTPUT LANDS</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s05=gsap.timeline({paused:true});
+    gsap.set(["#s05-la","#s05-lb","#s05-lc","#s05-ld","#s05-out"],{xPercent:-50});
+    function s05flow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2;el.style.strokeDashoffset=0;
+      s05.set(sel,{opacity:1},at);
+      s05.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      s05.set(sel,{opacity:0},at+dur);
+    }    s05.fromTo("#s05-screen",{opacity:0,scale:.78,y:40},{opacity:1,scale:1,y:0,duration:.62,ease:"power3.out"},.08);
+    s05.fromTo("#s05-base",{opacity:0,scaleX:.2},{opacity:1,scaleX:1,duration:.48,ease:"power3.out"},.5);
+    s05.fromTo("#s05-meta",{opacity:0,x:-18},{opacity:1,x:0,duration:.36,ease:"power3.out"},.85);
+    /* the aperture clears and the real Grok Bot screen comes up underneath */
+    s05.to("#s05-fill",{opacity:0,duration:.3,ease:"power2.out"},1.05);
+    s05.fromTo("#s05-screen",{boxShadow:"0 0 44px rgba(95,230,253,.28)"},{boxShadow:"0 0 86px rgba(95,230,253,.5)",duration:.4,ease:"power2.out"},1.0);
+
+    ["#s05-pa","#s05-pb","#s05-pc","#s05-pd"].forEach((id,i)=>
+      s05.fromTo(id,{opacity:0,scale:.6,y:40},{opacity:1,scale:1,y:0,duration:.45,ease:"power3.out"},1.3+i*.1));
+    ["#s05-la","#s05-lb","#s05-lc","#s05-ld"].forEach((id,i)=>
+      s05.fromTo(id,{opacity:0,y:14},{opacity:1,y:0,duration:.32,ease:"power3.out"},1.5+i*.1));
+    s05.fromTo(["#s05-g1","#s05-g2","#s05-g3","#s05-g4"],{opacity:0},{opacity:1,duration:.35,ease:"power2.out",stagger:.06},1.6);
+
+    /* signs into each tool — a token travels, the app unlocks on arrival */
+    const s05plates=["#s05-pa","#s05-pb","#s05-pc","#s05-pd"];
+    const s05brk=[["#s05-ka","#s05-ka2"],["#s05-kb","#s05-kb2"],["#s05-kc","#s05-kc2"],["#s05-kd","#s05-kd2"]];
+    [1,2,3,4].forEach((n,i)=>{
+      const at=2.05+i*.62;
+      s05flow("#s05-f"+n,at,.72);
+      s05.to(s05plates[i],{borderColor:"#5fe6fd",boxShadow:"0 0 54px rgba(95,230,253,.55),inset 0 0 50px rgba(1,183,249,.22)",duration:.34,ease:"power3.out"},at+.68);
+      s05.fromTo(s05brk[i][0],{opacity:0,x:16,y:16},{opacity:1,x:0,y:0,duration:.34,ease:"power3.out"},at+.68);
+      s05.fromTo(s05brk[i][1],{opacity:0,x:-16,y:-16},{opacity:1,x:0,y:0,duration:.34,ease:"power3.out"},at+.68);
+      s05.to(s05plates[i],{scale:1.07,duration:.16,ease:"power3.out"},at+.68);
+      s05.to(s05plates[i],{scale:1,duration:.24,ease:"power2.out"},at+.84);
+    });
+
+    /* the output lands where work lives */
+    s05.fromTo("#s05-art",{opacity:0,scale:.5},{opacity:1,scale:1,duration:.34,ease:"power3.out"},5.45);
+    s05.to("#s05-art",{x:600,y:426,duration:1.5,ease:"power2.inOut"},5.85);
+    s05.to("#s05-art",{opacity:0,scale:.42,duration:.3,ease:"power2.in"},7.25);
+    s05.to("#s05-pd",{scale:1.14,duration:.24,ease:"power4.out"},7.3);
+    s05.to("#s05-pd",{scale:1.05,boxShadow:"0 0 88px rgba(95,230,253,.8),inset 0 0 50px rgba(1,183,249,.3)",duration:.4,ease:"power2.out"},7.54);
+    s05.fromTo("#s05-out",{opacity:0,y:16,scale:1.16},{opacity:1,y:0,scale:1,duration:.4,ease:"power4.out"},7.5);
+    window.__timelines["s05"]=s05;
+  </script>
+</template>
+</body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s02-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s02-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 66% at 50% 48%,rgba(0,22,66,.30),rgba(0,22,66,.78))}
+    .s02-arc{position:absolute;inset:0;width:1920px;height:1080px}
+    .s02-arc path{fill:none;stroke:rgba(253,253,253,.5);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .s02-plate{position:absolute;width:260px;height:260px;border-radius:52px;border:4px solid #fdfdfd;display:grid;place-items:center;opacity:0}
+    .s02-glass{background:rgba(0,22,66,.85);box-shadow:0 0 36px rgba(95,230,253,.24),inset 0 0 60px rgba(1,183,249,.18)}
+    .s02-white{background:#fdfdfd;box-shadow:0 26px 60px rgba(0,22,66,.45)}
+    .s02-plate img{width:62%;height:62%;object-fit:contain}
+    .s02-p1{left:250px;top:330px}.s02-p2{left:830px;top:262px}.s02-p3{left:1410px;top:330px}
+    .s02-lbl{position:absolute;font-size:30px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-align:center;text-shadow:0 0 26px rgba(0,0,0,.8),0 4px 18px rgba(0,0,0,.6);opacity:0}
+    .s02-l1{left:380px;top:646px}.s02-l2{left:960px;top:578px}.s02-l3{left:1540px;top:646px}
+    .s02-tag{position:absolute;left:960px;top:845px;font-size:56px;font-weight:900;letter-spacing:.14em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.85),0 4px 18px rgba(0,0,0,.6),0 0 46px rgba(95,230,253,.45);opacity:0}
+    .s02-rule{position:absolute;left:760px;top:938px;width:400px;height:4px;border-radius:2px;background:#5fe6fd;box-shadow:0 0 22px rgba(95,230,253,.8);transform-origin:50% 50%;opacity:0}
+  </style>
+  <div data-hf-id="s02-root" id="s02-root" data-composition-id="s02" data-start="0" data-duration="5.1" data-width="1920" data-height="1080">
+    <div data-hf-id="s02-shade" id="s02-shade" class="s02-shade"></div>
+    <svg data-hf-id="s02-arc" id="s02-arc" class="s02-arc" viewBox="0 0 1920 1080"><path data-hf-id="s02-arc-p" id="s02-arc-p" d="M330 520 C620 300 1300 300 1590 520"/></svg>
+    <div data-hf-id="s02-p1" id="s02-p1" class="s02-plate s02-white s02-p1"><img data-hf-id="s02-hermes" id="s02-hermes" src=".media/logos/hermes.png" alt=""></div>
+    <div data-hf-id="s02-p2" id="s02-p2" class="s02-plate s02-white s02-p2"><img data-hf-id="s02-oc" id="s02-oc" src=".media/logos/openclaw.svg" alt=""></div>
+    <div data-hf-id="s02-p3" id="s02-p3" class="s02-plate s02-white s02-p3"><img data-hf-id="s02-grok" id="s02-grok" src=".media/logos/grok.svg" alt=""></div>
+    <div data-hf-id="s02-l1" id="s02-l1" class="s02-lbl s02-l1">HERMES</div>
+    <div data-hf-id="s02-l2" id="s02-l2" class="s02-lbl s02-l2">OPENCLAW</div>
+    <div data-hf-id="s02-l3" id="s02-l3" class="s02-lbl s02-l3">GROK BOT</div>
+    <div data-hf-id="s02-tag" id="s02-tag" class="s02-tag">DON'T SLEEP ON IT</div>
+    <div data-hf-id="s02-rule" id="s02-rule" class="s02-rule"></div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s02=gsap.timeline({paused:true});
+    gsap.set(["#s02-l1","#s02-l2","#s02-l3","#s02-tag"],{xPercent:-50});
+    const s02a=document.getElementById("s02-arc-p"),s02L=s02a.getTotalLength();
+    s02a.style.strokeDasharray="12 16";s02a.style.strokeDashoffset="0";
+
+    s02.fromTo("#s02-arc-p",{opacity:0},{opacity:1,duration:.4,ease:"power2.out"},0);
+    s02.fromTo("#s02-p1",{opacity:0,scale:.6,x:180,y:-60},{opacity:1,scale:1,x:0,y:0,duration:.6,ease:"power3.out"},.55);
+    s02.fromTo("#s02-l1",{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},.85);
+    s02.fromTo("#s02-p2",{opacity:0,scale:.6,y:-70},{opacity:1,scale:1,y:0,duration:.6,ease:"power3.out"},1.05);
+    s02.fromTo("#s02-l2",{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},1.35);
+    s02.fromTo("#s02-p3",{opacity:0,scale:.6,x:-180,y:-60},{opacity:1,scale:1,x:0,y:0,duration:.6,ease:"power3.out"},1.6);
+    s02.fromTo("#s02-l3",{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},1.9);
+
+    /* "I wouldn't sleep on Grok" — the first two recede, Grok pulls forward */
+    s02.to(["#s02-p1","#s02-l1"],{opacity:.3,scale:.8,x:-110,y:-150,duration:.55,ease:"power2.in"},3.0);
+    s02.to(["#s02-p2","#s02-l2"],{opacity:.3,scale:.8,x:-380,y:-130,duration:.55,ease:"power2.in"},3.0);
+    s02.to("#s02-arc-p",{opacity:.22,duration:.45,ease:"power2.in"},3.0);
+    s02.to("#s02-p3",{x:-580,y:40,scale:1.35,duration:.7,ease:"power3.out"},3.05);
+    s02.to("#s02-l3",{x:-580,y:94,scale:1.1,duration:.7,ease:"power3.out"},3.05);
+    s02.to("#s02-p3",{boxShadow:"0 0 88px 10px rgba(95,230,253,.6),0 26px 60px rgba(0,22,66,.45)",duration:.6,ease:"power2.out"},3.5);
+    s02.fromTo("#s02-tag",{opacity:0,scale:1.22},{opacity:1,scale:1,duration:.42,ease:"power4.out"},4.05);
+    s02.fromTo("#s02-rule",{opacity:1,scaleX:0},{opacity:1,scaleX:1,duration:.5,ease:"power3.out"},4.2);
+    window.__timelines["s02"]=s02;
+  </script>
+</template>
+</body></html>

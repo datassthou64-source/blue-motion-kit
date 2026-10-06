@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "compositionId": "scene-01",
+  "duration": 5,
+  "animated": [
+    "#scene-01-object",
+    "#scene-01-core"
+  ]
+}

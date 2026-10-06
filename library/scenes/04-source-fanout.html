@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  04-source-fanout
+  ARGUMENT  "you apply X to all of them." One source above, N receivers below,
+            routes drawn between, and a token riding each route. A receiver
+            only lights when its token physically arrives.
+  SWAP      CFG.nodes (2-6), CFG.sourceLabel, CFG.mark. Routes are generated
+            from node positions, so the count is free.
+  PREFIX    fo-
+  NOTE      Tokens ride the real path with getPointAtLength — the payoff is
+            arrival, so never fade a token in at the destination instead.
+-->
+<template>
+  <style>
+    #fo-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #fo-shade{position:absolute;inset:0;background:radial-gradient(ellipse 64% 70% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.80))}
+    #fo-src{position:absolute;left:820px;top:98px;width:280px;height:280px;border-radius:50%;border:5px solid #FDFDFD;background:rgba(0,22,66,.88);display:grid;place-items:center;box-shadow:inset 0 0 80px rgba(1,183,249,.3),0 0 66px rgba(95,230,253,.34);opacity:0}
+    #fo-srcring{position:absolute;inset:38px;border-radius:50%;border:4px dashed rgba(95,230,253,.7)}
+    #fo-src img,#fo-srcmark{width:150px;height:150px;display:block;object-fit:contain;color:#FDFDFD}
+    #fo-srcglow{position:absolute;inset:-4px;border-radius:50%;pointer-events:none;opacity:0;box-shadow:inset 0 0 110px rgba(1,183,249,.6),0 0 96px rgba(95,230,253,.6)}
+    #fo-srclabel{position:absolute;left:770px;top:404px;width:380px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(253,253,253,.9);opacity:0;text-shadow:0 0 22px rgba(0,0,0,.8)}
+    #fo-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+    .fo-path{fill:none;stroke:#5FE6FD;stroke-width:5;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 14px rgba(95,230,253,.7))}
+    .fo-tok{fill:#5FE6FD;opacity:0;filter:drop-shadow(0 0 20px rgba(95,230,253,.95))}
+    .fo-halo{fill:rgba(95,230,253,.2);opacity:0}
+    .fo-node{position:absolute;top:748px;width:176px;height:176px;border-radius:50%;border:5px solid rgba(253,253,253,.55);background:rgba(0,22,66,.82);opacity:0;display:grid;place-items:center;transform-origin:50% 50%}
+    .fo-node i{width:60px;height:60px;border-radius:50%;border:4px dashed rgba(253,253,253,.45);display:block}
+    .fo-lit{position:absolute;inset:-4px;border-radius:50%;pointer-events:none;opacity:0;border:5px solid #5FE6FD;box-shadow:inset 0 0 62px rgba(1,183,249,.5),0 0 56px rgba(95,230,253,.6)}
+    .fo-nlbl{position:absolute;top:948px;font-size:24px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 22px rgba(0,0,0,.85);opacity:0}
+  </style>
+
+  <div data-hf-id="fo-root" id="fo-root" data-composition-id="source-fanout" data-start="0" data-duration="4.6" data-width="1920" data-height="1080">
+    <div data-hf-id="fo-shade" id="fo-shade"></div>
+    <svg data-hf-id="fo-svg" id="fo-svg" viewBox="0 0 1920 1080"></svg>
+    <!-- REPLACE #fo-srcmark with the sourced product logo when one is named -->
+    <div data-hf-id="fo-src" id="fo-src">
+      <div data-hf-id="fo-srcring" id="fo-srcring"></div>
+      <svg data-hf-id="fo-srcmark" id="fo-srcmark" viewBox="0 0 120 120"><circle data-hf-id="fo-sm-c" cx="60" cy="60" r="34" fill="none" stroke="currentColor" stroke-width="8"/><circle data-hf-id="fo-sm-d" cx="60" cy="60" r="10" fill="currentColor"/></svg>
+      <div data-hf-id="fo-srcglow" id="fo-srcglow"></div>
+    </div>
+    <div data-hf-id="fo-srclabel" id="fo-srclabel">Source</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const foTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const FO = {
+      sourceLabel: "Source",   // mono label under the source
+      /* 2-6 receivers. label:"" leaves the node unlabelled (cleaner when the
+         VO does not name them individually). */
+      nodes: [{label:""},{label:""},{label:""},{label:""}],
+      firstRide: 1.06,         // when the first token leaves the source
+      gap: 0.15,               // stagger between tokens
+      rideDur: 0.66
+    };
+    /* ================================================================= */
+
+    const foRoot=document.getElementById("fo-root"), foSvg=document.getElementById("fo-svg");
+    const foN=FO.nodes.length;
+    document.getElementById("fo-srclabel").textContent=FO.sourceLabel;
+
+    const foSpan=Math.min(1240, 300*(foN-1)) , foStep=foN>1?foSpan/(foN-1):0, foX0=960-foSpan/2;
+    const foPaths=[];
+    FO.nodes.forEach(function(n,i){
+      const cx=foN>1?foX0+i*foStep:960, id="fo-n"+i;
+      const d=document.createElement("div");
+      d.className="fo-node"; d.id=id; d.setAttribute("data-hf-id",id);
+      d.style.left=(cx-88)+"px";
+      d.innerHTML='<i data-hf-id="'+id+'i"></i><div data-hf-id="fo-l'+i+'" id="fo-l'+i+'" class="fo-lit"></div>';
+      foRoot.appendChild(d);
+
+      if(n.label){
+        const l=document.createElement("div");
+        l.className="fo-nlbl"; l.id="fo-t"+i; l.setAttribute("data-hf-id","fo-t"+i);
+        l.style.left=cx+"px"; l.textContent=n.label;
+        foRoot.appendChild(l); gsap.set("#fo-t"+i,{xPercent:-50});
+      }
+
+      const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+      p.setAttribute("d","M 960 382 C 960 "+(560+Math.abs(i-(foN-1)/2)*30)+", "+cx+" "+(560+Math.abs(i-(foN-1)/2)*26)+", "+cx+" 744");
+      p.setAttribute("class","fo-path"); p.id="fo-p"+i; p.setAttribute("data-hf-id","fo-p"+i);
+      foSvg.appendChild(p); foPaths.push(p);
+
+      ["halo","tok"].forEach(function(kind){
+        const c=document.createElementNS("http://www.w3.org/2000/svg","circle");
+        c.setAttribute("class","fo-"+kind); c.setAttribute("r",kind==="halo"?38:15);
+        c.setAttribute("cx",960); c.setAttribute("cy",382);
+        c.id="fo-"+(kind==="halo"?"h":"k")+i; c.setAttribute("data-hf-id",c.id);
+        foSvg.appendChild(c);
+      });
+    });
+
+    foPaths.forEach(function(p){ const L=p.getTotalLength(); gsap.set(p,{strokeDasharray:L,strokeDashoffset:L}); p.__len=L; });
+
+    /* the receivers wait, dim; the source arrives lit */
+    foTl.fromTo(".fo-node",{opacity:0,scale:.7,y:40},{opacity:.55,scale:1,y:0,duration:.46,ease:"back.out(1.4)",stagger:.06},.04);
+    foTl.fromTo("#fo-src",{opacity:0,scale:.68,y:-40},{opacity:1,scale:1,y:0,duration:.5,ease:"back.out(1.5)"},.20);
+    foTl.fromTo("#fo-srcglow",{opacity:0},{opacity:.75,duration:.44,ease:"power2.out"},.50);
+    foTl.fromTo("#fo-srclabel",{opacity:0,y:16},{opacity:1,y:0,duration:.32,ease:"power3.out"},.60);
+    if(document.querySelector(".fo-nlbl")) foTl.fromTo(".fo-nlbl",{opacity:0,y:14},{opacity:1,y:0,duration:.3,ease:"power3.out",stagger:.05},.70);
+
+    /* routes draw */
+    FO.nodes.forEach(function(n,i){
+      const t0=.56+i*.07;
+      foTl.to("#fo-p"+i,{opacity:1,duration:.1},t0);
+      foTl.to("#fo-p"+i,{strokeDashoffset:0,duration:.6,ease:"power2.inOut"},t0);
+    });
+
+    /* a token rides each route and lights its node on arrival */
+    FO.nodes.forEach(function(n,i){
+      const p=foPaths[i], L=p.__len, t0=FO.firstRide+i*FO.gap, dur=FO.rideDur, prox={d:0};
+      foTl.to(["#fo-k"+i,"#fo-h"+i],{opacity:1,duration:.12},t0);
+      foTl.to(prox,{d:L,duration:dur,ease:"power1.inOut",onUpdate:function(){
+        const pt=p.getPointAtLength(prox.d);
+        gsap.set(["#fo-k"+i,"#fo-h"+i],{attr:{cx:pt.x,cy:pt.y}});
+      }},t0);
+      foTl.to(["#fo-k"+i,"#fo-h"+i],{opacity:0,duration:.14},t0+dur-.06);
+      foTl.to("#fo-n"+i,{opacity:1,scale:1.1,duration:.2,ease:"power3.out"},t0+dur-.04);
+      foTl.to("#fo-n"+i,{scale:1,duration:.28,ease:"power2.out"},t0+dur+.16);
+      foTl.fromTo("#fo-l"+i,{opacity:0},{opacity:1,duration:.26,ease:"power2.out"},t0+dur-.04);
+    });
+
+    const foEnd=FO.firstRide+(foN-1)*FO.gap+FO.rideDur;
+    foTl.to("#fo-srcglow",{opacity:.5,duration:.34,ease:"power2.inOut",overwrite:"auto"},foEnd+.5);
+    foTl.to(".fo-lit",{scale:1.05,duration:.3,ease:"power2.out",stagger:.04},foEnd+.62);
+
+    window.__timelines["source-fanout"]=foTl;
+  </script>
+</template>
+</body></html>

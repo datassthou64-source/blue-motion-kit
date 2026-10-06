@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{width:1920px;height:1080px;overflow:hidden;background:transparent}
+      body{font-family:Inter,sans-serif}
+      #root{position:relative;width:1920px;height:1080px;overflow:hidden;color:#fdfdfd;background:transparent}
+      #root>[data-composition-src]{position:absolute;inset:0;width:1920px;height:1080px;z-index:2}
+      .bg-loop{position:absolute;inset:0;width:1920px;height:1080px;z-index:0;object-fit:cover}
+      /* real product footage, mounted at parent level and framed by the scene above it */
+      #demo01{position:absolute;left:615px;top:245px;width:690px;height:384px;z-index:1;object-fit:cover;border-radius:22px}
+      #logo01{position:absolute;left:490px;top:120px;width:940px;height:529px;z-index:1;object-fit:cover;border-radius:30px}
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="grokbot-root" id="root" data-composition-id="main" data-start="0" data-duration="1234.6" data-width="1920" data-height="1080">
+      <video data-hf-id="bg01" id="bg01" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="0.1" data-duration="45.7" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg02" id="bg02" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="101.2" data-duration="11.1" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg03" id="bg03" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="179.8" data-duration="26.2" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg04" id="bg04" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="441.0" data-duration="84.4" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg05" id="bg05" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="549.3" data-duration="51.3" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg06" id="bg06" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="707.4" data-duration="35.6" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg07" id="bg07" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="930.2" data-duration="22.5" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg08" id="bg08" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="978.8" data-duration="10.1" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg09" id="bg09" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="1026.5" data-duration="14.9" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <video data-hf-id="bg11" id="bg11" class="clip bg-loop" src="assets/blue-gradient-loop.mp4" data-start="1185.5" data-duration="12.4" data-media-start="0" data-track-index="0" muted playsinline></video>
+      <div data-hf-id="clip-s01" id="clip-s01" class="clip" data-composition-id="s01" data-composition-src="compositions/01-chatbot-crack.html" data-start="0.1" data-duration="7.2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s02" id="clip-s02" class="clip" data-composition-id="s02" data-composition-src="compositions/02-not-hermes-openclaw.html" data-start="7.4" data-duration="5.1" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s03" id="clip-s03" class="clip" data-composition-id="s03" data-composition-src="compositions/03-cursor-xai-spacex.html" data-start="12.6" data-duration="6.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s04" id="clip-s04" class="clip" data-composition-id="s04" data-composition-src="compositions/04-thinking-vs-doing.html" data-start="19.2" data-duration="4.9" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s05" id="clip-s05" class="clip" data-composition-id="s05" data-composition-src="compositions/05-own-computer-tools.html" data-start="24.1" data-duration="8.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s06" id="clip-s06" class="clip" data-composition-id="s06" data-composition-src="compositions/06-chat-window-shatters.html" data-start="32.6" data-duration="6.56" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s07" id="clip-s07" class="clip" data-composition-id="s07" data-composition-src="compositions/07-agent-fleet-lattice.html" data-start="39.16" data-duration="6.64" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s08" id="clip-s08" class="clip" data-composition-id="s08" data-composition-src="compositions/08-sealed-sandboxes.html" data-start="101.2" data-duration="11.1" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s09" id="clip-s09" class="clip" data-composition-id="s09" data-composition-src="compositions/09-context-absorb.html" data-start="179.8" data-duration="12.2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s10" id="clip-s10" class="clip" data-composition-id="s10" data-composition-src="compositions/10-mirrored-twin.html" data-start="192.0" data-duration="6.2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s11" id="clip-s11" class="clip" data-composition-id="s11" data-composition-src="compositions/11-persistent-context.html" data-start="198.2" data-duration="7.8" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s12" id="clip-s12" class="clip" data-composition-id="s12" data-composition-src="compositions/12-agents-communicate.html" data-start="441.0" data-duration="9.3" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s13" id="clip-s13" class="clip" data-composition-id="s13" data-composition-src="compositions/13-eve-chief.html" data-start="450.3" data-duration="7.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s14" id="clip-s14" class="clip" data-composition-id="s14" data-composition-src="compositions/14-delegate-routing.html" data-start="457.7" data-duration="8.7" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s15" id="clip-s15" class="clip" data-composition-id="s15" data-composition-src="compositions/15-guardrail-lanes.html" data-start="466.4" data-duration="8.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s16" id="clip-s16" class="clip" data-composition-id="s16" data-composition-src="compositions/16-publish-blocked.html" data-start="474.9" data-duration="7.1" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s17" id="clip-s17" class="clip" data-composition-id="s17" data-composition-src="compositions/17-spend-blocked.html" data-start="482.0" data-duration="6.9" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s18" id="clip-s18" class="clip" data-composition-id="s18" data-composition-src="compositions/18-outcome-goals.html" data-start="489.1" data-duration="12.2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s19" id="clip-s19" class="clip" data-composition-id="s19" data-composition-src="compositions/19-daily-rollup.html" data-start="501.3" data-duration="12.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s20" id="clip-s20" class="clip" data-composition-id="s20" data-composition-src="compositions/20-chain-of-command.html" data-start="514.0" data-duration="11.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s21" id="clip-s21" class="clip" data-composition-id="s21" data-composition-src="compositions/21-inbox-stream.html" data-start="549.3" data-duration="9.6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s22" id="clip-s22" class="clip" data-composition-id="s22" data-composition-src="compositions/22-stripe-caught.html" data-start="558.9" data-duration="9.6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s23" id="clip-s23" class="clip" data-composition-id="s23" data-composition-src="compositions/23-verify-match.html" data-start="568.5" data-duration="10.0" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s24" id="clip-s24" class="clip" data-composition-id="s24" data-composition-src="compositions/24-suppress-fraud.html" data-start="578.5" data-duration="6.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s25" id="clip-s25" class="clip" data-composition-id="s25" data-composition-src="compositions/25-subscription-audit.html" data-start="585.2" data-duration="7.6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s26" id="clip-s26" class="clip" data-composition-id="s26" data-composition-src="compositions/26-leak-sealed.html" data-start="592.8" data-duration="7.8" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s27" id="clip-s27" class="clip" data-composition-id="s27" data-composition-src="compositions/27-shared-computer.html" data-start="707.4" data-duration="8.6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s28" id="clip-s28" class="clip" data-composition-id="s28" data-composition-src="compositions/28-client-crossover.html" data-start="716.0" data-duration="11.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s29" id="clip-s29" class="clip" data-composition-id="s29" data-composition-src="compositions/29-hermes-openclaw-lockdown.html" data-start="727.5" data-duration="8.0" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s30" id="clip-s30" class="clip" data-composition-id="s30" data-composition-src="compositions/30-zero-trust-partition.html" data-start="735.5" data-duration="7.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s31" id="clip-s31" class="clip" data-composition-id="s31" data-composition-src="compositions/31-route-to-cursor.html" data-start="930.2" data-duration="8.3" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s32" id="clip-s32" class="clip" data-composition-id="s32" data-composition-src="compositions/32-repo-branch.html" data-start="938.5" data-duration="8.0" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s33" id="clip-s33" class="clip" data-composition-id="s33" data-composition-src="compositions/33-commits-merge.html" data-start="946.5" data-duration="6.2" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s34" id="clip-s34" class="clip" data-composition-id="s34" data-composition-src="compositions/34-connector-shelf-full.html" data-start="978.8" data-duration="4.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s35" id="clip-s35" class="clip" data-composition-id="s35" data-composition-src="compositions/35-cli-unlock.html" data-start="983.2" data-duration="5.7" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s36" id="clip-s36" class="clip" data-composition-id="s36" data-composition-src="compositions/36-triad-assembles.html" data-start="1026.5" data-duration="8.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s37" id="clip-s37" class="clip" data-composition-id="s37" data-composition-src="compositions/37-true-leverage.html" data-start="1035.0" data-duration="6.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s41" id="clip-s41" class="clip" data-composition-id="s41" data-composition-src="compositions/41-outro-shell-sweeps.html" data-start="1185.5" data-duration="6.0" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="clip-s42" id="clip-s42" class="clip" data-composition-id="s42" data-composition-src="compositions/42-outro-lockup.html" data-start="1191.5" data-duration="6.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <video data-hf-id="demo01" id="demo01" class="clip" src="assets/grokbot-demo.mp4" data-start="25.2" data-duration="7.3" data-media-start="0" data-track-index="2" muted playsinline></video>
+      <video data-hf-id="logo01" id="logo01" class="clip" src="assets/grokbot-logo-anim.mp4" data-start="1195.0" data-duration="2.9" data-media-start="0" data-track-index="3" muted playsinline></video>
+      <audio data-hf-id="vo" id="vo" class="clip" src="assets/vo.mp3" data-start="0" data-duration="1234.6" data-media-start="0" data-track-index="20" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines=window.__timelines||{};
+      window.__timelines.main=gsap.timeline({paused:true});
+    </script>
+  </body>
+</html>

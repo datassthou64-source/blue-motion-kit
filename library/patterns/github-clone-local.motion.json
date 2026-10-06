@@ -1,0 +1,11 @@
+{
+  "duration": 8.72,
+  "maxStaticSec": 2.2,
+  "assertions": [
+    {"type":"appearsBy","selector":"#s3-remote","bySec":1.1},
+    {"type":"appearsBy","selector":"#s3-laptop","bySec":1.8},
+    {"type":"before","first":"#s3-package","second":"#s3-localrepo"},
+    {"type":"staysInFrame","selector":"#s3-laptop"},
+    {"type":"keepsMoving","selector":"#s3-package","fromSec":1.7,"toSec":3.7}
+  ]
+}

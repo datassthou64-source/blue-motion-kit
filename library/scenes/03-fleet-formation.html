@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  03-fleet-formation
+  ARGUMENT  "a whole fleet of them." Units scatter in from off-frame, lock into
+            a grid, a power-on wave sweeps them column by column, and one rail
+            wires the formation to a single mark. Scale, made physical.
+  SWAP      CFG.cols / CFG.rows (the count IS the argument — 12 reads as a
+            fleet, 4 reads as a team). CFG.markLabel + CFG.tag.
+  PREFIX    fm-
+-->
+<template>
+  <style>
+    #fm-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #fm-shade{position:absolute;inset:0;background:radial-gradient(ellipse 72% 70% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .fm-unit{position:absolute;width:200px;height:140px;border-radius:28px;border:4px solid rgba(253,253,253,.9);background:rgba(0,22,66,.84);box-shadow:0 0 28px rgba(95,230,253,.18);opacity:0}
+    .fm-pip{position:absolute;left:22px;top:22px;width:20px;height:20px;border-radius:50%;background:rgba(253,253,253,.45)}
+    .fm-bar{position:absolute;left:22px;height:10px;border-radius:5px;background:rgba(253,253,253,.3)}
+    #fm-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    #fm-rail{fill:none;stroke:#5FE6FD;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.65));opacity:0}
+    .fm-stem{fill:none;stroke:rgba(253,253,253,.42);stroke-width:4;stroke-linecap:round;opacity:0}
+    #fm-mark{position:absolute;left:96px;top:836px;width:124px;height:124px;border-radius:30px;background:#FDFDFD;border:4px solid #FDFDFD;display:grid;place-items:center;box-shadow:0 14px 40px rgba(0,22,66,.5);opacity:0}
+    #fm-mark img,#fm-mark svg{width:62%;height:62%;object-fit:contain;display:block}
+    #fm-meta{position:absolute;left:252px;top:882px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    #fm-tag{position:absolute;left:1220px;top:868px;font-size:58px;font-weight:900;letter-spacing:.15em;color:#5FE6FD;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+
+  <div data-hf-id="fm-root" id="fm-root" data-composition-id="fleet-formation" data-start="0" data-duration="6.64" data-width="1920" data-height="1080">
+    <div data-hf-id="fm-shade" id="fm-shade"></div>
+    <svg data-hf-id="fm-svg" id="fm-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="fm-rail" id="fm-rail" d="M300 778 L1620 778"/>
+    </svg>
+    <!-- REPLACE with the sourced product mark when the VO names one -->
+    <div data-hf-id="fm-mark" id="fm-mark">
+      <svg data-hf-id="fm-mark-s" viewBox="0 0 120 120"><path data-hf-id="fm-mark-p" d="M24 96 L60 24 L96 96 Z" fill="none" stroke="#0A2F6B" stroke-width="9" stroke-linejoin="round"/></svg>
+    </div>
+    <div data-hf-id="fm-meta" id="fm-meta">One Per Function</div>
+    <div data-hf-id="fm-tag" id="fm-tag">Agent Fleet</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const fmTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const FM = {
+      cols: 6, rows: 2,           // the count is the argument — keep it honest
+      meta: "One Per Function",   // mono metadata beside the mark
+      tag:  "Agent Fleet",        // the cyan payoff
+      arriveAt: 0.05,             // scatter-in start
+      waveAt:   2.55,             // power-on sweep start
+      railAt:   4.15              // when the fleet gets wired together
+    };
+    /* ================================================================= */
+
+    document.getElementById("fm-meta").textContent=FM.meta;
+    document.getElementById("fm-tag").textContent=FM.tag;
+    gsap.set("#fm-tag",{xPercent:-50});
+
+    const fmRoot=document.getElementById("fm-root"), fmSvg=document.getElementById("fm-svg");
+    const fmUW=200, fmUH=140, fmGX=32, fmGY=32;
+    const fmTotalW=FM.cols*fmUW+(FM.cols-1)*fmGX;
+    const fmX0=(1920-fmTotalW)/2;
+    const fmTotalH=FM.rows*fmUH+(FM.rows-1)*fmGY;
+    const fmY0=560-fmTotalH/2;
+
+    const fmUnits=[];
+    for(let r=0;r<FM.rows;r++){
+      for(let c=0;c<FM.cols;c++){
+        const i=r*FM.cols+c, id="fm-u"+i;
+        const left=fmX0+c*(fmUW+fmGX), top=fmY0+r*(fmUH+fmGY);
+        const d=document.createElement("div");
+        d.className="fm-unit"; d.id=id; d.setAttribute("data-hf-id",id);
+        d.style.left=left+"px"; d.style.top=top+"px";
+        d.innerHTML='<i data-hf-id="'+id+'p" id="'+id+'p" class="fm-pip"></i>'
+                   +'<i data-hf-id="'+id+'a" class="fm-bar" style="top:70px;width:120px"></i>'
+                   +'<i data-hf-id="'+id+'b" class="fm-bar" style="top:96px;width:78px"></i>';
+        fmRoot.appendChild(d);
+        fmUnits.push({sel:"#"+id,pip:"#"+id+"p",col:c,row:r});
+      }
+    }
+
+    /* the rail sits under the formation, with a stem per column */
+    const fmRailY=fmY0+fmTotalH+66;
+    const fmRailEl=document.getElementById("fm-rail");
+    fmRailEl.setAttribute("d","M"+(fmX0-20)+" "+fmRailY+" L"+(fmX0+fmTotalW+20)+" "+fmRailY);
+    for(let c=0;c<FM.cols;c++){
+      const sx=fmX0+c*(fmUW+fmGX)+fmUW/2;
+      const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+      p.setAttribute("d","M"+sx+" "+(fmY0+fmTotalH)+" L"+sx+" "+(fmRailY-2));
+      p.setAttribute("class","fm-stem"); p.id="fm-st"+c; p.setAttribute("data-hf-id","fm-st"+c);
+      fmSvg.insertBefore(p,fmRailEl);
+    }
+
+    /* they fly in from scatter and lock into formation */
+    fmUnits.forEach(function(u,i){
+      const dx=(u.col-(FM.cols-1)/2)*180 + (i%2?140:-140);
+      const dy=u.row===0?-340-((i*37)%120):340+((i*29)%120);
+      fmTl.fromTo(u.sel,{opacity:0,x:dx,y:dy,scale:.55,rotation:i%2?9:-9},
+                        {opacity:1,x:0,y:0,scale:1,rotation:0,duration:.72,ease:"power3.out"},FM.arriveAt+i*.085);
+    });
+
+    /* a power-on wave sweeps the formation column by column */
+    fmUnits.forEach(function(u){
+      const at=FM.waveAt+u.col*.3+u.row*.08;
+      fmTl.to(u.pip,{backgroundColor:"#5FE6FD",scale:1.4,boxShadow:"0 0 24px rgba(95,230,253,.9)",duration:.2,ease:"power3.out"},at);
+      fmTl.to(u.pip,{scale:1,duration:.28,ease:"power2.out"},at+.21);
+      fmTl.to(u.sel,{borderColor:"#5FE6FD",boxShadow:"0 0 48px rgba(95,230,253,.45)",duration:.3,ease:"power2.out"},at+.04);
+    });
+
+    /* and the whole formation is wired onto one rail */
+    const fmRL=fmRailEl.getTotalLength();
+    fmRailEl.style.strokeDasharray=String(fmRL); fmRailEl.style.strokeDashoffset=String(fmRL);
+    fmTl.fromTo(".fm-stem",{opacity:0},{opacity:1,duration:.3,ease:"power2.out",stagger:.05},FM.railAt);
+    fmTl.set("#fm-rail",{opacity:1},FM.railAt+.25);
+    fmTl.to("#fm-rail",{strokeDashoffset:0,duration:.85,ease:"power2.inOut"},FM.railAt+.25);
+    fmTl.fromTo("#fm-mark",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.42,ease:"power3.out"},FM.railAt+.7);
+    fmTl.fromTo("#fm-meta",{opacity:0,x:-16},{opacity:1,x:0,duration:.36,ease:"power3.out"},FM.railAt+.9);
+    fmTl.fromTo("#fm-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.44,ease:"power4.out"},FM.railAt+1.2);
+    fmTl.to(fmUnits.map(function(u){return u.sel;}),{y:-14,duration:.34,ease:"sine.inOut",yoyo:true,repeat:1,stagger:.02},FM.railAt+1.45);
+
+    window.__timelines["fleet-formation"]=fmTl;
+  </script>
+</template>
+</body></html>

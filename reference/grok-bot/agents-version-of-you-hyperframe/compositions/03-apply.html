@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #ap-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #ap-shade{position:absolute;inset:0;background:radial-gradient(ellipse 64% 70% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.80))}
+
+    #ap-src{position:absolute;left:820px;top:98px;width:280px;height:280px;border-radius:50%;
+      border:5px solid #FDFDFD;background:rgba(0,22,66,.88);display:grid;place-items:center;
+      box-shadow:inset 0 0 80px rgba(1,183,249,.3),0 0 66px rgba(95,230,253,.34);opacity:0}
+    #ap-srcring{position:absolute;inset:38px;border-radius:50%;border:4px dashed rgba(95,230,253,.7)}
+    #ap-srcmark{width:150px;height:150px;color:#FDFDFD;display:block}
+    #ap-srcglow{position:absolute;inset:-4px;border-radius:50%;pointer-events:none;opacity:0;
+      box-shadow:inset 0 0 110px rgba(1,183,249,.6),0 0 96px rgba(95,230,253,.6)}
+    #ap-srclabel{position:absolute;left:770px;top:404px;width:380px;text-align:center;
+      font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.18em;
+      text-transform:uppercase;color:rgba(253,253,253,.9);opacity:0;text-shadow:0 0 22px rgba(0,0,0,.8)}
+
+    #ap-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+    .ap-path{fill:none;stroke:#5FE6FD;stroke-width:5;stroke-linecap:round;opacity:0;
+      filter:drop-shadow(0 0 14px rgba(95,230,253,.7))}
+    .ap-tok{fill:#5FE6FD;opacity:0;filter:drop-shadow(0 0 20px rgba(95,230,253,.95))}
+    .ap-halo{fill:rgba(95,230,253,.2);opacity:0}
+
+    .ap-node{position:absolute;top:748px;width:176px;height:176px;border-radius:50%;
+      border:5px solid rgba(253,253,253,.55);background:rgba(0,22,66,.82);opacity:0;
+      display:grid;place-items:center;transform-origin:50% 50%}
+    .ap-node i{width:60px;height:60px;border-radius:50%;border:4px dashed rgba(253,253,253,.45);display:block}
+    .ap-lit{position:absolute;inset:-4px;border-radius:50%;pointer-events:none;opacity:0;
+      border:5px solid #5FE6FD;box-shadow:inset 0 0 62px rgba(1,183,249,.5),0 0 56px rgba(95,230,253,.6)}
+    #ap-n0{left:292px}
+    #ap-n1{left:676px}
+    #ap-n2{left:1060px}
+    #ap-n3{left:1444px}
+  </style>
+
+  <div data-hf-id="ap-root" id="ap-root" data-composition-id="apply" data-start="0" data-duration="3.85" data-width="1920" data-height="1080">
+    <div data-hf-id="ap-shade" id="ap-shade"></div>
+
+    <svg data-hf-id="ap-svg" id="ap-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="ap-p0" class="ap-path" id="ap-p0" d="M 960 382 C 960 600, 380 596, 380 744" />
+      <path data-hf-id="ap-p1" class="ap-path" id="ap-p1" d="M 960 382 C 960 580, 764 580, 764 744" />
+      <path data-hf-id="ap-p2" class="ap-path" id="ap-p2" d="M 960 382 C 960 580, 1148 580, 1148 744" />
+      <path data-hf-id="ap-p3" class="ap-path" id="ap-p3" d="M 960 382 C 960 600, 1532 596, 1532 744" />
+      <circle data-hf-id="ap-h0" class="ap-halo" id="ap-h0" r="38" cx="960" cy="382" />
+      <circle data-hf-id="ap-t0" class="ap-tok" id="ap-t0" r="15" cx="960" cy="382" />
+      <circle data-hf-id="ap-h1" class="ap-halo" id="ap-h1" r="38" cx="960" cy="382" />
+      <circle data-hf-id="ap-t1" class="ap-tok" id="ap-t1" r="15" cx="960" cy="382" />
+      <circle data-hf-id="ap-h2" class="ap-halo" id="ap-h2" r="38" cx="960" cy="382" />
+      <circle data-hf-id="ap-t2" class="ap-tok" id="ap-t2" r="15" cx="960" cy="382" />
+      <circle data-hf-id="ap-h3" class="ap-halo" id="ap-h3" r="38" cx="960" cy="382" />
+      <circle data-hf-id="ap-t3" class="ap-tok" id="ap-t3" r="15" cx="960" cy="382" />
+    </svg>
+
+    <div data-hf-id="ap-src" id="ap-src">
+      <div data-hf-id="ap-srcring" id="ap-srcring"></div>
+      <svg data-hf-id="ap-srcmark" id="ap-srcmark" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path data-hf-id="ap-gp1" d="M395.479 633.828L735.91 381.105C752.599 368.715 776.454 373.548 784.406 392.792C826.26 494.285 807.561 616.253 724.288 699.996C641.016 783.739 525.151 802.104 419.247 760.277L303.556 814.143C469.49 928.202 670.987 899.995 796.901 773.282C896.776 672.843 927.708 535.937 898.785 412.476L899.047 412.739C857.105 231.37 909.358 158.874 1016.4 10.6326C1018.93 7.11771 1021.47 3.60279 1024 0L883.144 141.651V141.212L395.392 633.916" /><path data-hf-id="ap-gp2" d="M325.226 695.251C206.128 580.84 226.662 403.776 328.285 301.668C403.431 226.097 526.549 195.254 634.026 240.596L749.454 186.994C728.657 171.88 702.007 155.623 671.424 144.2C533.19 86.9942 367.693 115.465 255.323 228.382C147.234 337.081 113.244 504.215 171.613 646.833C215.216 753.423 143.739 828.818 71.7385 904.916C46.2237 931.893 20.6216 958.87 0 987.429L325.139 695.339" /></svg>
+      <div data-hf-id="ap-srcglow" id="ap-srcglow"></div>
+    </div>
+    <div data-hf-id="ap-srclabel" id="ap-srclabel">Grok Bot</div>
+
+    <div data-hf-id="ap-n0" id="ap-n0" class="ap-node"><i data-hf-id="ap-i0"></i><div data-hf-id="ap-l0" class="ap-lit" id="ap-l0"></div></div>
+    <div data-hf-id="ap-n1" id="ap-n1" class="ap-node"><i data-hf-id="ap-i1"></i><div data-hf-id="ap-l1" class="ap-lit" id="ap-l1"></div></div>
+    <div data-hf-id="ap-n2" id="ap-n2" class="ap-node"><i data-hf-id="ap-i2"></i><div data-hf-id="ap-l2" class="ap-lit" id="ap-l2"></div></div>
+    <div data-hf-id="ap-n3" id="ap-n3" class="ap-node"><i data-hf-id="ap-i3"></i><div data-hf-id="ap-l3" class="ap-lit" id="ap-l3"></div></div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const apTl=gsap.timeline({paused:true});
+
+    for(let i=0;i<4;i++){
+      const p=document.querySelector("#ap-p"+i);
+      if(!p) continue;
+      const L=p.getTotalLength?p.getTotalLength():620;
+      gsap.set(p,{strokeDasharray:L,strokeDashoffset:L});
+      p.__len=L;
+    }
+
+    apTl.fromTo(".ap-node",{opacity:0,scale:.7,y:40},{opacity:.55,scale:1,y:0,duration:.46,ease:"back.out(1.4)",stagger:.06},.04);
+    apTl.fromTo("#ap-src",{opacity:0,scale:.68,y:-40},{opacity:1,scale:1,duration:.5,y:0,ease:"back.out(1.5)"},.20);
+    apTl.fromTo("#ap-srcglow",{opacity:0},{opacity:.75,duration:.44,ease:"power2.out"},.50);
+    apTl.fromTo("#ap-srclabel",{opacity:0,y:16},{opacity:1,y:0,duration:.32,ease:"power3.out"},.60);
+
+    for(let i=0;i<4;i++){
+      const t0=.56+i*.07, sel="#ap-p"+i;
+      apTl.to(sel,{opacity:1,duration:.1},t0);
+      apTl.to(sel,{strokeDashoffset:0,duration:.6,ease:"power2.inOut"},t0);
+    }
+
+    for(let i=0;i<4;i++){
+      const p=document.querySelector("#ap-p"+i);
+      if(!p) continue;
+      const L=p.__len||620;
+      const t0=1.06+i*.15, dur=.66;
+      const proxy={d:0};
+      apTl.to(["#ap-t"+i,"#ap-h"+i],{opacity:1,duration:.12},t0);
+      apTl.to(proxy,{d:L,duration:dur,ease:"power1.inOut",onUpdate:function(){
+        if(!p.getPointAtLength) return;
+        const pt=p.getPointAtLength(proxy.d);
+        gsap.set(["#ap-t"+i,"#ap-h"+i],{attr:{cx:pt.x,cy:pt.y}});
+      }},t0);
+      apTl.to(["#ap-t"+i,"#ap-h"+i],{opacity:0,duration:.14},t0+dur-.06);
+      apTl.to("#ap-n"+i,{opacity:1,scale:1.1,duration:.2,ease:"power3.out"},t0+dur-.04);
+      apTl.to("#ap-n"+i,{scale:1,duration:.28,ease:"power2.out"},t0+dur+.16);
+      apTl.fromTo("#ap-l"+i,{opacity:0},{opacity:1,duration:.26,ease:"power2.out"},t0+dur-.04);
+    }
+
+    apTl.to("#ap-srcglow",{opacity:.5,duration:.34,ease:"power2.inOut",overwrite:"auto"},2.30);
+    apTl.to(".ap-lit",{scale:1.05,duration:.3,ease:"power2.out",stagger:.04},2.42);
+
+    window.__timelines["apply"]=apTl;
+  </script>
+</template>
+</body></html>

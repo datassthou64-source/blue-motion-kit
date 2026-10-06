@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s29-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s29-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 70% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s29-plate{position:absolute;top:240px;width:340px;height:340px;border-radius:68px;border:5px solid #fdfdfd;display:grid;place-items:center;opacity:0}
+    .s29-glass{background:rgba(0,22,66,.9);box-shadow:0 0 40px rgba(95,230,253,.24)}
+    .s29-white{background:#fdfdfd;box-shadow:0 22px 56px rgba(0,22,66,.5)}
+    .s29-plate img{width:62%;height:62%;object-fit:contain}
+    .s29-pl{left:430px}.s29-pr{left:1150px}
+    .s29-lbl{position:absolute;top:620px;font-size:30px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s29-ll{left:600px}.s29-lr{left:1320px}
+    .s29-ring{position:absolute;top:180px;width:460px;height:460px;border-radius:92px;border:4px dashed rgba(95,230,253,.6);opacity:0}
+    .s29-rl{left:370px}.s29-rr{left:1090px}
+    .s29-tag{position:absolute;left:960px;top:800px;font-size:60px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+    .s29-meta{position:absolute;left:960px;top:892px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    .s29-tick{position:absolute;width:3px;height:30px;background:rgba(253,253,253,.4);opacity:0}
+  </style>
+  <div data-hf-id="s29-root" id="s29-root" data-composition-id="s29" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+    <div data-hf-id="s29-shade" id="s29-shade" class="s29-shade"></div>
+    <i data-hf-id="s29-k1" id="s29-k1" class="s29-tick" style="left:150px;top:395px"></i>
+    <i data-hf-id="s29-k2" id="s29-k2" class="s29-tick" style="left:190px;top:395px"></i>
+    <i data-hf-id="s29-k3" id="s29-k3" class="s29-tick" style="left:1730px;top:395px"></i>
+    <i data-hf-id="s29-k4" id="s29-k4" class="s29-tick" style="left:1770px;top:395px"></i>
+    <div data-hf-id="s29-rl" id="s29-rl" class="s29-ring s29-rl"></div>
+    <div data-hf-id="s29-rr" id="s29-rr" class="s29-ring s29-rr"></div>
+    <div data-hf-id="s29-pl" id="s29-pl" class="s29-plate s29-white s29-pl"><img data-hf-id="s29-hermes" id="s29-hermes" src=".media/logos/hermes.png" alt=""></div>
+    <div data-hf-id="s29-pr" id="s29-pr" class="s29-plate s29-white s29-pr"><img data-hf-id="s29-oc" id="s29-oc" src=".media/logos/openclaw.svg" alt=""></div>
+    <div data-hf-id="s29-ll" id="s29-ll" class="s29-lbl s29-ll">HERMES</div>
+    <div data-hf-id="s29-lr" id="s29-lr" class="s29-lbl s29-lr">OPENCLAW</div>
+    <div data-hf-id="s29-tag" id="s29-tag" class="s29-tag">LOCKDOWN SANDBOX</div>
+    <div data-hf-id="s29-meta" id="s29-meta" class="s29-meta">OWN CONTAINER, EVERY TIME</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s29=gsap.timeline({paused:true});
+    gsap.set(["#s29-ll","#s29-lr","#s29-tag","#s29-meta"],{xPercent:-50});
+
+    s29.fromTo("#s29-pl",{opacity:0,scale:.68,y:40},{opacity:1,scale:1,y:0,duration:.6,ease:"power3.out"},.1);
+    s29.fromTo("#s29-ll",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},.5);
+    s29.fromTo("#s29-pr",{opacity:0,scale:.68,y:40},{opacity:1,scale:1,y:0,duration:.6,ease:"power3.out"},.85);
+    s29.fromTo("#s29-lr",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},1.25);
+    s29.fromTo(["#s29-k1","#s29-k2","#s29-k3","#s29-k4"],{opacity:0,scaleY:.3},{opacity:1,scaleY:1,duration:.4,ease:"power2.out",stagger:.06},1.5);
+    /* each one gets sealed in its own container */
+    s29.fromTo("#s29-rl",{opacity:0,scale:1.24},{opacity:1,scale:1,duration:.6,ease:"power3.out"},2.6);
+    s29.fromTo("#s29-rr",{opacity:0,scale:1.24},{opacity:1,scale:1,duration:.6,ease:"power3.out"},3.0);
+    s29.to(["#s29-pl","#s29-pr"],{boxShadow:"0 0 78px rgba(95,230,253,.5)",duration:.5,ease:"power2.out",stagger:.1},3.5);
+    s29.fromTo("#s29-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.42,ease:"power4.out"},4.2);
+    s29.fromTo("#s29-meta",{opacity:0,y:12},{opacity:1,y:0,duration:.34,ease:"power3.out"},4.6);
+    s29.to(["#s29-rl","#s29-rr"],{rotation:6,duration:2.6,ease:"sine.inOut",stagger:.15},4.9);
+    window.__timelines["s29"]=s29;
+  </script>
+</template>
+</body></html>

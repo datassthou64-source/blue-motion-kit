@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #cx-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #cx-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 52%,rgba(0,22,66,.34),rgba(0,22,66,.84))}
+
+    /* ---- composer panel (Cursor-style, dark) ---- */
+    #cx-card{position:absolute;left:320px;top:396px;width:1280px;height:344px;border-radius:22px;
+      background:rgba(0,11,32,.97);border:2px solid rgba(253,253,253,.14);
+      box-shadow:0 0 60px rgba(0,22,66,.75),0 34px 96px rgba(0,10,30,.8),inset 0 1px 0 rgba(253,253,253,.06);
+      opacity:0;transform-origin:50% 50%;overflow:visible}
+    #cx-ph{position:absolute;left:46px;top:42px;font-size:34px;font-weight:400;letter-spacing:-.004em;
+      color:rgba(253,253,253,.30);white-space:nowrap}
+    #cx-caret{position:absolute;left:46px;top:104px;width:3px;height:40px;background:rgba(253,253,253,.65);opacity:0}
+
+    #cx-row{position:absolute;left:46px;top:238px;display:flex;align-items:center;gap:28px}
+    #cx-agentpill{height:62px;border-radius:31px;background:rgba(253,253,253,.07);
+      border:2px solid rgba(253,253,253,.13);display:flex;align-items:center;gap:14px;padding:0 26px}
+    #cx-inf{font-size:30px;font-weight:500;color:rgba(253,253,253,.62);line-height:1}
+    #cx-agt{font-size:30px;font-weight:600;color:rgba(253,253,253,.9)}
+    #cx-model{display:flex;align-items:center;gap:14px}
+    #cx-mname{font-size:30px;font-weight:500;color:rgba(253,253,253,.68)}
+    .cx-chev{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;
+      border-top:9px solid rgba(253,253,253,.5)}
+
+    #cx-icons{position:absolute;right:46px;top:238px;display:flex;align-items:center;gap:36px}
+    .cx-ic{width:46px;height:46px;color:rgba(253,253,253,.5);display:block}
+    .cx-ic svg{width:46px;height:46px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;
+      stroke-linecap:round;stroke-linejoin:round}
+    #cx-ic-ctx{color:rgba(253,253,253,.5)}
+
+    /* ---- context tooltip ---- */
+    #cx-tip{position:absolute;left:940px;top:552px;height:70px;border-radius:12px;
+      background:rgba(0,11,32,.99);border:2px solid rgba(253,253,253,.2);display:flex;align-items:center;
+      padding:0 26px;opacity:0;box-shadow:0 18px 46px rgba(0,10,30,.85);z-index:9;overflow:hidden}
+    #cx-tiptext{font-family:'JetBrains Mono',monospace;font-size:27px;font-weight:500;letter-spacing:.01em;
+      color:rgba(253,253,253,.92);white-space:nowrap}
+    #cx-tipfill{position:absolute;left:0;bottom:0;width:100%;height:4px;background:#5FE6FD;
+      box-shadow:0 0 18px rgba(95,230,253,.9);transform-origin:0% 50%}
+
+    /* ---- pointer ---- */
+    #cx-ptr{position:absolute;left:0;top:0;width:52px;height:52px;opacity:0;z-index:11;
+      filter:drop-shadow(0 4px 10px rgba(0,10,30,.9))}
+
+
+    #cx-cardglow{position:absolute;inset:-2px;border-radius:22px;pointer-events:none;opacity:0;
+      box-shadow:inset 0 0 130px rgba(1,183,249,.26),0 0 90px rgba(95,230,253,.45)}
+
+    .cx-brk{position:absolute;width:40px;height:40px;border:4px solid #5FE6FD;opacity:0;z-index:10}
+    #cx-brk-a{left:914px;top:526px;border-right:0;border-bottom:0}
+    #cx-brk-b{left:1584px;top:526px;border-left:0;border-bottom:0}
+    #cx-brk-c{left:914px;top:608px;border-right:0;border-top:0}
+    #cx-brk-d{left:1584px;top:608px;border-left:0;border-top:0}
+
+    #cx-persist{position:absolute;left:320px;top:790px;width:1280px;text-align:center;font-size:30px;
+      font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#5FE6FD;opacity:0;
+      text-shadow:0 0 26px rgba(0,0,0,.8),0 0 44px rgba(95,230,253,.85)}
+  </style>
+
+  <div data-hf-id="cx-root" id="cx-root" data-composition-id="context" data-start="0" data-duration="3.25" data-width="1920" data-height="1080">
+    <div data-hf-id="cx-shade" id="cx-shade"></div>
+
+    <div data-hf-id="cx-card" id="cx-card">
+      <div data-hf-id="cx-ph" id="cx-ph">Plan, @ for context, / for commands</div>
+      <div data-hf-id="cx-caret" id="cx-caret"></div>
+
+      <div data-hf-id="cx-row" id="cx-row">
+        <div data-hf-id="cx-agentpill" id="cx-agentpill">
+          <span data-hf-id="cx-inf" id="cx-inf">&#8734;</span><span data-hf-id="cx-agt" id="cx-agt">Agent</span><i data-hf-id="cx-cv1" class="cx-chev"></i>
+        </div>
+        <div data-hf-id="cx-model" id="cx-model">
+          <span data-hf-id="cx-mname" id="cx-mname">Grok</span><i data-hf-id="cx-cv2" class="cx-chev"></i>
+        </div>
+      </div>
+
+      <div data-hf-id="cx-icons" id="cx-icons">
+        <span data-hf-id="cx-ic-ctx" id="cx-ic-ctx" class="cx-ic"><svg data-hf-id="cx-svg-mag" viewBox="0 0 24 24"><circle data-hf-id="cx-mag-c" cx="10.6" cy="10.6" r="6.6"/><path data-hf-id="cx-mag-l" d="M15.6 15.6 L20.4 20.4"/></svg></span>
+        <span data-hf-id="cx-ic-at" class="cx-ic"><svg data-hf-id="cx-svg-at" viewBox="0 0 24 24"><circle data-hf-id="cx-at-c" cx="12" cy="12" r="3.6"/><path data-hf-id="cx-at-p" d="M15.6 12 v3.1 a3 3 0 0 0 5.4 -1.9 A9 9 0 1 0 16.6 20"/></svg></span>
+        <span data-hf-id="cx-ic-globe" class="cx-ic"><svg data-hf-id="cx-svg-gl" viewBox="0 0 24 24"><circle data-hf-id="cx-gl-c" cx="12" cy="12" r="8.6"/><path data-hf-id="cx-gl-h" d="M3.4 12 H20.6"/><path data-hf-id="cx-gl-v" d="M12 3.4 a13 13 0 0 1 0 17.2 a13 13 0 0 1 0 -17.2"/></svg></span>
+        <span data-hf-id="cx-ic-img" class="cx-ic"><svg data-hf-id="cx-svg-im" viewBox="0 0 24 24"><rect data-hf-id="cx-im-r" x="3.2" y="4.6" width="17.6" height="14.8" rx="2.6"/><circle data-hf-id="cx-im-c" cx="8.6" cy="9.6" r="1.8"/><path data-hf-id="cx-im-p" d="M4.2 17.4 L9.6 12.4 L14 16 L16.8 13.6 L20 16.6"/></svg></span>
+        <span data-hf-id="cx-ic-mic" class="cx-ic"><svg data-hf-id="cx-svg-mc" viewBox="0 0 24 24"><rect data-hf-id="cx-mc-r" x="9.2" y="2.8" width="5.6" height="11.4" rx="2.8"/><path data-hf-id="cx-mc-a" d="M5.4 11.6 a6.6 6.6 0 0 0 13.2 0"/><path data-hf-id="cx-mc-s" d="M12 18.2 V21.2"/></svg></span>
+      </div>
+
+      <div data-hf-id="cx-cardglow" id="cx-cardglow"></div>
+    </div>
+
+    <div data-hf-id="cx-tip" id="cx-tip">
+      <span data-hf-id="cx-tiptext" id="cx-tiptext">0.0% &middot; 0K / 200K context used</span>
+      <span data-hf-id="cx-tipfill" id="cx-tipfill"></span>
+    </div>
+
+    <div data-hf-id="cx-brk-a" id="cx-brk-a" class="cx-brk"></div>
+    <div data-hf-id="cx-brk-b" id="cx-brk-b" class="cx-brk"></div>
+    <div data-hf-id="cx-brk-c" id="cx-brk-c" class="cx-brk"></div>
+    <div data-hf-id="cx-brk-d" id="cx-brk-d" class="cx-brk"></div>
+
+    <svg data-hf-id="cx-ptr" id="cx-ptr" viewBox="0 0 24 24"><path data-hf-id="cx-ptr-p" d="M5 2.6 L5 20.2 L9.4 15.9 L12.3 22 L15.3 20.6 L12.4 14.6 L18.6 14.4 Z" fill="#FDFDFD" stroke="rgba(0,11,32,.9)" stroke-width="1.1" stroke-linejoin="round"/></svg>
+
+
+    <div data-hf-id="cx-persist" id="cx-persist">Persistent</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const cxTl=gsap.timeline({paused:true});
+
+    gsap.set("#cx-tipfill",{scaleX:0});
+
+    const tipEl=document.querySelector("#cx-tiptext");
+    const ctx={v:0};
+    function writeTip(){
+      const pct=ctx.v, k=(pct*2).toFixed(1);
+      if(tipEl) tipEl.textContent=pct.toFixed(1)+"% \u00b7 "+k+"K / 200K context used";
+    }
+    writeTip();
+
+    cxTl.fromTo("#cx-card",{opacity:0,scale:.9,y:38},{opacity:1,scale:1,y:0,duration:.44,ease:"back.out(1.3)"},.04);
+    cxTl.fromTo("#cx-caret",{opacity:0},{opacity:1,duration:.12},.34);
+
+    /* pointer travels to the context icon, tooltip opens */
+    cxTl.to("#cx-ptr",{opacity:1,duration:.14},.22);
+    cxTl.to("#cx-ptr",{x:1236,y:668,duration:.5,ease:"power2.inOut"},.24);
+    cxTl.to("#cx-ic-ctx",{color:"#5FE6FD",duration:.2,ease:"power2.out"},.66);
+    cxTl.fromTo("#cx-tip",{opacity:0,y:14,scale:.94},{opacity:1,y:0,scale:1,duration:.28,ease:"back.out(1.5)"},.68);
+
+    /* the context window fills, slowly and steadily */
+    cxTl.to("#cx-tipfill",{scaleX:.962,duration:1.06,ease:"power1.inOut"},.94);
+    cxTl.to(ctx,{v:96.2,duration:1.06,ease:"power1.inOut",onUpdate:writeTip},.94);
+    cxTl.fromTo("#cx-cardglow",{opacity:0},{opacity:.34,duration:1.06,ease:"power1.inOut"},.94);
+
+    /* and it holds — that is the persistence */
+    cxTl.to("#cx-cardglow",{opacity:.56,duration:.34,ease:"power2.out"},2.00);
+    cxTl.fromTo(["#cx-brk-a","#cx-brk-b","#cx-brk-c","#cx-brk-d"],{opacity:0,scale:.5},{opacity:1,scale:1,duration:.28,ease:"back.out(1.7)",stagger:.035},1.98);
+    cxTl.fromTo("#cx-persist",{opacity:0,y:18},{opacity:1,y:0,duration:.32,ease:"power3.out"},2.08);
+
+    window.__timelines["context"]=cxTl;
+  </script>
+</template>
+</body></html>

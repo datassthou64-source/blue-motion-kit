@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  09-stream-notice
+  ARGUMENT  "it watches everything coming in and it notices." A continuous
+            stream of identical items crosses the frame past a watcher on the
+            left; a cyan scan arc draws, the watcher turns cyan and its eye
+            reacts. Ordinary traffic keeps flowing the whole time — that is
+            what makes noticing mean something.
+  SWAP      CFG.watcherLabel / CFG.tag / CFG.meta. CFG.itemCount and
+            CFG.itemGap set the density. Set CFG.catch to a 0-based index to
+            have one item get pulled out of the lane instead of passing.
+  PREFIX    st-
+-->
+<template>
+  <style>
+    #st-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #st-shade{position:absolute;inset:0;background:radial-gradient(ellipse 72% 68% at 44% 50%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    #st-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    #st-lane{fill:none;stroke:rgba(253,253,253,.55);stroke-width:5;stroke-linecap:round;stroke-dasharray:14 18;opacity:0}
+    #st-scan{fill:none;stroke:#5FE6FD;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 16px rgba(95,230,253,.8));opacity:0}
+    #st-tray{position:absolute;left:150px;top:400px;width:300px;height:280px;border-radius:44px;border:6px solid #FDFDFD;background:rgba(0,22,66,.86);box-shadow:0 0 40px rgba(95,230,253,.24);overflow:hidden;opacity:0}
+    #st-slit{position:absolute;left:50px;top:64px;width:200px;height:16px;border-radius:8px;background:rgba(253,253,253,.5)}
+    #st-eye{position:absolute;left:110px;top:140px;width:80px;height:80px;border-radius:50%;border:5px solid rgba(253,253,253,.9);background:rgba(4,26,72,.8)}
+    .st-item{position:absolute;top:492px;width:170px;height:110px;border-radius:18px;border:4px solid rgba(253,253,253,.82);background:rgba(4,26,72,.76);box-shadow:0 0 26px rgba(0,22,66,.5);opacity:0}
+    .st-flap{position:absolute;left:16px;top:14px;width:130px;height:56px;border-left:4px solid rgba(253,253,253,.7);border-bottom:4px solid rgba(253,253,253,.7)}
+    #st-lbl{position:absolute;left:300px;top:718px;font-size:32px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    #st-meta{position:absolute;left:1300px;top:340px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    #st-tag{position:absolute;left:300px;top:790px;font-size:26px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#5FE6FD;white-space:nowrap;text-shadow:0 0 24px rgba(0,0,0,.9),0 0 40px rgba(95,230,253,.45);opacity:0}
+  </style>
+
+  <div data-hf-id="st-root" id="st-root" data-composition-id="stream-notice" data-start="0" data-duration="9.6" data-width="1920" data-height="1080">
+    <div data-hf-id="st-shade" id="st-shade"></div>
+    <svg data-hf-id="st-svg" id="st-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="st-lane" id="st-lane" d="M1920 547 L450 547"/>
+      <path data-hf-id="st-scan" id="st-scan" d="M470 420 C620 470 620 624 470 674"/>
+    </svg>
+    <div data-hf-id="st-tray" id="st-tray"><i data-hf-id="st-slit" id="st-slit"></i><i data-hf-id="st-eye" id="st-eye"></i></div>
+    <div data-hf-id="st-lbl" id="st-lbl">Watcher</div>
+    <div data-hf-id="st-tag" id="st-tag">Notices What Comes In</div>
+    <div data-hf-id="st-meta" id="st-meta">Inbound</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const stTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const ST = {
+      watcherLabel: "Watcher",
+      tag:  "Notices What Comes In",
+      meta: "Inbound",
+      itemCount: 10,
+      itemGap: 0.72,      // seconds between items entering
+      travel: 2.9,        // seconds to cross the frame
+      noticeAt: 3.0,      // when the scan fires
+      catch: -1           // index of the item that gets pulled out; -1 = none
+    };
+    /* ================================================================= */
+
+    const stRoot=document.getElementById("st-root");
+    document.getElementById("st-lbl").textContent=ST.watcherLabel;
+    document.getElementById("st-tag").textContent=ST.tag;
+    document.getElementById("st-meta").textContent=ST.meta;
+    gsap.set(["#st-lbl","#st-tag"],{xPercent:-50});
+
+    for(let i=0;i<ST.itemCount;i++){
+      const e=document.createElement("i");
+      e.className="st-item"; e.id="st-e"+i; e.setAttribute("data-hf-id","st-e"+i);
+      e.style.left="1860px";
+      e.innerHTML='<i data-hf-id="st-f'+i+'" class="st-flap"></i>';
+      stRoot.appendChild(e);
+    }
+
+    const stSc=document.getElementById("st-scan"), stSL=stSc.getTotalLength();
+    stSc.style.strokeDasharray=String(stSL); stSc.style.strokeDashoffset=String(stSL);
+
+    stTl.fromTo("#st-tray",{opacity:0,x:-90,scale:.8},{opacity:1,x:0,scale:1,duration:.6,ease:"power3.out"},.08);
+    stTl.fromTo("#st-lbl",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},.5);
+    stTl.fromTo("#st-lane",{opacity:0},{opacity:1,duration:.4,ease:"power2.out"},.6);
+    stTl.fromTo("#st-meta",{opacity:0,x:24},{opacity:1,x:0,duration:.36,ease:"power3.out"},.85);
+
+    /* a continuous stream of ordinary traffic */
+    for(let i=0;i<ST.itemCount;i++){
+      const at=.55+i*ST.itemGap, sel="#st-e"+i;
+      stTl.set(sel,{opacity:1},at);
+      if(i===ST.catch){
+        /* this one gets pulled out of the lane instead of passing through */
+        stTl.fromTo(sel,{x:0,y:0},{x:-1150,duration:ST.travel*.78,ease:"none",immediateRender:false},at);
+        stTl.to(sel,{borderColor:"#5FE6FD",boxShadow:"0 0 44px rgba(95,230,253,.7)",duration:.3,ease:"power2.out"},at+ST.travel*.60);
+        stTl.to(sel,{y:-190,scale:.82,duration:.5,ease:"power3.out"},at+ST.travel*.78);
+        stTl.to(sel,{opacity:0,duration:.3,ease:"power2.in"},at+ST.travel*.78+.5);
+      } else {
+        stTl.fromTo(sel,{x:0,y:(i%3-1)*22},{x:-1330,duration:ST.travel,ease:"none",immediateRender:false},at);
+        stTl.to(sel,{opacity:0,duration:.3,ease:"power2.in"},at+ST.travel-.3);
+      }
+    }
+
+    /* it notices */
+    stTl.set("#st-scan",{opacity:1},ST.noticeAt);
+    stTl.to("#st-scan",{strokeDashoffset:0,duration:.7,ease:"power2.out"},ST.noticeAt);
+    stTl.to("#st-tray",{borderColor:"#5FE6FD",boxShadow:"0 0 70px rgba(95,230,253,.55)",duration:.4,ease:"power2.out"},ST.noticeAt+.1);
+    stTl.to("#st-eye",{borderColor:"#5FE6FD",scale:1.18,duration:.3,ease:"power3.out"},ST.noticeAt+.15);
+    stTl.to("#st-eye",{scale:1,duration:.4,ease:"power2.out"},ST.noticeAt+.45);
+    stTl.to("#st-scan",{opacity:0,duration:.4,ease:"power2.in"},ST.noticeAt+1.1);
+    stTl.fromTo("#st-tag",{opacity:0,y:14},{opacity:1,y:0,duration:.38,ease:"power4.out"},ST.noticeAt+1.5);
+    stTl.to("#st-eye",{scale:1.12,duration:.5,ease:"sine.inOut",yoyo:true,repeat:3},ST.noticeAt+2.6);
+
+    window.__timelines["stream-notice"]=stTl;
+  </script>
+</template>
+</body></html>

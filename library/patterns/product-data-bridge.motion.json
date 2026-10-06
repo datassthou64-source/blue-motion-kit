@@ -1,0 +1,11 @@
+{
+  "duration": 6.815333,
+  "maxStaticSec": 1.8,
+  "assertions": [
+    {"type":"appearsBy","selector":"#s7-grok-card","bySec":1.3},
+    {"type":"appearsBy","selector":"#s7-x-card","bySec":1.5},
+    {"type":"appearsBy","selector":"#s7-path","bySec":2.0},
+    {"type":"staysInFrame","selector":".s7-brand"},
+    {"type":"keepsMoving","selector":"#s7-c5","fromSec":4.1,"toSec":5.5}
+  ]
+}

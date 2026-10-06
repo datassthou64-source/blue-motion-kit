@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{width:1920px;height:1080px;overflow:hidden;background:#001642}
+      body{font-family:Inter,sans-serif}
+      #root{position:relative;width:1920px;height:1080px;overflow:hidden;color:#FDFDFD}
+      #root>[data-composition-src]{position:absolute;inset:0;width:1920px;height:1080px;z-index:7}
+      #global-bg{position:absolute;inset:0;width:1920px;height:1080px;z-index:0;object-fit:cover}
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="root" id="root" data-composition-id="main" data-start="0" data-duration="14.4" data-width="1920" data-height="1080">
+      <video data-hf-id="global-bg" id="global-bg" class="clip" src="assets/blue-gradient-loop.mp4" data-start="0" data-duration="14.4" data-media-start="0" data-track-index="0" muted playsinline></video>
+
+      <div data-hf-id="s1-clip" id="s1-clip" class="clip" data-composition-id="extension" data-composition-src="compositions/01-extension.html" data-start="0" data-duration="3.45" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="s2-clip" id="s2-clip" class="clip" data-composition-id="context" data-composition-src="compositions/02-context.html" data-start="3.45" data-duration="3.25" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="s3-clip" id="s3-clip" class="clip" data-composition-id="apply" data-composition-src="compositions/03-apply.html" data-start="6.7" data-duration="3.85" data-track-index="1" data-width="1920" data-height="1080"></div>
+
+      <audio data-hf-id="vo" id="vo" class="clip" src="assets/vo.mp3" data-start="0" data-duration="14.3" data-media-start="0" data-track-index="20"></audio>
+    </div>
+    <script>
+      window.__timelines=window.__timelines||{};
+      window.__timelines.main=gsap.timeline({paused:true});
+    </script>
+  </body>
+</html>

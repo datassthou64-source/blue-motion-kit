@@ -1,0 +1,10 @@
+{
+  "duration": 6.64,
+  "maxStaticSec": 1.2,
+  "assertions": [
+    {"type":"appearsBy","selector":"#fm-u0","bySec":1.0},
+    {"type":"appearsBy","selector":"#fm-tag","bySec":6.2},
+    {"type":"before","first":"#fm-u0","second":"#fm-tag"},
+    {"type":"staysInFrame","selector":"#fm-u0"}
+  ]
+}

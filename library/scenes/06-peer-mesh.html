@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  06-peer-mesh
+  ARGUMENT  "they talk to each other." Nodes sit on a ring, every chord is
+            drawn faintly, then pulses run chord to chord and ACCELERATE. The
+            acceleration is the whole point — it turns a static diagram into a
+            system that is busy.
+  SWAP      CFG.count (4-7), CFG.tag, CFG.meta. Use accelerate:false when the
+            VO describes something steady rather than compounding.
+  PREFIX    pm-
+-->
+<template>
+  <style>
+    #pm-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #pm-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 70% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .pm-node{position:absolute;width:180px;height:180px;border-radius:50%;border:5px solid #FDFDFD;background:rgba(0,22,66,.84);box-shadow:0 0 36px rgba(95,230,253,.24);display:grid;place-items:center;opacity:0}
+    .pm-np{width:34px;height:34px;border-radius:50%;background:rgba(253,253,253,.92);box-shadow:0 0 24px rgba(253,253,253,.4)}
+    #pm-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .pm-guide{fill:none;stroke:rgba(253,253,253,.28);stroke-width:3;stroke-dasharray:10 14;opacity:0}
+    .pm-fl{fill:none;stroke:#5FE6FD;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    #pm-tag{position:absolute;left:960px;top:898px;font-size:50px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:#5FE6FD;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7),0 0 46px rgba(95,230,253,.45);opacity:0}
+    #pm-meta{position:absolute;left:960px;top:972px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+
+  <div data-hf-id="pm-root" id="pm-root" data-composition-id="peer-mesh" data-start="0" data-duration="9.3" data-width="1920" data-height="1080">
+    <div data-hf-id="pm-shade" id="pm-shade"></div>
+    <svg data-hf-id="pm-svg" id="pm-svg" viewBox="0 0 1920 1080"></svg>
+    <div data-hf-id="pm-tag" id="pm-tag">They Talk To Each Other</div>
+    <div data-hf-id="pm-meta" id="pm-meta">Agent To Agent</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const pmTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const PM = {
+      count: 5,                        // 4-7 nodes on the ring
+      radius: 285,
+      centre: {x:960, y:465},
+      tag:  "They Talk To Each Other", // cyan payoff line
+      meta: "Agent To Agent",
+      firstPulse: 2.5,
+      accelerate: true                 // each exchange gets faster than the last
+    };
+    /* ================================================================= */
+
+    const pmRoot=document.getElementById("pm-root"), pmSvg=document.getElementById("pm-svg");
+    document.getElementById("pm-tag").textContent=PM.tag;
+    document.getElementById("pm-meta").textContent=PM.meta;
+    gsap.set(["#pm-tag","#pm-meta"],{xPercent:-50});
+
+    const pmPts=[];
+    for(let i=0;i<PM.count;i++){
+      const a=-Math.PI/2 + i*2*Math.PI/PM.count;
+      pmPts.push({x:PM.centre.x+PM.radius*Math.cos(a), y:PM.centre.y+PM.radius*Math.sin(a)});
+    }
+
+    pmPts.forEach(function(p,i){
+      const id="pm-n"+i;
+      const d=document.createElement("div");
+      d.className="pm-node"; d.id=id; d.setAttribute("data-hf-id",id);
+      d.style.left=(p.x-90)+"px"; d.style.top=(p.y-90)+"px";
+      d.innerHTML='<i data-hf-id="'+id+'p" id="'+id+'p" class="pm-np"></i>';
+      pmRoot.appendChild(d);
+    });
+
+    /* every chord, faint — this is a real connection map, not decoration */
+    let pmD="";
+    for(let i=0;i<PM.count;i++) for(let j=i+1;j<PM.count;j++)
+      pmD+="M"+pmPts[i].x.toFixed(1)+" "+pmPts[i].y.toFixed(1)+" L"+pmPts[j].x.toFixed(1)+" "+pmPts[j].y.toFixed(1)+" ";
+    const pmG=document.createElementNS("http://www.w3.org/2000/svg","path");
+    pmG.setAttribute("d",pmD); pmG.setAttribute("class","pm-guide");
+    pmG.id="pm-guides"; pmG.setAttribute("data-hf-id","pm-guides"); pmSvg.appendChild(pmG);
+
+    /* one travelling chord per exchange, hopping around the ring */
+    const pmSeq=[];
+    for(let k=0;k<PM.count;k++){
+      const a=k, b=(k+2)%PM.count;
+      const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+      p.setAttribute("d","M"+pmPts[a].x+" "+pmPts[a].y+" L"+pmPts[b].x+" "+pmPts[b].y);
+      p.setAttribute("class","pm-fl"); p.id="pm-c"+k; p.setAttribute("data-hf-id","pm-c"+k);
+      pmSvg.appendChild(p);
+      pmSeq.push({fl:"#pm-c"+k, to:"#pm-n"+b, pip:"#pm-n"+b+"p"});
+    }
+
+    function pmFlow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2; el.style.strokeDashoffset=0;
+      pmTl.set(sel,{opacity:1},at);
+      pmTl.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      pmTl.set(sel,{opacity:0},at+dur);
+    }
+
+    pmSeq.forEach(function(s,i){
+      pmTl.fromTo("#pm-n"+i,{opacity:0,scale:.55},{opacity:1,scale:1,duration:.5,ease:"back.out(1.5)"},.2+i*.24);
+    });
+    pmTl.fromTo("#pm-guides",{opacity:0},{opacity:1,duration:.5,ease:"power2.out"},.2+PM.count*.24+.1);
+
+    /* the exchanges accelerate */
+    let pmAt=PM.firstPulse, pmDur=.85, pmLast=pmAt;
+    pmSeq.forEach(function(s){
+      pmFlow(s.fl,pmAt,pmDur);
+      pmTl.to(s.to,{borderColor:"#5FE6FD",boxShadow:"0 0 60px rgba(95,230,253,.6)",duration:.24,ease:"power3.out"},pmAt+pmDur-.1);
+      pmTl.to(s.pip,{backgroundColor:"#5FE6FD",scale:1.45,duration:.22,ease:"power3.out"},pmAt+pmDur-.1);
+      pmTl.to(s.pip,{scale:1,duration:.3,ease:"power2.out"},pmAt+pmDur+.14);
+      pmLast=pmAt+pmDur;
+      pmAt += pmDur+.1;
+      if(PM.accelerate) pmDur=Math.max(.4,pmDur-.08);
+    });
+
+    pmTl.fromTo("#pm-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.42,ease:"power4.out"},pmLast+.85);
+    pmTl.fromTo("#pm-meta",{opacity:0,y:14},{opacity:1,y:0,duration:.36,ease:"power3.out"},pmLast+1.1);
+    pmTl.to("#pm-guides",{opacity:.5,duration:.5,ease:"power2.out"},pmLast+.85);
+    pmTl.to(".pm-node",{scale:1.05,duration:.35,ease:"sine.inOut",yoyo:true,repeat:1,stagger:.07},pmLast+1.75);
+
+    window.__timelines["peer-mesh"]=pmTl;
+  </script>
+</template>
+</body></html>

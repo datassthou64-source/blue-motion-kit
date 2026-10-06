@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s08-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s08-shade{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s08-box{position:absolute;top:250px;width:500px;height:500px;border-radius:56px;border:7px solid #fdfdfd;background:rgba(4,26,72,.62);box-shadow:inset 0 0 90px rgba(1,183,249,.16),0 0 40px rgba(95,230,253,.18);display:grid;place-items:center;opacity:0}
+    .s08-bl{left:320px}.s08-br{left:1100px}
+    .s08-plate{width:230px;height:230px;border-radius:48px;border:4px solid #fdfdfd;display:grid;place-items:center;opacity:0}
+    .s08-white{background:#fdfdfd;box-shadow:0 18px 46px rgba(0,22,66,.45)}
+    .s08-glass{background:rgba(0,22,66,.9);box-shadow:0 0 30px rgba(95,230,253,.22)}
+    .s08-plate img{width:62%;height:62%;object-fit:contain}
+    .s08-lbl{position:absolute;font-size:28px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.85),0 4px 18px rgba(0,0,0,.6);opacity:0}
+    .s08-l1{left:570px;top:790px}.s08-l2{left:1350px;top:790px}
+    .s08-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s08-probe{fill:none;stroke:#5fe6fd;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    .s08-stub{fill:none;stroke:rgba(253,253,253,.8);stroke-width:6;stroke-linecap:round;opacity:0}
+    .s08-tok{position:absolute;left:940px;top:130px;width:40px;height:40px;border-radius:50%;background:#5fe6fd;box-shadow:0 0 40px rgba(95,230,253,.9);opacity:0}
+    .s08-app{position:absolute;top:400px;width:160px;height:160px;border-radius:36px;border:4px solid #fdfdfd;background:rgba(0,22,66,.86);box-shadow:0 0 30px rgba(95,230,253,.22);display:grid;place-items:center;opacity:0}
+    .s08-app img{width:58%;height:58%;object-fit:contain}
+    .s08-a1{left:80px}.s08-a2{left:1680px}
+    .s08-meta{position:absolute;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    .s08-m1{left:570px;top:840px}.s08-m2{left:1350px;top:840px}
+    .s08-tag{position:absolute;left:960px;top:948px;font-size:46px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s08-root" id="s08-root" data-composition-id="s08" data-start="0" data-duration="11.1" data-width="1920" data-height="1080">
+    <div data-hf-id="s08-shade" id="s08-shade" class="s08-shade"></div>
+    <svg data-hf-id="s08-svg" id="s08-svg" class="s08-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s08-p1" id="s08-p1" class="s08-probe" d="M960 150 L700 430"/>
+      <path data-hf-id="s08-p2" id="s08-p2" class="s08-probe" d="M960 150 L1240 430"/>
+      <path data-hf-id="s08-st1" id="s08-st1" class="s08-stub" d="M240 480 L320 480"/>
+      <path data-hf-id="s08-st2" id="s08-st2" class="s08-stub" d="M1600 480 L1680 480"/>
+    </svg>
+    <div data-hf-id="s08-bl" id="s08-bl" class="s08-box s08-bl"><div data-hf-id="s08-pl" id="s08-pl" class="s08-plate s08-white"><img data-hf-id="s08-hermes" id="s08-hermes" src=".media/logos/hermes.png" alt=""></div></div>
+    <div data-hf-id="s08-br" id="s08-br" class="s08-box s08-br"><div data-hf-id="s08-pr" id="s08-pr" class="s08-plate s08-white"><img data-hf-id="s08-oc" id="s08-oc" src=".media/logos/openclaw.svg" alt=""></div></div>
+    <div data-hf-id="s08-l1" id="s08-l1" class="s08-lbl s08-l1">HERMES</div>
+    <div data-hf-id="s08-l2" id="s08-l2" class="s08-lbl s08-l2">OPENCLAW</div>
+    <div data-hf-id="s08-m1" id="s08-m1" class="s08-meta s08-m1">ISOLATED SANDBOX</div>
+    <div data-hf-id="s08-m2" id="s08-m2" class="s08-meta s08-m2">ISOLATED SANDBOX</div>
+    <i data-hf-id="s08-tok" id="s08-tok" class="s08-tok"></i>
+    <div data-hf-id="s08-a1" id="s08-a1" class="s08-app s08-a1"><img data-hf-id="s08-slack" id="s08-slack" src=".media/logos/slack.svg" alt=""></div>
+    <div data-hf-id="s08-a2" id="s08-a2" class="s08-app s08-a2"><img data-hf-id="s08-wa" id="s08-wa" src=".media/logos/whatsapp.svg" alt=""></div>
+    <div data-hf-id="s08-tag" id="s08-tag" class="s08-tag">SHARED USE, STILL SEALED</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s08=gsap.timeline({paused:true});
+    gsap.set(["#s08-l1","#s08-l2","#s08-m1","#s08-m2","#s08-tag"],{xPercent:-50});
+    ["#s08-p1","#s08-p2","#s08-st1","#s08-st2"].forEach(sel=>{const el=document.querySelector(sel),L=el.getTotalLength();el.style.strokeDasharray=String(L);el.style.strokeDashoffset=String(L);});
+
+    s08.fromTo("#s08-bl",{opacity:0,scale:.72,x:-60},{opacity:1,scale:1,x:0,duration:.6,ease:"power3.out"},.1);
+    s08.fromTo("#s08-br",{opacity:0,scale:.72,x:60},{opacity:1,scale:1,x:0,duration:.6,ease:"power3.out"},.28);
+    s08.fromTo("#s08-pl",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.45,ease:"back.out(1.4)"},.6);
+    s08.fromTo("#s08-pr",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.45,ease:"back.out(1.4)"},.78);
+    s08.fromTo("#s08-l1",{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},.95);
+    s08.fromTo("#s08-l2",{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},1.1);
+
+    /* the walls seal */
+    s08.fromTo(["#s08-m1","#s08-m2"],{opacity:0,y:14},{opacity:1,y:0,duration:.36,ease:"power3.out",stagger:.12},3.7);
+    s08.to(["#s08-bl","#s08-br"],{boxShadow:"inset 0 0 90px rgba(1,183,249,.24),0 0 70px rgba(95,230,253,.45)",duration:.5,ease:"power2.out",stagger:.1},3.7);
+
+    /* a probe hits each wall and bounces off */
+    [1,2].forEach(n=>{
+      const at=4.6+(n-1)*1.15;
+      s08.set("#s08-p"+n,{opacity:1},at);
+      s08.to("#s08-p"+n,{strokeDashoffset:0,duration:.42,ease:"power2.in"},at);
+      s08.to("#s08-p"+n,{strokeDashoffset:-40,duration:.42,ease:"power2.out"},at+.44);
+      s08.to("#s08-p"+n,{opacity:0,duration:.24,ease:"power2.in"},at+.86);
+    });
+    s08.fromTo("#s08-tok",{opacity:0,scale:.4},{opacity:1,scale:1,duration:.3,ease:"power3.out"},4.45);
+    s08.to("#s08-tok",{x:-250,y:270,duration:.44,ease:"power2.in"},4.62);
+    s08.to("#s08-tok",{x:-30,y:40,duration:.5,ease:"power2.out"},5.07);
+    s08.to("#s08-tok",{x:260,y:270,duration:.44,ease:"power2.in"},5.77);
+    s08.to("#s08-tok",{x:30,y:40,duration:.5,ease:"power2.out"},6.21);
+    s08.to("#s08-tok",{opacity:0,scale:.5,duration:.28,ease:"power2.in"},6.72);
+
+    /* Slack and WhatsApp dock to the outside of the walls, never inside */
+    s08.fromTo("#s08-a1",{opacity:0,x:-140,scale:.7},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},7.55);
+    s08.fromTo("#s08-a2",{opacity:0,x:140,scale:.7},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},7.75);
+    s08.set("#s08-st1",{opacity:1},8.15);
+    s08.to("#s08-st1",{strokeDashoffset:0,duration:.34,ease:"power2.inOut"},8.15);
+    s08.set("#s08-st2",{opacity:1},8.3);
+    s08.to("#s08-st2",{strokeDashoffset:0,duration:.34,ease:"power2.inOut"},8.3);
+    s08.to(["#s08-a1","#s08-a2"],{borderColor:"#5fe6fd",boxShadow:"0 0 50px rgba(95,230,253,.55)",duration:.4,ease:"power2.out",stagger:.1},8.5);
+    s08.fromTo("#s08-tag",{opacity:0,scale:1.18},{opacity:1,scale:1,duration:.42,ease:"power4.out"},9.3);
+    s08.to(["#s08-bl","#s08-br"],{scale:1.02,duration:.4,ease:"sine.inOut",yoyo:true,repeat:1},9.4);
+    window.__timelines["s08"]=s08;
+  </script>
+</template>
+</body></html>

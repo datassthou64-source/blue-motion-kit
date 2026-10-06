@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s30-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s30-shade{position:absolute;inset:0;background:radial-gradient(ellipse 72% 70% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s30-cell{position:absolute;top:280px;width:340px;height:400px;border-radius:48px;border:6px solid #fdfdfd;background:rgba(4,26,72,.6);box-shadow:inset 0 0 60px rgba(1,183,249,.14);opacity:0}
+    .s30-c1{left:130px}.s30-c2{left:550px}.s30-c3{left:970px}.s30-c4{left:1390px}
+    .s30-tok{position:absolute;top:410px;width:130px;height:130px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.9);box-shadow:0 0 30px rgba(95,230,253,.3);display:grid;place-items:center;font-size:40px;font-weight:900;opacity:0}
+    .s30-k1{left:235px}.s30-k2{left:655px}.s30-k3{left:1075px}.s30-k4{left:1495px}
+    .s30-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s30-cross{fill:none;stroke:rgba(253,253,253,.6);stroke-width:5;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .s30-cut{fill:none;stroke:#5fe6fd;stroke-width:9;stroke-linecap:round;filter:drop-shadow(0 0 18px rgba(95,230,253,.9));opacity:0}
+    .s30-tag{position:absolute;left:960px;top:780px;font-size:72px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 48px rgba(95,230,253,.5);opacity:0}
+    .s30-meta{position:absolute;left:960px;top:888px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+  <div data-hf-id="s30-root" id="s30-root" data-composition-id="s30" data-start="0" data-duration="7.5" data-width="1920" data-height="1080">
+    <div data-hf-id="s30-shade" id="s30-shade" class="s30-shade"></div>
+    <svg data-hf-id="s30-svg" id="s30-svg" class="s30-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s30-cr1" id="s30-cr1" class="s30-cross" d="M300 475 C520 340 700 610 1140 475"/>
+      <path data-hf-id="s30-cr2" id="s30-cr2" class="s30-cross" d="M720 475 C960 620 1300 350 1560 475"/>
+      <path data-hf-id="s30-cut1" id="s30-cut1" class="s30-cut" d="M470 400 L510 550"/>
+      <path data-hf-id="s30-cut2" id="s30-cut2" class="s30-cut" d="M890 400 L930 550"/>
+      <path data-hf-id="s30-cut3" id="s30-cut3" class="s30-cut" d="M1310 400 L1350 550"/>
+    </svg>
+    <div data-hf-id="s30-c1" id="s30-c1" class="s30-cell s30-c1"></div>
+    <div data-hf-id="s30-c2" id="s30-c2" class="s30-cell s30-c2"></div>
+    <div data-hf-id="s30-c3" id="s30-c3" class="s30-cell s30-c3"></div>
+    <div data-hf-id="s30-c4" id="s30-c4" class="s30-cell s30-c4"></div>
+    <div data-hf-id="s30-k1" id="s30-k1" class="s30-tok s30-k1">A</div>
+    <div data-hf-id="s30-k2" id="s30-k2" class="s30-tok s30-k2">B</div>
+    <div data-hf-id="s30-k3" id="s30-k3" class="s30-tok s30-k3">C</div>
+    <div data-hf-id="s30-k4" id="s30-k4" class="s30-tok s30-k4">D</div>
+    <div data-hf-id="s30-tag" id="s30-tag" class="s30-tag">ZERO TRUST</div>
+    <div data-hf-id="s30-meta" id="s30-meta" class="s30-meta">EVERY CLIENT, ITS OWN CONTAINER</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s30=gsap.timeline({paused:true});
+    gsap.set(["#s30-tag","#s30-meta"],{xPercent:-50});
+    ["#s30-cut1","#s30-cut2","#s30-cut3"].forEach(sel=>{const el=document.querySelector(sel),L=el.getTotalLength();el.style.strokeDasharray=String(L);el.style.strokeDashoffset=String(L);});
+
+    /* the tokens are still loose and still crossing */
+    ["#s30-k1","#s30-k2","#s30-k3","#s30-k4"].forEach((id,i)=>
+      s30.fromTo(id,{opacity:0,scale:.6,x:(i-1.5)*90},{opacity:1,scale:1,x:0,duration:.5,ease:"power3.out"},.05+i*.1));
+    s30.fromTo(["#s30-cr1","#s30-cr2"],{opacity:0},{opacity:1,duration:.4,ease:"power2.out",stagger:.1},.5);
+    /* the walls draw in */
+    ["#s30-c1","#s30-c2","#s30-c3","#s30-c4"].forEach((id,i)=>
+      s30.fromTo(id,{opacity:0,scaleX:.12},{opacity:1,scaleX:1,duration:.55,ease:"power3.out"},1.3+i*.24));
+    /* and the crossing paths are severed */
+    [1,2,3].forEach((n,i)=>{
+      const at=3.1+i*.3;
+      s30.set("#s30-cut"+n,{opacity:1},at);
+      s30.to("#s30-cut"+n,{strokeDashoffset:0,duration:.22,ease:"power4.out"},at);
+    });
+    s30.to(["#s30-cr1","#s30-cr2"],{opacity:0,duration:.4,ease:"power2.in"},4.1);
+    s30.to(["#s30-cut1","#s30-cut2","#s30-cut3"],{opacity:0,duration:.4,ease:"power2.in"},4.5);
+    s30.to(["#s30-c1","#s30-c2","#s30-c3","#s30-c4"],{borderColor:"#5fe6fd",boxShadow:"inset 0 0 60px rgba(1,183,249,.2),0 0 60px rgba(95,230,253,.45)",duration:.4,ease:"power2.out",stagger:.1},4.4);
+    s30.to(["#s30-k1","#s30-k2","#s30-k3","#s30-k4"],{scale:1.08,duration:.24,ease:"power3.out",stagger:.08},4.5);
+    s30.to(["#s30-k1","#s30-k2","#s30-k3","#s30-k4"],{scale:1,duration:.3,ease:"power2.out",stagger:.08},4.74);
+    s30.fromTo("#s30-tag",{opacity:0,scale:1.24},{opacity:1,scale:1,duration:.44,ease:"power4.out"},5.3);
+    s30.fromTo("#s30-meta",{opacity:0,y:12},{opacity:1,y:0,duration:.34,ease:"power3.out"},5.7);
+    window.__timelines["s30"]=s30;
+  </script>
+</template>
+</body></html>

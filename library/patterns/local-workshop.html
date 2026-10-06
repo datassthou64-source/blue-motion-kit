@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s4-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s4-video,.s4-shade{position:absolute;inset:0;width:1920px;height:1080px}.s4-video{object-fit:cover}.s4-shade{background:radial-gradient(circle at 50% 48%,rgba(0,22,66,.1),rgba(0,22,66,.7) 87%)}
+    .s4-bench{position:absolute;left:330px;top:185px;width:1260px;height:730px;border:4px solid rgba(253,253,253,.8);border-radius:54px;background:rgba(0,22,66,.62);box-shadow:inset 0 0 120px rgba(1,183,249,.16),0 34px 85px rgba(0,22,66,.46)}
+    .s4-core{position:absolute;left:800px;top:390px;width:320px;height:280px;border-radius:38px;border:4px solid #fdfdfd;background:linear-gradient(145deg,rgba(0,76,207,.96),rgba(1,183,249,.48));box-shadow:0 0 66px rgba(95,230,253,.28)}
+    .s4-core:before{content:"";position:absolute;inset:46px;border:3px solid rgba(95,230,253,.55);border-radius:28px}.s4-core:after{content:"";position:absolute;left:120px;top:100px;width:76px;height:76px;border-radius:50%;background:#5fe6fd;box-shadow:0 0 48px rgba(95,230,253,.92)}
+    .s4-module{position:absolute;width:210px;height:140px;border-radius:30px;border:3px solid rgba(253,253,253,.84);background:rgba(0,76,207,.82);box-shadow:0 18px 38px rgba(0,22,66,.38),inset 0 0 34px rgba(95,230,253,.12)}
+    .s4-module i{position:absolute;display:block;border-radius:50%;background:#5fe6fd;box-shadow:0 0 24px rgba(95,230,253,.8)}.s4-module i:first-child{left:34px;top:35px;width:30px;height:30px}.s4-module i:last-child{right:31px;bottom:31px;width:20px;height:20px}
+    .s4-m1{left:515px;top:300px}.s4-m2{left:1190px;top:305px}.s4-m3{left:470px;top:650px}.s4-m4{left:1235px;top:650px}
+    .s4-tool{position:absolute;left:1110px;top:435px;width:170px;height:170px;border:5px solid #5fe6fd;border-radius:50%;box-shadow:0 0 44px rgba(95,230,253,.6),inset 0 0 30px rgba(95,230,253,.24)}
+    .s4-tool:after{content:"";position:absolute;right:-73px;bottom:-20px;width:110px;height:18px;border-radius:9px;background:#fdfdfd;transform:rotate(48deg);transform-origin:left center}
+    .s4-label{position:absolute;left:86px;bottom:82px;font-size:34px;font-weight:900;letter-spacing:.28em}
+    .s4-port{position:absolute;width:23px;height:23px;border-radius:50%;background:#5fe6fd;box-shadow:0 0 25px rgba(95,230,253,.8)}.s4-pa{left:785px;top:516px}.s4-pb{left:1114px;top:516px}
+  </style>
+  <div data-hf-id="a23-s4-root" id="s4-root" data-composition-id="a23-local-workshop" data-start="0" data-duration="6.75" data-width="1920" data-height="1080">
+    <div data-hf-id="a23-s4-bench" id="s4-bench" class="s4-bench"></div><div data-hf-id="a23-s4-core" id="s4-core" class="s4-core"></div>
+    <div data-hf-id="a23-s4-m1" id="s4-m1" class="s4-module s4-m1"><i data-hf-id="hf-wt6k"></i><i data-hf-id="hf-zeb8"></i></div><div data-hf-id="a23-s4-m2" id="s4-m2" class="s4-module s4-m2"><i data-hf-id="hf-y7e5"></i><i data-hf-id="hf-ylp6"></i></div>
+    <div data-hf-id="a23-s4-m3" id="s4-m3" class="s4-module s4-m3"><i data-hf-id="hf-0l8b"></i><i data-hf-id="hf-0zjc"></i></div><div data-hf-id="a23-s4-m4" id="s4-m4" class="s4-module s4-m4"><i data-hf-id="hf-zsm9"></i><i data-hf-id="hf-06xa"></i></div>
+    <div data-hf-id="a23-s4-tool" id="s4-tool" class="s4-tool"></div><div data-hf-id="a23-s4-pa" id="s4-pa" class="s4-port s4-pa"></div><div data-hf-id="a23-s4-pb" id="s4-pb" class="s4-port s4-pb"></div>
+    <div data-hf-id="a23-s4-label" id="s4-label" class="s4-label">LOCAL</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};const s4tl=gsap.timeline({paused:true});
+    s4tl.fromTo("#s4-bench",{opacity:0,scale:.82},{opacity:1,scale:1,duration:.8,ease:"expo.out"},.05);
+    s4tl.fromTo("#s4-core",{opacity:0,scale:.3,rotation:-8},{opacity:1,scale:1,rotation:0,duration:.8,ease:"power3.out"},.3);
+    const s4mods=["#s4-m1","#s4-m2","#s4-m3","#s4-m4"],s4from=[{x:285,y:160,scale:.3},{x:-285,y:155,scale:.3},{x:330,y:-150,scale:.3},{x:-330,y:-150,scale:.3}];
+    s4mods.forEach((id,i)=>s4tl.fromTo(id,{opacity:0,...s4from[i],rotation:i%2?12:-12},{opacity:1,x:0,y:0,scale:1,rotation:0,duration:.82,ease:"expo.out"},.62+i*.12));
+    s4tl.fromTo("#s4-tool",{opacity:0,scale:.25,x:-180,y:100},{opacity:1,scale:1,x:0,y:0,duration:.65,ease:"power3.out"},1.35);
+    s4tl.fromTo("#s4-label",{opacity:0,x:-26},{opacity:1,x:0,duration:.48,ease:"expo.out"},1.55);
+    s4tl.to("#s4-tool",{x:-560,y:-124,duration:.75,ease:"power2.inOut"},2.0);
+    s4tl.to("#s4-m1",{x:115,y:50,scale:.88,duration:.55,ease:"power3.inOut"},2.72);
+    s4tl.to("#s4-tool",{x:92,y:220,duration:.86,ease:"power2.inOut"},3.28);
+    s4tl.to("#s4-m4",{x:-122,y:-74,scale:.9,duration:.55,ease:"power3.inOut"},4.1);
+    s4tl.fromTo(["#s4-pa","#s4-pb"],{scale:.45,opacity:.4},{scale:1.5,opacity:1,duration:.42,ease:"sine.inOut",yoyo:true,repeat:3,stagger:.1},4.55);
+    s4tl.to("#s4-core",{scale:1.035,duration:.62,ease:"sine.inOut",yoyo:true,repeat:2},4.72);
+    window.__timelines["a23-local-workshop"]=s4tl;
+  </script>
+</template>
+</body></html>

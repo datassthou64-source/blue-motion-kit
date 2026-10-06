@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s13-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s13-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 70% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s13-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s13-link{fill:none;stroke:rgba(253,253,253,.7);stroke-width:5;stroke-linecap:round;opacity:0}
+    .s13-chief{position:absolute;left:700px;top:180px;width:520px;height:170px;border-radius:85px;border:6px solid #fdfdfd;background:rgba(0,22,66,.88);box-shadow:0 0 46px rgba(95,230,253,.3);display:grid;place-items:center;opacity:0}
+    .s13-eve{font-size:78px;font-weight:900;letter-spacing:.16em;color:#5fe6fd;text-shadow:0 0 26px rgba(0,0,0,.85),0 0 46px rgba(95,230,253,.5);opacity:0}
+    .s13-role{position:absolute;left:960px;top:388px;font-size:32px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s13-fn{position:absolute;top:700px;width:230px;height:120px;border-radius:60px;border:5px solid #fdfdfd;background:rgba(0,22,66,.82);box-shadow:0 0 32px rgba(95,230,253,.2);display:grid;place-items:center;opacity:0}
+    .s13-fp{width:28px;height:28px;border-radius:50%;background:rgba(253,253,253,.9)}
+    .s13-f1{left:230px}.s13-f2{left:610px}.s13-f3{left:1080px}.s13-f4{left:1460px}
+    .s13-meta{position:absolute;left:960px;top:900px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+  <div data-hf-id="s13-root" id="s13-root" data-composition-id="s13" data-start="0" data-duration="7.4" data-width="1920" data-height="1080">
+    <div data-hf-id="s13-shade" id="s13-shade" class="s13-shade"></div>
+    <svg data-hf-id="s13-svg" id="s13-svg" class="s13-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s13-e1" id="s13-e1" class="s13-link" d="M960 350 L345 700"/>
+      <path data-hf-id="s13-e2" id="s13-e2" class="s13-link" d="M960 350 L725 700"/>
+      <path data-hf-id="s13-e3" id="s13-e3" class="s13-link" d="M960 350 L1195 700"/>
+      <path data-hf-id="s13-e4" id="s13-e4" class="s13-link" d="M960 350 L1575 700"/>
+    </svg>
+    <div data-hf-id="s13-f1" id="s13-f1" class="s13-fn s13-f1"><i data-hf-id="s13-p1" id="s13-p1" class="s13-fp"></i></div>
+    <div data-hf-id="s13-f2" id="s13-f2" class="s13-fn s13-f2"><i data-hf-id="s13-p2" id="s13-p2" class="s13-fp"></i></div>
+    <div data-hf-id="s13-f3" id="s13-f3" class="s13-fn s13-f3"><i data-hf-id="s13-p3" id="s13-p3" class="s13-fp"></i></div>
+    <div data-hf-id="s13-f4" id="s13-f4" class="s13-fn s13-f4"><i data-hf-id="s13-p4" id="s13-p4" class="s13-fp"></i></div>
+    <div data-hf-id="s13-chief" id="s13-chief" class="s13-chief"><span data-hf-id="s13-eve" id="s13-eve" class="s13-eve">EVE</span></div>
+    <div data-hf-id="s13-role" id="s13-role" class="s13-role">CHIEF OF AI STAFF</div>
+    <div data-hf-id="s13-meta" id="s13-meta" class="s13-meta">LIKE A COMPANY</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s13=gsap.timeline({paused:true});
+    gsap.set(["#s13-role","#s13-meta"],{xPercent:-50});
+    ["#s13-e1","#s13-e2","#s13-e3","#s13-e4"].forEach(sel=>{const el=document.querySelector(sel),L=el.getTotalLength();el.style.strokeDasharray=String(L);el.style.strokeDashoffset=String(L);});
+
+    ["#s13-f1","#s13-f2","#s13-f3","#s13-f4"].forEach((id,i)=>
+      s13.fromTo(id,{opacity:0,y:80,scale:.7},{opacity:1,y:0,scale:1,duration:.5,ease:"power3.out"},.15+i*.18));
+    s13.fromTo("#s13-meta",{opacity:0,y:14},{opacity:1,y:0,duration:.36,ease:"power3.out"},1.1);
+    s13.fromTo("#s13-chief",{opacity:0,y:-90,scale:.78},{opacity:1,y:0,scale:1,duration:.7,ease:"power3.out"},1.4);
+    [1,2,3,4].forEach((n,i)=>{
+      const at=2.1+i*.3;
+      s13.set("#s13-e"+n,{opacity:1},at);
+      s13.to("#s13-e"+n,{strokeDashoffset:0,duration:.5,ease:"power2.inOut"},at);
+      s13.to("#s13-p"+n,{backgroundColor:"#5fe6fd",scale:1.3,duration:.24,ease:"power3.out"},at+.46);
+      s13.to("#s13-p"+n,{scale:1,duration:.28,ease:"power2.out"},at+.7);
+    });
+    /* "Eve" lands, then the role */
+    s13.fromTo("#s13-eve",{opacity:0,scale:1.35},{opacity:1,scale:1,duration:.42,ease:"power4.out"},4.05);
+    s13.to("#s13-chief",{boxShadow:"0 0 90px rgba(95,230,253,.6)",duration:.5,ease:"power2.out"},4.1);
+    s13.fromTo("#s13-role",{opacity:0,y:20},{opacity:1,y:0,duration:.45,ease:"power3.out"},5.2);
+    s13.to("#s13-meta",{opacity:.4,duration:.4,ease:"power2.in"},5.2);
+    s13.to("#s13-chief",{scale:1.04,duration:.4,ease:"sine.inOut",yoyo:true,repeat:1},6.2);
+    window.__timelines["s13"]=s13;
+  </script>
+</template>
+</body></html>

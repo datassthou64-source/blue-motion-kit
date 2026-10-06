@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  12-lockup-outro
+  ARGUMENT  the end card. A hero glass panel holds the centre, a connector rail
+            of tool plates flies up under it, two flanking pillars name the two
+            halves of the system, the glass clears to an outlined frame (mount
+            the real product animation behind it at PARENT level), and the
+            reticle closes.
+  SWAP      CFG.rail (3-6 tool logos), CFG.leftPillar / CFG.rightPillar.
+            To show real footage: leave #lo-frame empty and put the video clip
+            in index.html at the same left/top/width/height, z-index BELOW the
+            scene. The frame becomes its bezel.
+  PREFIX    lo-
+-->
+<template>
+  <style>
+    #lo-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #lo-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 42%,rgba(0,22,66,.18),rgba(0,22,66,.8))}
+    #lo-core{position:absolute;left:490px;top:120px;width:940px;height:529px;border-radius:34px;border:5px solid #FDFDFD;background:rgba(4,26,72,.82);box-shadow:inset 0 0 110px rgba(1,183,249,.2),0 0 50px rgba(95,230,253,.22);display:grid;place-items:center;opacity:0}
+    #lo-ring{position:absolute;inset:60px;border:4px dashed rgba(95,230,253,.6);border-radius:24px}
+    #lo-frame{position:absolute;left:490px;top:120px;width:940px;height:529px;border-radius:34px;border:5px solid #FDFDFD;box-shadow:0 0 60px rgba(95,230,253,.4);opacity:0}
+    #lo-rail{position:absolute;left:200px;top:848px;width:1520px;height:8px;border-radius:4px;background:rgba(253,253,253,.5);transform-origin:50% 50%;opacity:0}
+    .lo-plate{position:absolute;top:770px;width:156px;height:156px;border-radius:36px;border:4px solid #FDFDFD;background:rgba(0,22,66,.88);box-shadow:0 0 30px rgba(95,230,253,.22);display:grid;place-items:center;opacity:0}
+    .lo-plate img,.lo-plate svg{width:56%;height:56%;object-fit:contain;display:block;color:#FDFDFD}
+    #lo-right{position:absolute;left:1500px;top:770px;width:230px;height:156px;border-radius:36px;border:4px solid #5FE6FD;background:rgba(0,22,66,.92);box-shadow:0 0 40px rgba(95,230,253,.55);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:34px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#5FE6FD;opacity:0}
+    #lo-left{position:absolute;left:150px;top:770px;width:170px;height:156px;border-radius:36px;border:5px solid #FDFDFD;background:rgba(0,22,66,.9);box-shadow:0 0 40px rgba(95,230,253,.3);display:grid;place-items:center;font-size:26px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;text-align:center;line-height:1.15;opacity:0}
+    .lo-brk{position:absolute;width:110px;height:110px;border:6px solid #FDFDFD;opacity:0}
+  </style>
+
+  <div data-hf-id="lo-root" id="lo-root" data-composition-id="lockup-outro" data-start="0" data-duration="6.4" data-width="1920" data-height="1080">
+    <div data-hf-id="lo-shade" id="lo-shade"></div>
+    <div data-hf-id="lo-core" id="lo-core"><i data-hf-id="lo-ring" id="lo-ring"></i></div>
+    <div data-hf-id="lo-frame" id="lo-frame"></div>
+    <i data-hf-id="lo-rail" id="lo-rail"></i>
+    <div data-hf-id="lo-right" id="lo-right">CLI</div>
+    <div data-hf-id="lo-left" id="lo-left">Chief<br data-hf-id="lo-br1">Of Staff</div>
+    <i data-hf-id="lo-k1" id="lo-k1" class="lo-brk" style="left:370px;top:34px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="lo-k2" id="lo-k2" class="lo-brk" style="left:1440px;top:34px;border-left:none;border-bottom:none"></i>
+    <i data-hf-id="lo-k3" id="lo-k3" class="lo-brk" style="left:370px;top:575px;border-right:none;border-top:none"></i>
+    <i data-hf-id="lo-k4" id="lo-k4" class="lo-brk" style="left:1440px;top:575px;border-left:none;border-top:none"></i>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const loTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const LO = {
+      /* 3-6 connector plates on the rail. Real, sourced logos only. */
+      rail: [{logo:""},{logo:""},{logo:""},{logo:""},{logo:""}],
+      leftPillar:  "Chief<br>Of Staff",  // the human/organising half
+      rightPillar: "CLI",                // the tooling half (mono, cyan)
+      revealAt: 3.32                     // the glass clears to the frame
+    };
+    /* ================================================================= */
+
+    const loRoot=document.getElementById("lo-root");
+    document.getElementById("lo-left").innerHTML=LO.leftPillar;
+    document.getElementById("lo-right").textContent=LO.rightPillar;
+
+    const loGlyph='<svg data-hf-id="PH-s" viewBox="0 0 120 120"><rect data-hf-id="PH-r" x="24" y="24" width="72" height="72" rx="18" fill="none" stroke="currentColor" stroke-width="8"/></svg>';
+    const loN=LO.rail.length, loW=156, loGap=64;
+    const loTotal=loN*loW+(loN-1)*loGap, loX0=960-loTotal/2;
+    const loPlates=[];
+    LO.rail.forEach(function(t,i){
+      const id="lo-c"+i;
+      const d=document.createElement("div");
+      d.className="lo-plate"; d.id=id; d.setAttribute("data-hf-id",id);
+      d.style.left=(loX0+i*(loW+loGap))+"px";
+      d.innerHTML=t.logo?'<img data-hf-id="'+id+'i" src="'+t.logo+'" alt="">':loGlyph.replace(/PH/g,id);
+      loRoot.appendChild(d); loPlates.push("#"+id);
+    });
+
+    loTl.fromTo("#lo-core",{opacity:0,scale:.86},{opacity:1,scale:1,duration:.5,ease:"power3.out"},.05);
+    loTl.fromTo("#lo-rail",{opacity:0,scaleX:.2},{opacity:1,scaleX:1,duration:.5,ease:"power3.out"},.3);
+    /* the connector rail flies in */
+    loPlates.forEach(function(s,i){ loTl.fromTo(s,{opacity:0,y:130,scale:.7},{opacity:1,y:0,scale:1,duration:.44,ease:"power3.out"},.55+i*.16); });
+    /* the two pillars of the system */
+    loTl.fromTo("#lo-right",{opacity:0,x:150,scale:.72},{opacity:1,x:0,scale:1,duration:.5,ease:"power3.out"},.55+loN*.16+.05);
+    loTl.fromTo("#lo-left",{opacity:0,x:-150,scale:.72},{opacity:1,x:0,scale:1,duration:.5,ease:"power3.out"},.55+loN*.16+.55);
+    loTl.to("#lo-ring",{rotation:4,duration:3.2,ease:"sine.inOut"},.6);
+
+    /* the glass clears — put the real product footage behind this frame */
+    loTl.to("#lo-core",{opacity:0,duration:.28,ease:"power2.in"},LO.revealAt);
+    loTl.fromTo("#lo-frame",{opacity:0,scale:1.03},{opacity:1,scale:1,duration:.34,ease:"power4.out"},LO.revealAt+.1);
+    loTl.to("#lo-frame",{boxShadow:"0 0 96px rgba(95,230,253,.6)",duration:.6,ease:"power2.out"},LO.revealAt+.28);
+    loTl.to(loPlates.concat(["#lo-right","#lo-left"]),{borderColor:"#5FE6FD",duration:.4,ease:"power2.out",stagger:.06},LO.revealAt+.58);
+    loTl.to("#lo-rail",{backgroundColor:"#5FE6FD",boxShadow:"0 0 26px rgba(95,230,253,.7)",duration:.5,ease:"power2.out"},LO.revealAt+.58);
+
+    /* reticle closes on the lockup */
+    loTl.fromTo("#lo-k1",{opacity:0,x:-50,y:-50},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},LO.revealAt+1.38);
+    loTl.fromTo("#lo-k2",{opacity:0,x:50,y:-50},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},LO.revealAt+1.46);
+    loTl.fromTo("#lo-k3",{opacity:0,x:-50,y:50},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},LO.revealAt+1.54);
+    loTl.fromTo("#lo-k4",{opacity:0,x:50,y:50},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},LO.revealAt+1.62);
+
+    window.__timelines["lockup-outro"]=loTl;
+  </script>
+</template>
+</body></html>

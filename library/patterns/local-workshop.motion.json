@@ -1,0 +1,10 @@
+{
+  "duration": 6.75,
+  "maxStaticSec": 1.8,
+  "assertions": [
+    {"type":"appearsBy","selector":"#s4-bench","bySec":1.0},
+    {"type":"appearsBy","selector":"#s4-m4","bySec":2.0},
+    {"type":"staysInFrame","selector":".s4-module"},
+    {"type":"keepsMoving","selector":"#s4-tool","fromSec":1.3,"toSec":4.6}
+  ]
+}

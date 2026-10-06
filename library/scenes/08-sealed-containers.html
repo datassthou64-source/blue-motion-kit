@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  08-sealed-containers
+  ARGUMENT  "each one is sealed off from the others." Two (or three) walled
+            boxes hold one thing each, the walls light as they seal, a probe
+            travels between them and BOUNCES OFF, and outside apps dock to the
+            wall from outside without ever entering.
+  SWAP      CFG.boxes (2-3: label + meta + logo), CFG.docked (0-2 external
+            apps), CFG.tag. Drop the docking beat entirely for a pure
+            isolation scene.
+  PREFIX    sc-
+-->
+<template>
+  <style>
+    #sc-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #sc-shade{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .sc-box{position:absolute;top:250px;height:500px;border-radius:56px;border:7px solid #FDFDFD;background:rgba(4,26,72,.62);box-shadow:inset 0 0 90px rgba(1,183,249,.16),0 0 40px rgba(95,230,253,.18);display:grid;place-items:center;opacity:0}
+    .sc-plate{width:230px;height:230px;border-radius:48px;border:4px solid #FDFDFD;background:#FDFDFD;box-shadow:0 18px 46px rgba(0,22,66,.45);display:grid;place-items:center;opacity:0}
+    .sc-plate img,.sc-plate svg{width:62%;height:62%;object-fit:contain;display:block}
+    .sc-lbl{position:absolute;top:790px;font-size:28px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.85),0 4px 18px rgba(0,0,0,.6);opacity:0}
+    .sc-meta{position:absolute;top:840px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    #sc-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .sc-probe{fill:none;stroke:#5FE6FD;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    .sc-stub{fill:none;stroke:rgba(253,253,253,.8);stroke-width:6;stroke-linecap:round;opacity:0}
+    #sc-tok{position:absolute;left:940px;top:130px;width:40px;height:40px;border-radius:50%;background:#5FE6FD;box-shadow:0 0 40px rgba(95,230,253,.9);opacity:0}
+    .sc-app{position:absolute;top:400px;width:160px;height:160px;border-radius:36px;border:4px solid #FDFDFD;background:rgba(0,22,66,.86);box-shadow:0 0 30px rgba(95,230,253,.22);display:grid;place-items:center;opacity:0}
+    .sc-app img,.sc-app svg{width:58%;height:58%;object-fit:contain;display:block}
+    #sc-tag{position:absolute;left:960px;top:948px;font-size:46px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:#5FE6FD;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+
+  <div data-hf-id="sc-root" id="sc-root" data-composition-id="sealed-containers" data-start="0" data-duration="11.1" data-width="1920" data-height="1080">
+    <div data-hf-id="sc-shade" id="sc-shade"></div>
+    <svg data-hf-id="sc-svg" id="sc-svg" viewBox="0 0 1920 1080"></svg>
+    <i data-hf-id="sc-tok" id="sc-tok"></i>
+    <div data-hf-id="sc-tag" id="sc-tag">Shared Use, Still Sealed</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const scTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const SC = {
+      /* 2-3 containers. logo:"" uses a neutral placeholder mark — replace it
+         for anything the VO names. */
+      boxes: [
+        {label:"Thing A", meta:"Isolated Sandbox", logo:""},
+        {label:"Thing B", meta:"Isolated Sandbox", logo:""}
+      ],
+      /* 0-2 outside apps that dock to the wall but never get in */
+      docked: [{logo:""},{logo:""}],
+      tag: "Shared Use, Still Sealed",
+      sealAt: 3.7,
+      probeAt: 4.45,
+      dockAt: 7.55
+    };
+    /* ================================================================= */
+
+    const scRoot=document.getElementById("sc-root"), scSvg=document.getElementById("sc-svg");
+    const scN=SC.boxes.length;
+    const scMark='<svg data-hf-id="PH-m" viewBox="0 0 120 120"><rect data-hf-id="PH-r" x="24" y="24" width="72" height="72" rx="18" fill="none" stroke="#0A2F6B" stroke-width="9"/></svg>';
+    const scMarkW='<svg data-hf-id="PH-m" viewBox="0 0 120 120"><rect data-hf-id="PH-r" x="24" y="24" width="72" height="72" rx="18" fill="none" stroke="#FDFDFD" stroke-width="9"/></svg>';
+
+    document.getElementById("sc-tag").textContent=SC.tag;
+    gsap.set("#sc-tag",{xPercent:-50});
+
+    const scW = scN===2?500:400, scGap=scN===2?280:120;
+    const scTotal=scN*scW+(scN-1)*scGap, scX0=(1920-scTotal)/2;
+    const scBoxes=[];
+    SC.boxes.forEach(function(b,i){
+      const left=scX0+i*(scW+scGap), cx=left+scW/2, id="sc-b"+i;
+      const d=document.createElement("div");
+      d.className="sc-box"; d.id=id; d.setAttribute("data-hf-id",id);
+      d.style.left=left+"px"; d.style.width=scW+"px";
+      d.innerHTML='<div data-hf-id="sc-p'+i+'" id="sc-p'+i+'" class="sc-plate">'
+        +(b.logo?'<img data-hf-id="sc-i'+i+'" src="'+b.logo+'" alt="">':scMark.replace(/PH/g,"sc-p"+i))+'</div>';
+      scRoot.appendChild(d);
+
+      [["sc-l"+i,"sc-lbl",b.label],["sc-m"+i,"sc-meta",b.meta]].forEach(function(spec){
+        const e=document.createElement("div");
+        e.className=spec[1]; e.id=spec[0]; e.setAttribute("data-hf-id",spec[0]);
+        e.style.left=cx+"px"; e.textContent=spec[2];
+        scRoot.appendChild(e); gsap.set("#"+spec[0],{xPercent:-50});
+      });
+
+      /* a probe that runs from centre-top at the wall and rebounds */
+      const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+      p.setAttribute("d","M960 150 L"+(cx+(cx<960?60:-60))+" 430");
+      p.setAttribute("class","sc-probe"); p.id="sc-pr"+i; p.setAttribute("data-hf-id","sc-pr"+i);
+      scSvg.appendChild(p);
+      scBoxes.push({sel:"#"+id,cx:cx,left:left});
+    });
+
+    /* external apps dock outside the outermost walls */
+    SC.docked.forEach(function(a,i){
+      const outerLeft = i===0;
+      const x = outerLeft ? scX0-240 : scX0+scTotal+80;
+      const d=document.createElement("div");
+      d.className="sc-app"; d.id="sc-a"+i; d.setAttribute("data-hf-id","sc-a"+i);
+      d.style.left=x+"px";
+      d.innerHTML = a.logo?'<img data-hf-id="sc-ai'+i+'" src="'+a.logo+'" alt="">':scMarkW.replace(/PH/g,"sc-a"+i);
+      scRoot.appendChild(d);
+
+      const sx = outerLeft ? x+180 : x-20, ex = outerLeft ? scX0-20 : scX0+scTotal+20;
+      const st=document.createElementNS("http://www.w3.org/2000/svg","path");
+      st.setAttribute("d","M"+sx+" 480 L"+ex+" 480");
+      st.setAttribute("class","sc-stub"); st.id="sc-st"+i; st.setAttribute("data-hf-id","sc-st"+i);
+      scSvg.appendChild(st);
+    });
+
+    document.querySelectorAll("#sc-svg path").forEach(function(el){
+      const L=el.getTotalLength(); el.style.strokeDasharray=String(L); el.style.strokeDashoffset=String(L);
+    });
+
+    /* the containers build */
+    scBoxes.forEach(function(b,i){
+      scTl.fromTo(b.sel,{opacity:0,scale:.72,x:(b.cx<960?-60:60)},{opacity:1,scale:1,x:0,duration:.6,ease:"power3.out"},.1+i*.18);
+      scTl.fromTo("#sc-p"+i,{opacity:0,scale:.6},{opacity:1,scale:1,duration:.45,ease:"back.out(1.4)"},.6+i*.18);
+      scTl.fromTo("#sc-l"+i,{opacity:0,y:18},{opacity:1,y:0,duration:.36,ease:"power3.out"},.95+i*.15);
+    });
+
+    /* the walls seal */
+    scTl.fromTo(".sc-meta",{opacity:0,y:14},{opacity:1,y:0,duration:.36,ease:"power3.out",stagger:.12},SC.sealAt);
+    scTl.to(".sc-box",{boxShadow:"inset 0 0 90px rgba(1,183,249,.24),0 0 70px rgba(95,230,253,.45)",duration:.5,ease:"power2.out",stagger:.1},SC.sealAt);
+
+    /* a probe hits each wall and bounces off — nothing crosses */
+    scTl.fromTo("#sc-tok",{opacity:0,scale:.4},{opacity:1,scale:1,duration:.3,ease:"power3.out"},SC.probeAt);
+    scBoxes.forEach(function(b,i){
+      const at=SC.probeAt+.17+i*1.15;
+      scTl.set("#sc-pr"+i,{opacity:1},at);
+      scTl.to("#sc-pr"+i,{strokeDashoffset:0,duration:.42,ease:"power2.in"},at);
+      scTl.to("#sc-pr"+i,{strokeDashoffset:-40,duration:.42,ease:"power2.out"},at+.44);
+      scTl.to("#sc-pr"+i,{opacity:0,duration:.24,ease:"power2.in"},at+.86);
+      scTl.to("#sc-tok",{x:(b.cx-960)*.72,y:270,duration:.44,ease:"power2.in"},at);
+      scTl.to("#sc-tok",{x:(b.cx-960)*.08,y:40,duration:.5,ease:"power2.out"},at+.45);
+    });
+    scTl.to("#sc-tok",{opacity:0,scale:.5,duration:.28,ease:"power2.in"},SC.probeAt+.17+scN*1.15+.1);
+
+    /* outside apps dock to the wall — used, never let in */
+    SC.docked.forEach(function(a,i){
+      scTl.fromTo("#sc-a"+i,{opacity:0,x:(i===0?-140:140),scale:.7},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},SC.dockAt+i*.2);
+      scTl.set("#sc-st"+i,{opacity:1},SC.dockAt+.6+i*.15);
+      scTl.to("#sc-st"+i,{strokeDashoffset:0,duration:.34,ease:"power2.inOut"},SC.dockAt+.6+i*.15);
+    });
+    if(document.querySelector(".sc-app")) scTl.to(".sc-app",{borderColor:"#5FE6FD",boxShadow:"0 0 50px rgba(95,230,253,.55)",duration:.4,ease:"power2.out",stagger:.1},SC.dockAt+.95);
+    scTl.fromTo("#sc-tag",{opacity:0,scale:1.18},{opacity:1,scale:1,duration:.42,ease:"power4.out"},SC.dockAt+1.75);
+    scTl.to(".sc-box",{scale:1.02,duration:.4,ease:"sine.inOut",yoyo:true,repeat:1},SC.dockAt+1.85);
+
+    window.__timelines["sealed-containers"]=scTl;
+  </script>
+</template>
+</body></html>

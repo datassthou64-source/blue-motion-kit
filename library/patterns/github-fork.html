@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s1-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s1-video,.s1-shade{position:absolute;inset:0;width:1920px;height:1080px}.s1-video{object-fit:cover}
+    .s1-shade{background:radial-gradient(circle at 50% 46%,rgba(0,22,66,.08),rgba(0,22,66,.72) 86%)}
+    .s1-stage{position:absolute;inset:0}.s1-card{position:absolute;top:330px;width:520px;height:360px;border:3px solid rgba(240,246,252,.76);border-radius:28px;background:rgba(13,17,23,.76);box-shadow:0 32px 82px rgba(0,22,66,.46),inset 0 0 60px rgba(95,230,253,.05);overflow:hidden}
+    .s1-original{left:175px}.s1-copy{right:175px}.s1-card-head{position:absolute;left:0;top:0;width:100%;height:86px;border-bottom:2px solid rgba(240,246,252,.18);background:rgba(22,27,34,.72);display:flex;align-items:center;padding:0 34px;gap:20px}
+    .s1-ghmark{width:43px;height:43px;background:#f0f6fc;-webkit-mask:url(".media/images/icon_005.svg") center/contain no-repeat;mask:url(".media/images/icon_005.svg") center/contain no-repeat;opacity:.96}.s1-owner{font-size:24px;font-weight:700;letter-spacing:.01em;color:#58a6ff}.s1-slash{font-size:24px;color:#8b949e}.s1-name{font-size:25px;font-weight:850}
+    .s1-public{margin-left:auto;padding:7px 14px;border:2px solid rgba(139,148,158,.45);border-radius:18px;color:#8b949e;font-size:14px;font-weight:800;letter-spacing:.08em}
+    .s1-body{position:absolute;left:32px;right:32px;top:116px;bottom:30px}.s1-branch-row{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+    .s1-branchicon{width:58px;height:58px;background:#f0f6fc;-webkit-mask:url(".media/images/icon_001.svg") center/contain no-repeat;mask:url(".media/images/icon_001.svg") center/contain no-repeat;opacity:.9}
+    .s1-bars{flex:1}.s1-bar{height:13px;border-radius:7px;background:rgba(240,246,252,.22);margin:12px 0}.s1-bar:nth-child(1){width:76%}.s1-bar:nth-child(2){width:54%}
+    .s1-file{height:34px;border-top:1px solid rgba(240,246,252,.13);display:flex;align-items:center;gap:15px}.s1-file i{width:13px;height:13px;border-radius:3px;background:#58a6ff;box-shadow:0 0 16px rgba(88,166,255,.55)}.s1-file span{height:9px;border-radius:5px;background:rgba(240,246,252,.24)}.s1-file:nth-child(2) span{width:170px}.s1-file:nth-child(3) span{width:220px}.s1-file:nth-child(4) span{width:135px}
+    .s1-fork-note{position:absolute;left:34px;bottom:17px;font-size:14px;color:#9ea6ad;letter-spacing:.03em}.s1-fork-note b{color:#5da9ff}
+    .s1-branch{position:absolute;inset:0;width:1920px;height:1080px}.s1-branch path{fill:none;stroke:#5fe6fd;stroke-width:9;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.62))}
+    .s1-fork-badge{position:absolute;left:852px;top:382px;width:216px;height:216px;border:4px solid rgba(240,246,252,.88);border-radius:50%;background:rgba(13,17,23,.82);display:grid;place-items:center;box-shadow:0 0 70px rgba(95,230,253,.25)}
+    .s1-fork-symbol{width:108px;height:108px;background:#5fe6fd;-webkit-mask:url(".media/images/icon_001.svg") center/contain no-repeat;mask:url(".media/images/icon_001.svg") center/contain no-repeat}
+    .s1-packet{position:absolute;left:683px;top:504px;width:68px;height:68px;border-radius:18px;background:#f0f6fc;box-shadow:0 0 42px rgba(95,230,253,.9)}
+    .s1-packet:after{content:"";position:absolute;inset:17px;border-radius:9px;background:#2f81f7}
+    .s1-label{position:absolute;left:881px;top:655px;font-weight:900;font-size:30px;letter-spacing:.28em}
+    .s1-dot{position:absolute;width:27px;height:27px;border-radius:50%;background:#5fe6fd;box-shadow:0 0 34px rgba(95,230,253,.95)}.s1-source{left:680px;top:524px}.s1-target{left:1212px;top:524px}
+  </style>
+  <div data-hf-id="a23-s1-root" id="s1-root" data-composition-id="a23-fork" data-start="0" data-duration="8.36" data-width="1920" data-height="1080">
+    <div data-hf-id="a23-s1-stage" class="s1-stage">
+      <svg data-hf-id="a23-s1-svg" class="s1-branch" viewBox="0 0 1920 1080"><path id="s1-path" data-hf-id="a23-s1-path" d="M695 538 C790 538 800 490 852 490 M1068 490 C1120 490 1125 538 1225 538" /></svg>
+      <div data-hf-id="a23-s1-original" id="s1-original" class="s1-card s1-original">
+        <div data-hf-id="hf-3q6y" class="s1-card-head"><span data-hf-id="hf-angk" class="s1-ghmark"></span><span data-hf-id="hf-wexy" class="s1-owner">source</span><span data-hf-id="hf-0hei" class="s1-slash">/</span><span data-hf-id="hf-rkzw" class="s1-name">project</span><span data-hf-id="hf-ijz4" class="s1-public">PUBLIC</span></div>
+        <div data-hf-id="hf-zr8t" class="s1-body"><div data-hf-id="hf-nvny" class="s1-branch-row"><span data-hf-id="hf-rrs1" class="s1-branchicon"></span><div data-hf-id="hf-t3cr" class="s1-bars"><div data-hf-id="hf-vdco" class="s1-bar"></div><div data-hf-id="hf-twhc" class="s1-bar"></div></div></div><div data-hf-id="hf-c2dn" class="s1-file"><i data-hf-id="hf-wt6k"></i><span data-hf-id="hf-uckh"></span></div><div data-hf-id="hf-m25n" class="s1-file"><i data-hf-id="hf-zeb8"></i><span data-hf-id="hf-l73p"></span></div><div data-hf-id="hf-lnum" class="s1-file"><i data-hf-id="hf-y7e5"></i><span data-hf-id="hf-me0s"></span></div></div>
+      </div>
+      <div data-hf-id="a23-s1-copy" id="s1-copy" class="s1-card s1-copy">
+        <div data-hf-id="hf-odq6" class="s1-card-head"><span data-hf-id="hf-x5do" class="s1-ghmark"></span><span data-hf-id="hf-1ug2" class="s1-owner">your-account</span><span data-hf-id="hf-3ola" class="s1-slash">/</span><span data-hf-id="hf-cfms" class="s1-name">project</span></div>
+        <div data-hf-id="hf-mgyp" class="s1-body"><div data-hf-id="hf-pmvm" class="s1-branch-row"><span data-hf-id="hf-rywl" class="s1-branchicon"></span><div data-hf-id="hf-i9rv" class="s1-bars"><div data-hf-id="hf-spk9" class="s1-bar"></div><div data-hf-id="hf-t3va" class="s1-bar"></div></div></div><div data-hf-id="hf-l9jl" class="s1-file"><i data-hf-id="hf-ylp6"></i><span data-hf-id="hf-lzpr"></span></div><div data-hf-id="hf-kv8k" class="s1-file"><i data-hf-id="hf-0l8b"></i><span data-hf-id="hf-n6mu"></span></div><div data-hf-id="hf-kgxj" class="s1-file"><i data-hf-id="hf-0zjc"></i><span data-hf-id="hf-msbt"></span></div></div>
+        <div data-hf-id="hf-6pkl" class="s1-fork-note">forked from <b data-hf-id="hf-ckf0">source / project</b></div>
+      </div>
+      <div data-hf-id="a23-s1-badge" id="s1-fork-badge" class="s1-fork-badge"><span data-hf-id="hf-4s03" class="s1-fork-symbol"></span></div>
+      <div data-hf-id="a23-s1-source" id="s1-source-dot" class="s1-dot s1-source"></div><div data-hf-id="a23-s1-target" id="s1-target-dot" class="s1-dot s1-target"></div>
+      <div data-hf-id="a23-s1-packet" id="s1-packet" class="s1-packet"></div><div data-hf-id="a23-s1-label" id="s1-label" class="s1-label">FORK</div>
+    </div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};const s1tl=gsap.timeline({paused:true});
+    const s1path=document.getElementById("s1-path"),s1len=s1path.getTotalLength();s1path.style.strokeDasharray=String(s1len);s1path.style.strokeDashoffset=String(s1len);
+    s1tl.fromTo("#s1-original",{opacity:0,scale:.62,x:180},{opacity:1,scale:1,x:0,duration:.9,ease:"expo.out"},.08);
+    s1tl.fromTo("#s1-fork-badge",{opacity:0,scale:.28,rotation:-18},{opacity:1,scale:1,rotation:0,duration:.78,ease:"expo.out"},.48);
+    s1tl.fromTo("#s1-source-dot",{opacity:0,scale:0},{opacity:1,scale:1,duration:.32,ease:"back.out(1.4)"},.78);
+    s1tl.to("#s1-path",{strokeDashoffset:0,duration:1.1,ease:"power2.inOut"},.84);
+    s1tl.fromTo("#s1-packet",{opacity:0,scale:.5},{opacity:1,scale:1,duration:.22,ease:"power2.out"},1.22);
+    s1tl.to("#s1-packet",{x:210,y:-48,duration:.56,ease:"power1.in"},1.44);
+    s1tl.to("#s1-packet",{x:542,y:0,duration:.76,ease:"power1.out"},2.0);
+    s1tl.fromTo("#s1-copy",{opacity:0,scale:.32,x:-230},{opacity:1,scale:1,x:0,duration:1.0,ease:"expo.out"},2.3);
+    s1tl.to("#s1-packet",{opacity:0,scale:1.55,duration:.28,ease:"power2.out"},2.58);
+    s1tl.fromTo("#s1-target-dot",{opacity:0,scale:0},{opacity:1,scale:1.28,duration:.28,ease:"back.out(1.3)"},2.62);
+    s1tl.to("#s1-target-dot",{scale:1,duration:.4,ease:"sine.out"},2.91);
+    s1tl.fromTo("#s1-label",{opacity:0,y:16,scale:.84},{opacity:1,y:0,scale:1,duration:.52,ease:"expo.out"},3.05);
+    s1tl.to("#s1-fork-badge",{rotation:360,duration:3.6,ease:"none"},3.35);
+    s1tl.to(["#s1-original","#s1-copy"],{y:-10,duration:1.0,ease:"sine.inOut",yoyo:true,repeat:3},3.7);
+    s1tl.to("#s1-fork-badge",{scale:1.045,duration:.85,ease:"sine.inOut",yoyo:true,repeat:4},3.5);
+    window.__timelines["a23-fork"]=s1tl;
+  </script>
+</template>
+</body></html>

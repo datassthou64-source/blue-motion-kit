@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s26-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s26-shade{position:absolute;inset:0;background:radial-gradient(ellipse 72% 72% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s26-plate{position:absolute;top:220px;width:200px;height:200px;border-radius:44px;border:4px solid #fdfdfd;display:grid;place-items:center;opacity:1}
+    .s26-glass{background:rgba(0,22,66,.86);box-shadow:0 0 34px rgba(95,230,253,.2),inset 0 0 46px rgba(1,183,249,.16)}
+    .s26-white{background:#fdfdfd;box-shadow:0 16px 44px rgba(0,22,66,.45)}
+    .s26-plate img{width:58%;height:58%;object-fit:contain}
+    .s26-p1{left:210px}.s26-p2{left:520px}.s26-p3{left:830px}.s26-p4{left:1140px}.s26-p5{left:1450px}
+    .s26-q{font-size:80px;font-weight:900;color:rgba(253,253,253,.9);letter-spacing:0;text-shadow:0 0 26px rgba(0,0,0,.8)}
+    .s26-lbl{position:absolute;top:440px;font-size:22px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 22px rgba(0,0,0,.9),0 3px 14px rgba(0,0,0,.7);opacity:1}
+    .s26-l1{left:310px}.s26-l2{left:620px}.s26-l3{left:930px}.s26-l4{left:1240px}.s26-l5{left:1550px}
+    .s26-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s26-stub{fill:none;stroke:rgba(253,253,253,.55);stroke-width:5;stroke-linecap:round;opacity:1}
+    .s26-pipe{position:absolute;left:150px;top:660px;width:1620px;height:74px;border-radius:37px;border:5px solid #fdfdfd;background:rgba(4,26,72,.7);box-shadow:inset 0 0 50px rgba(1,183,249,.18);opacity:1}
+    .s26-flow{position:absolute;left:14px;top:14px;width:220px;height:32px;border-radius:16px;background:#5fe6fd;box-shadow:0 0 32px rgba(95,230,253,.7);opacity:0}
+    .s26-seam{position:absolute;left:1520px;top:660px;width:74px;height:74px;border-radius:16px;border:4px dashed rgba(95,230,253,.7);opacity:0}
+    .s26-drip{position:absolute;left:1548px;top:748px;width:20px;height:28px;border-radius:10px;background:#5fe6fd;box-shadow:0 0 26px rgba(95,230,253,.8);opacity:0}
+    .s26-scan{position:absolute;left:180px;top:196px;width:250px;height:248px;border-radius:52px;border:4px solid #5fe6fd;box-shadow:0 0 44px rgba(95,230,253,.5);opacity:0}
+    .s26-tag{position:absolute;left:960px;top:880px;font-size:52px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+    .s26-meta{position:absolute;left:960px;top:952px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+  <div data-hf-id="s26-root" id="s26-root" data-composition-id="s26" data-start="0" data-duration="7.8" data-width="1920" data-height="1080">
+    <div data-hf-id="s26-shade" id="s26-shade" class="s26-shade"></div>
+    <svg data-hf-id="s26-svg" id="s26-svg" class="s26-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s26-s1" id="s26-s1" class="s26-stub" d="M310 420 L310 660"/>
+      <path data-hf-id="s26-s2" id="s26-s2" class="s26-stub" d="M620 420 L620 660"/>
+      <path data-hf-id="s26-s3" id="s26-s3" class="s26-stub" d="M930 420 L930 660"/>
+      <path data-hf-id="s26-s4" id="s26-s4" class="s26-stub" d="M1240 420 L1240 660"/>
+      <path data-hf-id="s26-s5" id="s26-s5" class="s26-stub" d="M1550 420 L1550 660"/>
+    </svg>
+    <div data-hf-id="s26-p1" id="s26-p1" class="s26-plate s26-glass s26-p1"><img data-hf-id="s26-inst" id="s26-inst" src=".media/logos/instantly.svg" alt=""></div>
+    <div data-hf-id="s26-p2" id="s26-p2" class="s26-plate s26-glass s26-p2"><img data-hf-id="s26-hub" id="s26-hub" src=".media/logos/hubspot.svg" alt=""></div>
+    <div data-hf-id="s26-p3" id="s26-p3" class="s26-plate s26-white s26-p3"><img data-hf-id="s26-hey" id="s26-hey" src=".media/logos/heyreach-icon.png" alt=""></div>
+    <div data-hf-id="s26-p4" id="s26-p4" class="s26-plate s26-glass s26-p4"><img data-hf-id="s26-slack" id="s26-slack" src=".media/logos/slack.svg" alt=""></div>
+    <div data-hf-id="s26-p5" id="s26-p5" class="s26-plate s26-glass s26-p5"><span data-hf-id="s26-qm" id="s26-qm" class="s26-q">?</span></div>
+    <div data-hf-id="s26-l1" id="s26-l1" class="s26-lbl s26-l1">INSTANTLY</div>
+    <div data-hf-id="s26-l2" id="s26-l2" class="s26-lbl s26-l2">HUBSPOT</div>
+    <div data-hf-id="s26-l3" id="s26-l3" class="s26-lbl s26-l3">HEYREACH</div>
+    <div data-hf-id="s26-l4" id="s26-l4" class="s26-lbl s26-l4">SLACK</div>
+    <div data-hf-id="s26-l5" id="s26-l5" class="s26-lbl s26-l5">UNUSED SEAT</div>
+    <div data-hf-id="s26-pipe" id="s26-pipe" class="s26-pipe"><i data-hf-id="s26-flow" id="s26-flow" class="s26-flow"></i></div>
+    <div data-hf-id="s26-seam" id="s26-seam" class="s26-seam"></div>
+    <i data-hf-id="s26-drip" id="s26-drip" class="s26-drip"></i>
+    <div data-hf-id="s26-scan" id="s26-scan" class="s26-scan"></div>
+    <div data-hf-id="s26-tag" id="s26-tag" class="s26-tag">REVENUE LEAKAGE, TIGHT</div>
+    <div data-hf-id="s26-meta" id="s26-meta" class="s26-meta">SEALED</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s26=gsap.timeline({paused:true});
+    gsap.set(["#s26-l1","#s26-l2","#s26-l3","#s26-l4","#s26-l5","#s26-tag","#s26-meta"],{xPercent:-50});
+
+    /* the row and the pipe carry over the cut */
+    s26.set(["#s26-l1","#s26-l2","#s26-l3","#s26-l4","#s26-l5"],{opacity:1},0);
+    s26.set("#s26-scan",{opacity:1,x:1240},0);
+    s26.set("#s26-p5",{borderColor:"#5fe6fd",boxShadow:"0 0 60px rgba(95,230,253,.55)"},0);
+    s26.set("#s26-l5",{color:"#5fe6fd"},0);
+    /* the leak: spend still dripping out of the unused seat */
+    s26.set("#s26-drip",{opacity:1},.3);
+    s26.fromTo("#s26-drip",{y:0,opacity:1},{y:150,opacity:0,duration:.85,ease:"power1.in",immediateRender:false},.3);
+    s26.fromTo("#s26-drip",{y:0,opacity:1},{y:150,opacity:0,duration:.85,ease:"power1.in",immediateRender:false},1.2);
+    s26.fromTo("#s26-drip",{y:0,opacity:1},{y:150,opacity:0,duration:.85,ease:"power1.in",immediateRender:false},2.1);
+    /* cut it out of the line */
+    s26.to("#s26-scan",{opacity:0,duration:.3,ease:"power2.in"},3.0);
+    s26.to(["#s26-p5","#s26-l5"],{y:-320,opacity:0,duration:.7,ease:"power2.in"},3.05);
+    s26.to("#s26-s5",{opacity:0,duration:.4,ease:"power2.in"},3.1);
+    /* and the pipe seals behind it */
+    s26.set("#s26-seam",{opacity:1},3.7);
+    s26.to("#s26-seam",{scaleX:0,borderColor:"rgba(95,230,253,1)",duration:.7,ease:"power3.inOut"},3.85);
+    s26.to("#s26-seam",{opacity:0,duration:.3,ease:"power2.in"},4.55);
+    s26.to("#s26-pipe",{borderColor:"#5fe6fd",boxShadow:"inset 0 0 50px rgba(1,183,249,.28),0 0 60px rgba(95,230,253,.45)",duration:.5,ease:"power2.out"},4.5);
+    s26.set("#s26-flow",{opacity:1},4.7);
+    s26.fromTo("#s26-flow",{x:0},{x:1370,duration:1.7,ease:"none",immediateRender:false},4.7);
+    s26.set("#s26-flow",{opacity:0},6.4);
+    s26.fromTo("#s26-tag",{opacity:0,scale:1.18},{opacity:1,scale:1,duration:.42,ease:"power4.out"},5.6);
+    s26.fromTo("#s26-meta",{opacity:0,y:12},{opacity:1,y:0,duration:.34,ease:"power3.out"},5.9);
+
+    window.__timelines["s26"]=s26;
+  </script>
+</template>
+</body></html>

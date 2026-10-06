@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s07-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s07-shade{position:absolute;inset:0;background:radial-gradient(ellipse 72% 70% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s07-unit{position:absolute;width:200px;height:140px;border-radius:28px;border:4px solid rgba(253,253,253,.9);background:rgba(0,22,66,.84);box-shadow:0 0 28px rgba(95,230,253,.18);opacity:0}
+    .s07-pip{position:absolute;left:22px;top:22px;width:20px;height:20px;border-radius:50%;background:rgba(253,253,253,.45)}
+    .s07-bar{position:absolute;left:22px;height:10px;border-radius:5px;background:rgba(253,253,253,.3)}
+    .s07-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s07-rail{fill:none;stroke:#5fe6fd;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.65));opacity:0}
+    .s07-stem{fill:none;stroke:rgba(253,253,253,.42);stroke-width:4;stroke-linecap:round;opacity:0}
+    .s07-mark{position:absolute;left:96px;top:836px;width:124px;height:124px;border-radius:30px;background:#fdfdfd;border:4px solid #fdfdfd;display:grid;place-items:center;box-shadow:0 14px 40px rgba(0,22,66,.5);opacity:0}
+    .s07-mark img{width:62%;height:62%;object-fit:contain}
+    .s07-meta{position:absolute;left:252px;top:882px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    .s07-tag{position:absolute;left:1220px;top:868px;font-size:58px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s07-root" id="s07-root" data-composition-id="s07" data-start="0" data-duration="6.64" data-width="1920" data-height="1080">
+    <div data-hf-id="s07-shade" id="s07-shade" class="s07-shade"></div>
+    <svg data-hf-id="s07-svg" id="s07-svg" class="s07-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s07-st1" id="s07-st1" class="s07-stem" d="M380 712 L380 776"/>
+      <path data-hf-id="s07-st2" id="s07-st2" class="s07-stem" d="M612 712 L612 776"/>
+      <path data-hf-id="s07-st3" id="s07-st3" class="s07-stem" d="M844 712 L844 776"/>
+      <path data-hf-id="s07-st4" id="s07-st4" class="s07-stem" d="M1076 712 L1076 776"/>
+      <path data-hf-id="s07-st5" id="s07-st5" class="s07-stem" d="M1308 712 L1308 776"/>
+      <path data-hf-id="s07-st6" id="s07-st6" class="s07-stem" d="M1540 712 L1540 776"/>
+      <path data-hf-id="s07-rail" id="s07-rail" class="s07-rail" d="M300 778 L1620 778"/>
+    </svg>
+    <div data-hf-id="s07-mark" id="s07-mark" class="s07-mark"><img data-hf-id="s07-grok" id="s07-grok" src=".media/logos/grok.svg" alt=""></div>
+    <div data-hf-id="s07-meta" id="s07-meta" class="s07-meta">ONE PER FUNCTION</div>
+    <div data-hf-id="s07-tag" id="s07-tag" class="s07-tag">AGENT FLEET</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s07=gsap.timeline({paused:true});
+    gsap.set("#s07-tag",{xPercent:-50});
+
+    /* build the fleet: six across, two deep */
+    const s07root=document.getElementById("s07-root");
+    const s07cols=[280,512,744,976,1208,1440], s07rows=[400,572];
+    const s07units=[];
+    s07rows.forEach(function(top,r){
+      s07cols.forEach(function(left,c){
+        const i=r*6+c, id="s07-u"+i;
+        const d=document.createElement("div");
+        d.className="s07-unit"; d.id=id; d.setAttribute("data-hf-id",id);
+        d.style.left=left+"px"; d.style.top=top+"px";
+        d.innerHTML='<i data-hf-id="'+id+'p" id="'+id+'p" class="s07-pip"></i>'
+                   +'<i data-hf-id="'+id+'a" id="'+id+'a" class="s07-bar" style="top:70px;width:120px"></i>'
+                   +'<i data-hf-id="'+id+'b" id="'+id+'b" class="s07-bar" style="top:96px;width:78px"></i>';
+        s07root.appendChild(d);
+        s07units.push({sel:"#"+id, pip:"#"+id+"p", col:c, row:r});
+      });
+    });
+
+    /* they fly in from scatter and lock into formation */
+    const s07off=[[-520,-260],[-300,-380],[-80,-300],[120,-360],[360,-300],[560,-380],
+                  [-560,300],[-320,400],[-90,320],[130,400],[380,320],[600,380]];
+    s07units.forEach(function(u,i){
+      s07.fromTo(u.sel,{opacity:0,x:s07off[i][0],y:s07off[i][1],scale:.55,rotation:i%2?9:-9},
+                       {opacity:1,x:0,y:0,scale:1,rotation:0,duration:.72,ease:"power3.out"},.05+i*.085);
+    });
+
+    /* a power-on wave sweeps the formation column by column */
+    s07units.forEach(function(u){
+      const at=2.55+u.col*.3+u.row*.08;
+      s07.to(u.pip,{backgroundColor:"#5fe6fd",scale:1.4,boxShadow:"0 0 24px rgba(95,230,253,.9)",duration:.2,ease:"power3.out"},at);
+      s07.to(u.pip,{scale:1,duration:.28,ease:"power2.out"},at+.21);
+      s07.to(u.sel,{borderColor:"#5fe6fd",boxShadow:"0 0 48px rgba(95,230,253,.45)",duration:.3,ease:"power2.out"},at+.04);
+    });
+
+    /* the fleet is wired onto one rail */
+    const s07r=document.getElementById("s07-rail"), s07RL=s07r.getTotalLength();
+    s07r.style.strokeDasharray=String(s07RL); s07r.style.strokeDashoffset=String(s07RL);
+    s07.fromTo(["#s07-st1","#s07-st2","#s07-st3","#s07-st4","#s07-st5","#s07-st6"],
+               {opacity:0},{opacity:1,duration:.3,ease:"power2.out",stagger:.05},4.15);
+    s07.set("#s07-rail",{opacity:1},4.4);
+    s07.to("#s07-rail",{strokeDashoffset:0,duration:.85,ease:"power2.inOut"},4.4);
+    s07.fromTo("#s07-mark",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.42,ease:"power3.out"},4.85);
+    s07.fromTo("#s07-meta",{opacity:0,x:-16},{opacity:1,x:0,duration:.36,ease:"power3.out"},5.05);
+    s07.fromTo("#s07-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.44,ease:"power4.out"},5.35);
+    s07.to(s07units.map(function(u){return u.sel;}),{y:-14,duration:.34,ease:"sine.inOut",yoyo:true,repeat:1,stagger:.02},5.6);
+    window.__timelines["s07"]=s07;
+  </script>
+</template>
+</body></html>

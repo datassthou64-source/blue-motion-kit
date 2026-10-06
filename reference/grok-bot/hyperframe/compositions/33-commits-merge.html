@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s33-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s33-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 72% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s33-win{position:absolute;left:340px;top:210px;width:1240px;height:600px;border-radius:30px;border:5px solid rgba(253,253,253,.72);background:rgba(4,26,72,.66);box-shadow:inset 0 0 90px rgba(1,183,249,.14),0 0 44px rgba(95,230,253,.2);overflow:hidden;opacity:1}
+    .s33-bar{position:absolute;left:0;top:0;width:1240px;height:70px;background:rgba(0,22,66,.72);border-bottom:2px solid rgba(253,253,253,.28)}
+    .s33-dot{position:absolute;top:27px;width:16px;height:16px;border-radius:50%;background:rgba(253,253,253,.62)}
+    .s33-gh{position:absolute;left:1120px;top:14px;width:86px;height:42px;border-radius:14px;background:#fdfdfd;display:grid;place-items:center}
+    .s33-gh img{width:60%;height:76%;object-fit:contain}
+    .s33-name{position:absolute;left:60px;top:22px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(253,253,253,.86)}
+    .s33-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s33-main{fill:none;stroke:rgba(253,253,253,.86);stroke-width:7;stroke-linecap:round;opacity:0}
+    .s33-branch{fill:none;stroke:#5fe6fd;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.7));opacity:0}
+    .s33-merge{fill:none;stroke:#5fe6fd;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.7));opacity:0}
+    .s33-cm{position:absolute;width:44px;height:44px;border-radius:50%;background:#5fe6fd;box-shadow:0 0 34px rgba(95,230,253,.85);opacity:0}
+    .s33-lbl{position:absolute;left:960px;top:872px;font-size:34px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s33-tag{position:absolute;left:960px;top:872px;font-size:56px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s33-root" id="s33-root" data-composition-id="s33" data-start="0" data-duration="6.2" data-width="1920" data-height="1080">
+    <div data-hf-id="s33-shade" id="s33-shade" class="s33-shade"></div>
+    <div data-hf-id="s33-win" id="s33-win" class="s33-win">
+      <i data-hf-id="s33-bar" id="s33-bar" class="s33-bar"></i>
+      <i data-hf-id="s33-d1" id="s33-d1" class="s33-dot" style="left:26px"></i><i data-hf-id="s33-d2" id="s33-d2" class="s33-dot" style="left:58px"></i><i data-hf-id="s33-d3" id="s33-d3" class="s33-dot" style="left:90px"></i>
+      <div data-hf-id="s33-name" id="s33-name" class="s33-name">REPO</div>
+      <i data-hf-id="s33-gh" id="s33-gh" class="s33-gh"><img data-hf-id="s33-ghimg" id="s33-ghimg" src=".media/logos/github.svg" alt=""></i>
+    </div>
+    <svg data-hf-id="s33-svg" id="s33-svg" class="s33-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s33-main" id="s33-main" class="s33-main" d="M440 640 L1480 640"/>
+      <path data-hf-id="s33-branch" id="s33-branch" class="s33-branch" d="M640 640 C740 640 740 440 840 440 L1160 440"/>
+      <path data-hf-id="s33-merge" id="s33-merge" class="s33-merge" d="M1160 440 C1260 440 1260 640 1360 640"/>
+    </svg>
+    <i data-hf-id="s33-cm1" id="s33-cm1" class="s33-cm" style="left:898px;top:418px"></i>
+    <i data-hf-id="s33-cm2" id="s33-cm2" class="s33-cm" style="left:1018px;top:418px"></i>
+    <i data-hf-id="s33-cm3" id="s33-cm3" class="s33-cm" style="left:1138px;top:418px"></i>
+    <div data-hf-id="s33-lbl" id="s33-lbl" class="s33-lbl"></div>
+    <div data-hf-id="s33-tag" id="s33-tag" class="s33-tag">COMMITTED, MERGED</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s33=gsap.timeline({paused:true});
+    gsap.set(["#s33-lbl","#s33-tag"],{xPercent:-50});
+    ["#s33-main","#s33-branch","#s33-merge"].forEach(sel=>{const el=document.querySelector(sel),L=el.getTotalLength();el.style.strokeDasharray=String(L);el.style.strokeDashoffset=String(L);});
+
+    /* the repo and the branch carry over the cut */
+    s33.set(["#s33-main","#s33-branch"],{opacity:1,strokeDashoffset:0},0);
+    s33.set("#s33-win",{borderColor:"rgba(95,230,253,.8)",boxShadow:"inset 0 0 90px rgba(1,183,249,.2),0 0 66px rgba(95,230,253,.42)"},0);
+    /* commits land in sequence */
+    ["#s33-cm1","#s33-cm2","#s33-cm3"].forEach((id,i)=>{
+      const at=1.5+i*.55;
+      s33.fromTo(id,{opacity:0,scale:.3,y:-40},{opacity:1,scale:1,y:0,duration:.34,ease:"back.out(1.8)"},at);
+      s33.to(id,{scale:1.28,duration:.16,ease:"power3.out"},at+.3);
+      s33.to(id,{scale:1,duration:.24,ease:"power2.out"},at+.46);
+    });
+    /* and the branch merges back */
+    s33.set("#s33-merge",{opacity:1},3.5);
+    s33.to("#s33-merge",{strokeDashoffset:0,duration:.85,ease:"power2.inOut"},3.5);
+    s33.to("#s33-main",{stroke:"#5fe6fd",duration:.5,ease:"power2.out"},4.3);
+    s33.fromTo("#s33-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.42,ease:"power4.out"},4.7);
+    s33.to("#s33-win",{scale:1.015,duration:.4,ease:"sine.inOut",yoyo:true,repeat:1},4.8);
+
+    window.__timelines["s33"]=s33;
+  </script>
+</template>
+</body></html>

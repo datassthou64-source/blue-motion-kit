@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s37-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s37-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 44%,rgba(0,22,66,.3),rgba(0,22,66,.82))}
+    .s37-core{position:absolute;left:810px;top:320px;width:300px;height:300px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.88);box-shadow:inset 0 0 84px rgba(1,183,249,.36),0 0 76px rgba(95,230,253,.5)}
+    .s37-dring{position:absolute;inset:38px;border:4px dashed rgba(95,230,253,.7);border-radius:50%}
+    .s37-disc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:144px;height:144px;border-radius:50%;background:#fdfdfd;display:grid;place-items:center;box-shadow:0 0 30px rgba(0,22,66,.42)}
+    .s37-disc img{width:66%;height:66%;object-fit:contain}
+    .s37-mod{position:absolute;width:214px;height:214px;border-radius:46px;border:5px solid #fdfdfd;background:rgba(0,22,66,.86);box-shadow:0 0 34px rgba(95,230,253,.24);display:grid;place-items:center}
+    .s37-m1{left:566px;top:223px}.s37-m2{left:566px;top:507px}.s37-m3{left:1140px;top:363px}
+    .s37-mod img{width:56%;height:56%;object-fit:contain}
+    .s37-folder{position:absolute;left:36px;top:66px;width:140px;height:94px;border-radius:6px 16px 16px 16px;border:5px solid #fdfdfd;background:rgba(4,26,72,.7)}
+    .s37-tab{position:absolute;left:36px;top:44px;width:66px;height:28px;border-radius:9px 9px 0 0;border:5px solid #fdfdfd;border-bottom:none;background:rgba(4,26,72,.7)}
+    .s37-tw{position:absolute;left:30px;top:54px;width:152px;height:106px;border-radius:14px;border:5px solid #fdfdfd;background:rgba(4,26,72,.8)}
+    .s37-tp{position:absolute;left:18px;top:22px;font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:500;color:#5fe6fd}
+    .s37-brk{position:absolute;width:120px;height:120px;border:6px solid #fdfdfd;opacity:0}
+    .s37-tag{position:absolute;left:960px;top:756px;font-size:96px;font-weight:900;letter-spacing:.14em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 30px rgba(0,0,0,.95),0 6px 22px rgba(0,0,0,.8),0 0 56px rgba(95,230,253,.5);opacity:0}
+    .s37-rule{position:absolute;left:660px;top:898px;width:600px;height:5px;border-radius:3px;background:#5fe6fd;box-shadow:0 0 26px rgba(95,230,253,.85);transform-origin:50% 50%;opacity:0}
+  </style>
+  <div data-hf-id="s37-root" id="s37-root" data-composition-id="s37" data-start="0" data-duration="6.4" data-width="1920" data-height="1080">
+    <div data-hf-id="s37-shade" id="s37-shade" class="s37-shade"></div>
+    <div data-hf-id="s37-m1" id="s37-m1" class="s37-mod s37-m1"><img data-hf-id="s37-chrome" id="s37-chrome" src=".media/logos/googlechrome-color.svg" alt=""></div>
+    <div data-hf-id="s37-m2" id="s37-m2" class="s37-mod s37-m2"><i data-hf-id="s37-tab" id="s37-tab" class="s37-tab"></i><i data-hf-id="s37-folder" id="s37-folder" class="s37-folder"></i></div>
+    <div data-hf-id="s37-m3" id="s37-m3" class="s37-mod s37-m3"><i data-hf-id="s37-tw" id="s37-tw" class="s37-tw"><span data-hf-id="s37-tp" id="s37-tp" class="s37-tp">$_</span></i></div>
+    <div data-hf-id="s37-core" id="s37-core" class="s37-core"><i data-hf-id="s37-dring" id="s37-dring" class="s37-dring"></i><i data-hf-id="s37-disc" id="s37-disc" class="s37-disc"><img data-hf-id="s37-grok" id="s37-grok" src=".media/logos/grok.svg" alt=""></i></div>
+    <i data-hf-id="s37-k1" id="s37-k1" class="s37-brk" style="left:150px;top:250px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="s37-k2" id="s37-k2" class="s37-brk" style="left:1650px;top:250px;border-left:none;border-bottom:none"></i>
+    <i data-hf-id="s37-k3" id="s37-k3" class="s37-brk" style="left:150px;top:830px;border-right:none;border-top:none"></i>
+    <i data-hf-id="s37-k4" id="s37-k4" class="s37-brk" style="left:1650px;top:830px;border-left:none;border-top:none"></i>
+    <div data-hf-id="s37-tag" id="s37-tag" class="s37-tag">TRUE LEVERAGE</div>
+    <div data-hf-id="s37-rule" id="s37-rule" class="s37-rule"></div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s37=gsap.timeline({paused:true});
+    gsap.set(["#s37-tag"],{xPercent:-50});
+
+    /* the three modules snap into the core as capability slots */
+    s37.to("#s37-dring",{rotation:100,duration:5.6,ease:"none"},0);
+    s37.fromTo("#s37-m1",{x:0,y:0,scale:1},{x:287,y:140,scale:.42,duration:.7,ease:"power3.in"},.55);
+    s37.to("#s37-m1",{opacity:0,duration:.2,ease:"power2.in"},1.12);
+    s37.to("#s37-core",{scale:1.07,duration:.16,ease:"power4.out"},1.22);
+    s37.to("#s37-core",{scale:1,duration:.28,ease:"power2.out"},1.38);
+    s37.fromTo("#s37-m2",{x:0,y:0,scale:1},{x:287,y:-144,scale:.42,duration:.7,ease:"power3.in"},1.5);
+    s37.to("#s37-m2",{opacity:0,duration:.2,ease:"power2.in"},2.07);
+    s37.to("#s37-core",{scale:1.07,duration:.16,ease:"power4.out"},2.17);
+    s37.to("#s37-core",{scale:1,duration:.28,ease:"power2.out"},2.33);
+    s37.fromTo("#s37-m3",{x:0,y:0,scale:1},{x:-287,y:0,scale:.42,duration:.7,ease:"power3.in"},2.45);
+    s37.to("#s37-m3",{opacity:0,duration:.2,ease:"power2.in"},3.02);
+    s37.to("#s37-core",{scale:1.1,duration:.18,ease:"power4.out"},3.12);
+    s37.to("#s37-core",{scale:1,duration:.3,ease:"power2.out"},3.31);
+    /* the core goes fully cyan */
+    s37.to("#s37-core",{borderColor:"#5fe6fd",boxShadow:"inset 0 0 96px rgba(1,183,249,.6),0 0 130px rgba(95,230,253,.7)",duration:.7,ease:"power2.out"},3.3);
+    s37.to("#s37-disc",{boxShadow:"0 0 60px rgba(95,230,253,.9)",duration:.6,ease:"power2.out"},3.4);
+    /* reticle closes */
+    s37.fromTo("#s37-k1",{opacity:0,x:-60,y:-60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},4.1);
+    s37.fromTo("#s37-k2",{opacity:0,x:60,y:-60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},4.16);
+    s37.fromTo("#s37-k3",{opacity:0,x:-60,y:60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},4.22);
+    s37.fromTo("#s37-k4",{opacity:0,x:60,y:60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},4.28);
+    s37.fromTo("#s37-tag",{opacity:0,scale:1.24},{opacity:1,scale:1,duration:.44,ease:"power4.out"},4.75);
+    s37.fromTo("#s37-rule",{opacity:1,scaleX:0},{opacity:1,scaleX:1,duration:.55,ease:"power3.out"},4.95);
+    window.__timelines["s37"]=s37;
+  </script>
+</template>
+</body></html>

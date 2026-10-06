@@ -1,0 +1,11 @@
+{
+  "duration": 8.36,
+  "maxStaticSec": 2.2,
+  "assertions": [
+    {"type":"appearsBy","selector":"#s1-original","bySec":1.1},
+    {"type":"appearsBy","selector":"#s1-copy","bySec":3.7},
+    {"type":"before","first":"#s1-copy","second":"#s1-label"},
+    {"type":"staysInFrame","selector":".s1-repo"},
+    {"type":"keepsMoving","selector":".s1-stage","fromSec":0.8,"toSec":8.2}
+  ]
+}

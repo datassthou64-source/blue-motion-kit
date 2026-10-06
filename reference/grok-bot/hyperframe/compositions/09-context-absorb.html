@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s09-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s09-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 70% at 50% 40%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s09-core{position:absolute;left:720px;top:210px;width:480px;height:480px;border-radius:50%;border:5px solid rgba(253,253,253,.72);background:rgba(0,22,66,.9);box-shadow:inset 0 0 60px rgba(1,183,249,.1);opacity:0}
+    .s09-ring{position:absolute;inset:64px;border:4px dashed rgba(95,230,253,.5);border-radius:50%}
+    .s09-glow{position:absolute;inset:96px;border-radius:50%;background:radial-gradient(circle,rgba(95,230,253,.85),rgba(95,230,253,0) 70%);opacity:0}
+    .s09-slab{position:absolute;top:720px;width:380px;height:150px;border-radius:28px;border:3px solid rgba(253,253,253,.62);background:rgba(4,26,72,.72);box-shadow:0 0 30px rgba(95,230,253,.16);display:grid;place-items:center;font-size:34px;font-weight:900;letter-spacing:.14em;opacity:0}
+    .s09-c1{left:170px}.s09-c2{left:770px}.s09-c3{left:1370px}
+    .s09-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s09-fl{fill:none;stroke:#5fe6fd;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    .s09-charge{fill:none;stroke:#5fe6fd;stroke-width:9;stroke-linecap:round;filter:drop-shadow(0 0 18px rgba(95,230,253,.85));opacity:0;transform:rotate(-90deg);transform-origin:960px 450px}
+    .s09-meta{position:absolute;left:960px;top:920px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    .s09-tag{position:absolute;left:960px;top:772px;font-size:62px;font-weight:900;letter-spacing:.14em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s09-root" id="s09-root" data-composition-id="s09" data-start="0" data-duration="12.2" data-width="1920" data-height="1080">
+    <div data-hf-id="s09-shade" id="s09-shade" class="s09-shade"></div>
+    <svg data-hf-id="s09-svg" id="s09-svg" class="s09-svg" viewBox="0 0 1920 1080">
+      <circle data-hf-id="s09-charge" id="s09-charge" class="s09-charge" cx="960" cy="450" r="256"/>
+      <path data-hf-id="s09-f1" id="s09-f1" class="s09-fl" d="M360 720 C420 600 660 540 790 500"/>
+      <path data-hf-id="s09-f2" id="s09-f2" class="s09-fl" d="M960 720 L960 620"/>
+      <path data-hf-id="s09-f3" id="s09-f3" class="s09-fl" d="M1560 720 C1500 600 1260 540 1130 500"/>
+    </svg>
+    <div data-hf-id="s09-core" id="s09-core" class="s09-core"><i data-hf-id="s09-ring" id="s09-ring" class="s09-ring"></i><i data-hf-id="s09-glow" id="s09-glow" class="s09-glow"></i></div>
+    <div data-hf-id="s09-c1" id="s09-c1" class="s09-slab s09-c1">BUSINESS</div>
+    <div data-hf-id="s09-c2" id="s09-c2" class="s09-slab s09-c2">YOU</div>
+    <div data-hf-id="s09-c3" id="s09-c3" class="s09-slab s09-c3">GOALS</div>
+    <div data-hf-id="s09-meta" id="s09-meta" class="s09-meta">CONTEXT</div>
+    <div data-hf-id="s09-tag" id="s09-tag" class="s09-tag">TRUE LEVERAGE</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s09=gsap.timeline({paused:true});
+    gsap.set(["#s09-meta","#s09-tag"],{xPercent:-50});
+    function s09flow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2;el.style.strokeDashoffset=0;
+      s09.set(sel,{opacity:1},at);
+      s09.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      s09.set(sel,{opacity:0},at+dur);
+    }
+    s09.fromTo("#s09-core",{opacity:0,scale:.7},{opacity:1,scale:1,duration:.6,ease:"power3.out"},.15);
+    s09.to("#s09-ring",{rotation:200,duration:9.4,ease:"none"},.7);
+    ["#s09-c1","#s09-c2","#s09-c3"].forEach((id,i)=>
+      s09.fromTo(id,{opacity:0,y:120,scale:.8},{opacity:1,y:0,scale:1,duration:.6,ease:"power3.out"},1.2+i*.95));
+    s09.fromTo("#s09-meta",{opacity:0,y:16},{opacity:1,y:0,duration:.4,ease:"power3.out"},4.3);
+
+    /* each slab is absorbed and the core brightens a step */
+    const s09steps=[
+      {at:6.15,slab:"#s09-c1",fl:"#s09-f1",glow:.3,ring:.62,border:"rgba(253,253,253,.82)"},
+      {at:8.05,slab:"#s09-c2",fl:"#s09-f2",glow:.55,ring:.72,border:"rgba(253,253,253,.9)"},
+      {at:8.85,slab:"#s09-c3",fl:"#s09-f3",glow:.8,ring:.88,border:"#fdfdfd"}
+    ];
+    s09steps.forEach(s=>{
+      s09.to(s.slab,{scale:.62,duration:.34,ease:"power2.in"},s.at);
+      s09.to(s.slab,{opacity:0,y:-90,duration:.36,ease:"power2.in"},s.at+.2);
+      s09flow(s.fl,s.at+.18,.5);
+      s09.to("#s09-glow",{opacity:s.glow,duration:.4,ease:"power2.out"},s.at+.62);
+      s09.to("#s09-ring",{borderColor:"rgba(95,230,253,"+s.ring+")",duration:.4,ease:"power2.out"},s.at+.62);
+      s09.to("#s09-core",{borderColor:s.border,duration:.4,ease:"power2.out"},s.at+.62);
+      s09.to("#s09-core",{scale:1.06,duration:.18,ease:"power3.out"},s.at+.6);
+      s09.to("#s09-core",{scale:1,duration:.3,ease:"power2.out"},s.at+.78);
+    });
+    s09.to("#s09-core",{boxShadow:"inset 0 0 120px rgba(1,183,249,.55),0 0 130px rgba(95,230,253,.68)",duration:.7,ease:"power2.out"},9.7);
+    const s09c=document.getElementById("s09-charge"),s09CL=s09c.getTotalLength();
+    s09c.style.strokeDasharray=String(s09CL);s09c.style.strokeDashoffset=String(s09CL);
+    s09.set("#s09-charge",{opacity:1},9.3);
+    s09.to("#s09-charge",{strokeDashoffset:0,duration:1.6,ease:"power2.inOut"},9.3);
+    s09.to("#s09-meta",{opacity:0,duration:.3,ease:"power2.in"},10.2);
+    s09.fromTo("#s09-tag",{opacity:0,scale:1.22},{opacity:1,scale:1,duration:.42,ease:"power4.out"},11.05);
+    window.__timelines["s09"]=s09;
+  </script>
+</template>
+</body></html>

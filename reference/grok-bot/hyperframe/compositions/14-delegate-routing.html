@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s14-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s14-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 72% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s14-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s14-guide{fill:none;stroke:rgba(253,253,253,.4);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .s14-fl{fill:none;stroke:#5fe6fd;stroke-width:8;stroke-linecap:round;filter:drop-shadow(0 0 16px rgba(95,230,253,.8));opacity:0}
+    .s14-chief{position:absolute;left:770px;top:150px;width:380px;height:150px;border-radius:75px;border:6px solid #fdfdfd;background:rgba(0,22,66,.88);box-shadow:0 0 44px rgba(95,230,253,.28);display:grid;place-items:center;font-size:44px;font-weight:900;letter-spacing:.16em;color:#5fe6fd;text-shadow:0 0 24px rgba(0,0,0,.8),0 0 40px rgba(95,230,253,.45);opacity:0}
+    .s14-fn{position:absolute;top:740px;width:250px;height:130px;border-radius:65px;border:5px solid #fdfdfd;background:rgba(0,22,66,.82);box-shadow:0 0 32px rgba(95,230,253,.2);display:grid;place-items:center;opacity:0}
+    .s14-fp{width:30px;height:30px;border-radius:50%;background:rgba(253,253,253,.9)}
+    .s14-a{left:295px}.s14-b{left:835px}.s14-c{left:1375px}
+    .s14-me{position:absolute;left:120px;top:300px;width:250px;height:250px;border-radius:50%;border:5px solid #fdfdfd;overflow:hidden;background:rgba(0,22,66,.9);box-shadow:0 0 52px rgba(95,230,253,.4);opacity:0}
+    .s14-me img{width:100%;height:100%;object-fit:cover;filter:saturate(.86) contrast(1.04)}
+    .s14-you{position:absolute;left:245px;top:582px;font-size:30px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s14-req{position:absolute;left:330px;top:393px;width:200px;height:64px;border-radius:32px;border:3px solid #5fe6fd;background:rgba(0,22,66,.9);box-shadow:0 0 34px rgba(95,230,253,.6);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:.14em;color:#5fe6fd;opacity:0}
+  </style>
+  <div data-hf-id="s14-root" id="s14-root" data-composition-id="s14" data-start="0" data-duration="8.7" data-width="1920" data-height="1080">
+    <div data-hf-id="s14-shade" id="s14-shade" class="s14-shade"></div>
+    <svg data-hf-id="s14-svg" id="s14-svg" class="s14-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s14-g1" id="s14-g1" class="s14-guide" d="M960 300 C960 480 640 560 420 740"/>
+      <path data-hf-id="s14-g2" id="s14-g2" class="s14-guide" d="M960 300 L960 740"/>
+      <path data-hf-id="s14-g3" id="s14-g3" class="s14-guide" d="M960 300 C960 480 1280 560 1500 740"/>
+      <path data-hf-id="s14-f1" id="s14-f1" class="s14-fl" d="M960 300 C960 480 640 560 420 740"/>
+      <path data-hf-id="s14-f2" id="s14-f2" class="s14-fl" d="M960 300 L960 740"/>
+      <path data-hf-id="s14-f3" id="s14-f3" class="s14-fl" d="M960 300 C960 480 1280 560 1500 740"/>
+      <path data-hf-id="s14-b1" id="s14-b1" class="s14-fl" d="M420 740 C640 560 960 480 960 300"/>
+      <path data-hf-id="s14-b2" id="s14-b2" class="s14-fl" d="M960 740 L960 300"/>
+      <path data-hf-id="s14-b3" id="s14-b3" class="s14-fl" d="M1500 740 C1280 560 960 480 960 300"/>
+    </svg>
+    <div data-hf-id="s14-a" id="s14-a" class="s14-fn s14-a"><i data-hf-id="s14-pa" id="s14-pa" class="s14-fp"></i></div>
+    <div data-hf-id="s14-b" id="s14-b" class="s14-fn s14-b"><i data-hf-id="s14-pb" id="s14-pb" class="s14-fp"></i></div>
+    <div data-hf-id="s14-c" id="s14-c" class="s14-fn s14-c"><i data-hf-id="s14-pc" id="s14-pc" class="s14-fp"></i></div>
+    <div data-hf-id="s14-chief" id="s14-chief" class="s14-chief">EVE</div>
+    <div data-hf-id="s14-me" id="s14-me" class="s14-me"><img data-hf-id="s14-face" id="s14-face" src=".media/people/speaker.jpg" alt=""></div>
+    <div data-hf-id="s14-you" id="s14-you" class="s14-you">YOU</div>
+    <div data-hf-id="s14-req" id="s14-req" class="s14-req">REQUEST</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s14=gsap.timeline({paused:true});
+    gsap.set("#s14-you",{xPercent:-50});
+    function s14flow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2;el.style.strokeDashoffset=0;
+      s14.set(sel,{opacity:1},at);
+      s14.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      s14.set(sel,{opacity:0},at+dur);
+    }
+    s14.fromTo("#s14-me",{opacity:0,scale:.7,x:-70},{opacity:1,scale:1,x:0,duration:.6,ease:"power3.out"},.05);
+    s14.fromTo("#s14-you",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},.42);
+    s14.fromTo("#s14-chief",{opacity:0,scale:.72},{opacity:1,scale:1,duration:.55,ease:"power3.out"},.45);
+    ["#s14-a","#s14-b","#s14-c"].forEach((id,i)=>
+      s14.fromTo(id,{opacity:0,y:70,scale:.74},{opacity:1,y:0,scale:1,duration:.5,ease:"power3.out"},.78+i*.16));
+    s14.fromTo(["#s14-g1","#s14-g2","#s14-g3"],{opacity:0},{opacity:1,duration:.4,ease:"power2.out",stagger:.06},1.35);
+
+    /* the request comes in and reaches the chief */
+    s14.to("#s14-me",{scale:1.05,duration:.22,ease:"power3.out"},1.6);
+    s14.to("#s14-me",{scale:1,duration:.32,ease:"power2.out"},1.82);
+    s14.fromTo("#s14-req",{opacity:0,x:-140,scale:.7},{opacity:1,x:0,scale:1,duration:.32,ease:"power3.out"},1.7);
+    s14.to("#s14-req",{x:530,y:-200,duration:1.0,ease:"power2.inOut"},2.06);
+    s14.to("#s14-req",{opacity:0,scale:.5,duration:.26,ease:"power2.in"},3.02);
+    s14.to("#s14-chief",{scale:1.12,duration:.2,ease:"power4.out"},3.08);
+    s14.to("#s14-chief",{scale:1,boxShadow:"0 0 88px rgba(95,230,253,.6)",duration:.4,ease:"power2.out"},3.29);
+
+    /* it splits three ways and each branch pops its agent */
+    const s14br=[{fl:"#s14-f1",n:"#s14-a",p:"#s14-pa",at:3.5},{fl:"#s14-f2",n:"#s14-b",p:"#s14-pb",at:4.45},{fl:"#s14-f3",n:"#s14-c",p:"#s14-pc",at:5.4}];
+    s14br.forEach(b=>{
+      s14flow(b.fl,b.at,.82);
+      s14.to(b.n,{borderColor:"#5fe6fd",boxShadow:"0 0 62px rgba(95,230,253,.6)",duration:.26,ease:"power3.out"},b.at+.76);
+      s14.to(b.p,{backgroundColor:"#5fe6fd",scale:1.45,duration:.22,ease:"power3.out"},b.at+.76);
+      s14.to(b.n,{scale:1.08,duration:.16,ease:"power4.out"},b.at+.76);
+      s14.to(b.n,{scale:1,duration:.26,ease:"power2.out"},b.at+.92);
+    });
+    /* each branch acknowledges back up to the chief */
+    ["#s14-b1","#s14-b2","#s14-b3"].forEach((sel,i)=>s14flow(sel,6.55+i*.34,.78));
+    s14.to("#s14-chief",{scale:1.09,duration:.2,ease:"power4.out"},7.86);
+    s14.to("#s14-chief",{scale:1,boxShadow:"0 0 100px rgba(95,230,253,.7)",duration:.44,ease:"power2.out"},8.06);
+    s14.to(["#s14-g1","#s14-g2","#s14-g3"],{opacity:.6,duration:.5,ease:"power2.out"},6.9);
+    s14.to(["#s14-a","#s14-b","#s14-c"],{scale:1.05,duration:.26,ease:"sine.inOut",yoyo:true,repeat:1,stagger:.1},7.9);
+    window.__timelines["s14"]=s14;
+  </script>
+</template>
+</body></html>

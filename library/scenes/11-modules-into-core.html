@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  11-modules-into-core
+  ARGUMENT  "and THAT is when you get leverage." N capability modules fly into
+            a core one at a time, the core kicks on each impact, then goes
+            fully cyan; corner brackets close and the payoff word slams with a
+            rule drawing under it. This is the strongest closer in the system.
+  SWAP      CFG.modules (2-4, each with a logo or an inline glyph),
+            CFG.payoff. Use this ONCE per piece.
+  PREFIX    mc-
+-->
+<template>
+  <style>
+    #mc-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #mc-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 44%,rgba(0,22,66,.3),rgba(0,22,66,.82))}
+    #mc-core{position:absolute;left:810px;top:320px;width:300px;height:300px;border-radius:50%;border:5px solid #FDFDFD;background:rgba(0,22,66,.88);box-shadow:inset 0 0 84px rgba(1,183,249,.36),0 0 76px rgba(95,230,253,.5)}
+    #mc-dring{position:absolute;inset:38px;border:4px dashed rgba(95,230,253,.7);border-radius:50%}
+    #mc-disc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:144px;height:144px;border-radius:50%;background:#FDFDFD;display:grid;place-items:center;box-shadow:0 0 30px rgba(0,22,66,.42)}
+    #mc-disc img,#mc-disc svg{width:66%;height:66%;object-fit:contain;display:block}
+    .mc-mod{position:absolute;width:214px;height:214px;border-radius:46px;border:5px solid #FDFDFD;background:rgba(0,22,66,.86);box-shadow:0 0 34px rgba(95,230,253,.24);display:grid;place-items:center}
+    .mc-mod img,.mc-mod svg{width:56%;height:56%;object-fit:contain;display:block;color:#FDFDFD}
+    .mc-brk{position:absolute;width:120px;height:120px;border:6px solid #FDFDFD;opacity:0}
+    #mc-tag{position:absolute;left:960px;top:756px;font-size:96px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#5FE6FD;white-space:nowrap;text-shadow:0 0 30px rgba(0,0,0,.95),0 6px 22px rgba(0,0,0,.8),0 0 56px rgba(95,230,253,.5);opacity:0}
+    #mc-rule{position:absolute;left:660px;top:898px;width:600px;height:5px;border-radius:3px;background:#5FE6FD;box-shadow:0 0 26px rgba(95,230,253,.85);transform-origin:50% 50%;opacity:0}
+  </style>
+
+  <div data-hf-id="mc-root" id="mc-root" data-composition-id="modules-into-core" data-start="0" data-duration="6.4" data-width="1920" data-height="1080">
+    <div data-hf-id="mc-shade" id="mc-shade"></div>
+    <div data-hf-id="mc-core" id="mc-core">
+      <i data-hf-id="mc-dring" id="mc-dring"></i>
+      <!-- REPLACE with the sourced product mark -->
+      <i data-hf-id="mc-disc" id="mc-disc">
+        <svg data-hf-id="mc-disc-s" viewBox="0 0 120 120"><path data-hf-id="mc-disc-p" d="M24 96 L60 24 L96 96 Z" fill="none" stroke="#0A2F6B" stroke-width="9" stroke-linejoin="round"/></svg>
+      </i>
+    </div>
+    <i data-hf-id="mc-k1" id="mc-k1" class="mc-brk" style="left:150px;top:250px;border-right:none;border-bottom:none"></i>
+    <i data-hf-id="mc-k2" id="mc-k2" class="mc-brk" style="left:1650px;top:250px;border-left:none;border-bottom:none"></i>
+    <i data-hf-id="mc-k3" id="mc-k3" class="mc-brk" style="left:150px;top:830px;border-right:none;border-top:none"></i>
+    <i data-hf-id="mc-k4" id="mc-k4" class="mc-brk" style="left:1650px;top:830px;border-left:none;border-top:none"></i>
+    <div data-hf-id="mc-tag" id="mc-tag">True Leverage</div>
+    <i data-hf-id="mc-rule" id="mc-rule"></i>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const mcTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const MC = {
+      payoff: "True Leverage",   // the one word the scene exists to land
+      /* 2-4 capability modules. logo:"" uses a neutral glyph — swap in the
+         real mark for anything the VO names. */
+      modules: [{logo:""},{logo:""},{logo:""}],
+      firstSnap: 0.55,
+      snapGap: 0.95,
+      reticleAt: 4.1
+    };
+    /* ================================================================= */
+
+    const mcRoot=document.getElementById("mc-root");
+    const mcN=MC.modules.length;
+    document.getElementById("mc-tag").textContent=MC.payoff;
+    gsap.set("#mc-tag",{xPercent:-50});
+
+    /* modules ring the core; each flies in along its own vector */
+    const mcGlyph='<svg data-hf-id="PH-s" viewBox="0 0 120 120"><rect data-hf-id="PH-r" x="22" y="22" width="76" height="76" rx="20" fill="none" stroke="currentColor" stroke-width="8"/></svg>';
+    const mcR=350, mcCx=960, mcCy=470;
+    const mcMods=[];
+    MC.modules.forEach(function(m,i){
+      const a=-Math.PI + i*(2*Math.PI/mcN) + Math.PI/mcN;
+      const x=mcCx+mcR*Math.cos(a), y=mcCy+mcR*Math.sin(a)*0.62;
+      const id="mc-m"+i;
+      const d=document.createElement("div");
+      d.className="mc-mod"; d.id=id; d.setAttribute("data-hf-id",id);
+      d.style.left=(x-107)+"px"; d.style.top=(y-107)+"px";
+      d.innerHTML = m.logo?'<img data-hf-id="'+id+'i" src="'+m.logo+'" alt="">':mcGlyph.replace(/PH/g,id);
+      mcRoot.appendChild(d);
+      mcMods.push({sel:"#"+id, dx:mcCx-x, dy:mcCy-y});
+    });
+
+    mcTl.to("#mc-dring",{rotation:100,duration:5.6,ease:"none"},0);
+
+    /* each module snaps into the core, and the core kicks */
+    mcMods.forEach(function(m,i){
+      const at=MC.firstSnap+i*MC.snapGap;
+      mcTl.fromTo(m.sel,{x:0,y:0,scale:1},{x:m.dx,y:m.dy,scale:.42,duration:.7,ease:"power3.in"},at);
+      mcTl.to(m.sel,{opacity:0,duration:.2,ease:"power2.in"},at+.57);
+      mcTl.to("#mc-core",{scale:1.07,duration:.16,ease:"power4.out"},at+.67);
+      mcTl.to("#mc-core",{scale:1,duration:.28,ease:"power2.out"},at+.83);
+    });
+
+    /* the core goes fully cyan */
+    const mcFull=MC.firstSnap+(mcN-1)*MC.snapGap+.75;
+    mcTl.to("#mc-core",{borderColor:"#5FE6FD",boxShadow:"inset 0 0 96px rgba(1,183,249,.6),0 0 130px rgba(95,230,253,.7)",duration:.7,ease:"power2.out"},mcFull);
+    mcTl.to("#mc-disc",{boxShadow:"0 0 60px rgba(95,230,253,.9)",duration:.6,ease:"power2.out"},mcFull+.1);
+
+    /* the reticle closes and the payoff slams */
+    mcTl.fromTo("#mc-k1",{opacity:0,x:-60,y:-60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},MC.reticleAt);
+    mcTl.fromTo("#mc-k2",{opacity:0,x:60,y:-60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},MC.reticleAt+.06);
+    mcTl.fromTo("#mc-k3",{opacity:0,x:-60,y:60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},MC.reticleAt+.12);
+    mcTl.fromTo("#mc-k4",{opacity:0,x:60,y:60},{opacity:1,x:0,y:0,duration:.5,ease:"power3.out"},MC.reticleAt+.18);
+    mcTl.fromTo("#mc-tag",{opacity:0,scale:1.24},{opacity:1,scale:1,duration:.44,ease:"power4.out"},MC.reticleAt+.65);
+    mcTl.fromTo("#mc-rule",{opacity:1,scaleX:0},{opacity:1,scaleX:1,duration:.55,ease:"power3.out"},MC.reticleAt+.85);
+
+    window.__timelines["modules-into-core"]=mcTl;
+  </script>
+</template>
+</body></html>

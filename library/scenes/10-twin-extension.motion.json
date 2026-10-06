@@ -1,0 +1,11 @@
+{
+  "duration": 3.45,
+  "maxStaticSec": 0.8,
+  "assertions": [
+    {"type":"appearsBy","selector":"#tw-you","bySec":0.7},
+    {"type":"appearsBy","selector":"#tw-agent","bySec":1.1},
+    {"type":"appearsBy","selector":"#tw-lab-agent","bySec":2.0},
+    {"type":"before","first":"#tw-you","second":"#tw-aura"},
+    {"type":"staysInFrame","selector":"#tw-agent"}
+  ]
+}

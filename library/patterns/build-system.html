@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s5-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s5-video,.s5-shade{position:absolute;inset:0;width:1920px;height:1080px}.s5-video{object-fit:cover}.s5-shade{background:radial-gradient(circle at 50% 48%,rgba(0,22,66,.08),rgba(0,22,66,.72) 88%)}
+    .s5-halo{position:absolute;left:580px;top:160px;width:760px;height:760px;border:4px solid rgba(95,230,253,.24);border-radius:50%;box-shadow:inset 0 0 150px rgba(1,183,249,.1)}
+    .s5-part{position:absolute;left:835px;top:435px;width:250px;height:210px;border:4px solid rgba(253,253,253,.88);border-radius:36px;background:linear-gradient(145deg,rgba(0,76,207,.96),rgba(1,183,249,.48));box-shadow:0 20px 50px rgba(0,22,66,.4)}
+    .s5-p1{left:425px;top:270px}.s5-p2{left:1245px;top:270px}.s5-p3{left:425px;top:700px}.s5-p4{left:1245px;top:700px}
+    .s5-engine{position:absolute;left:690px;top:280px;width:540px;height:520px;border:5px solid #fdfdfd;border-radius:92px;background:rgba(0,22,66,.72);box-shadow:inset 0 0 120px rgba(1,183,249,.27),0 0 75px rgba(95,230,253,.25)}
+    .s5-ring{position:absolute;inset:76px;border:10px solid rgba(95,230,253,.88);border-radius:50%;border-left-color:rgba(95,230,253,.18);border-bottom-color:rgba(95,230,253,.34)}
+    .s5-core{position:absolute;left:205px;top:195px;width:120px;height:120px;border-radius:34px;background:#5fe6fd;box-shadow:0 0 74px rgba(95,230,253,.92)}
+    .s5-node{position:absolute;width:48px;height:48px;border-radius:50%;background:#fdfdfd;box-shadow:0 0 30px rgba(95,230,253,.95)}.s5-n1{left:244px;top:63px}.s5-n2{right:60px;top:236px}.s5-n3{left:244px;bottom:58px}.s5-n4{left:60px;top:236px}
+    .s5-label{position:absolute;left:866px;top:865px;font-size:34px;font-weight:900;letter-spacing:.28em}
+  </style>
+  <div data-hf-id="a23-s5-root" id="s5-root" data-composition-id="a23-build" data-start="0" data-duration="6.205333" data-width="1920" data-height="1080">
+    <div data-hf-id="a23-s5-halo" id="s5-halo" class="s5-halo"></div>
+    <div data-hf-id="a23-s5-p1" id="s5-p1" class="s5-part s5-p1"></div><div data-hf-id="a23-s5-p2" id="s5-p2" class="s5-part s5-p2"></div><div data-hf-id="a23-s5-p3" id="s5-p3" class="s5-part s5-p3"></div><div data-hf-id="a23-s5-p4" id="s5-p4" class="s5-part s5-p4"></div>
+    <div data-hf-id="a23-s5-engine" id="s5-engine" class="s5-engine"><div data-hf-id="a23-s5-ring" id="s5-ring" class="s5-ring"></div><div data-hf-id="a23-s5-core" id="s5-core" class="s5-core"></div><i data-hf-id="hf-o1r9" id="s5-n1" class="s5-node s5-n1"></i><i data-hf-id="hf-71b7" id="s5-n2" class="s5-node s5-n2"></i><i data-hf-id="hf-gkl9" id="s5-n3" class="s5-node s5-n3"></i><i data-hf-id="hf-2cl3" id="s5-n4" class="s5-node s5-n4"></i></div>
+    <div data-hf-id="a23-s5-label" id="s5-label" class="s5-label">BUILD</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};const s5tl=gsap.timeline({paused:true});
+    s5tl.fromTo("#s5-halo",{opacity:0,scale:.5},{opacity:1,scale:1,duration:.8,ease:"expo.out"},.05);
+    const s5parts=["#s5-p1","#s5-p2","#s5-p3","#s5-p4"],s5moves=[{x:410,y:165},{x:-410,y:165},{x:410,y:-265},{x:-410,y:-265}];
+    s5parts.forEach((id,i)=>s5tl.fromTo(id,{opacity:0,scale:.35,rotation:i%2?18:-18},{opacity:1,scale:1,rotation:0,duration:.62,ease:"power3.out"},.18+i*.1));
+    s5parts.forEach((id,i)=>s5tl.to(id,{x:s5moves[i].x,y:s5moves[i].y,scale:.58,rotation:i%2?90:-90,duration:.72,ease:"power3.inOut"},1.05+i*.08));
+    s5tl.to(s5parts,{opacity:0,scale:.18,duration:.32,ease:"power2.in"},1.78);
+    s5tl.fromTo("#s5-engine",{opacity:0,scale:.2,rotation:-14},{opacity:1,scale:1,rotation:0,duration:.9,ease:"expo.out"},1.86);
+    s5tl.fromTo("#s5-label",{opacity:0,y:22,scale:.82},{opacity:1,y:0,scale:1,duration:.55,ease:"expo.out"},2.62);
+    s5tl.to("#s5-ring",{rotation:240,duration:2.9,ease:"none"},2.3);
+    ["#s5-n1","#s5-n2","#s5-n3","#s5-n4"].forEach((id,i)=>s5tl.fromTo(id,{scale:.35,backgroundColor:"#0a2f6b"},{scale:1.55,backgroundColor:"#5fe6fd",duration:.28,ease:"power2.out",yoyo:true,repeat:1},3.0+i*.38));
+    s5tl.to("#s5-core",{scale:1.22,borderRadius:"50%",duration:.5,ease:"sine.inOut",yoyo:true,repeat:3},3.15);
+    s5tl.to("#s5-halo",{scale:1.035,opacity:.7,duration:.9,ease:"sine.inOut",yoyo:true,repeat:2},3.3);
+    window.__timelines["a23-build"]=s5tl;
+  </script>
+</template>
+</body></html>

@@ -1,0 +1,11 @@
+{
+  "duration": 3.25,
+  "maxStaticSec": 0.9,
+  "assertions": [
+    {"type":"appearsBy","selector":"#up-card","bySec":0.6},
+    {"type":"appearsBy","selector":"#up-tip","bySec":1.1},
+    {"type":"appearsBy","selector":"#up-payoff","bySec":2.6},
+    {"type":"before","first":"#up-card","second":"#up-payoff"},
+    {"type":"staysInFrame","selector":"#up-card"}
+  ]
+}

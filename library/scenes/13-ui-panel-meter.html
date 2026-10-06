@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  13-ui-panel-meter
+  ARGUMENT  a beat that must land on a REAL product surface — "the context
+            window fills, and it stays filled". A dark app panel sits on the
+            gradient, a pointer travels to one control, a tooltip opens, a
+            meter counts up, and brackets close on it while it HOLDS.
+  SWAP      CFG.placeholder / CFG.pills / CFG.meterLabel / CFG.payoff.
+            Rebuild the panel chrome to match the actual product you are
+            showing — this template is the shell and the choreography, not a
+            licence to invent UI. If you cannot verify how the product looks,
+            use an abstract template instead.
+  PREFIX    up-
+  RULE      never fabricate numbers. The count-up must be a real, checkable
+            figure from the product, or an obviously generic one.
+-->
+<template>
+  <style>
+    #up-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #up-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 52%,rgba(0,22,66,.34),rgba(0,22,66,.84))}
+    #up-card{position:absolute;left:320px;top:396px;width:1280px;height:344px;border-radius:22px;background:rgba(0,11,32,.97);border:2px solid rgba(253,253,253,.14);box-shadow:0 0 60px rgba(0,22,66,.75),0 34px 96px rgba(0,10,30,.8),inset 0 1px 0 rgba(253,253,253,.06);opacity:0;transform-origin:50% 50%}
+    #up-ph{position:absolute;left:46px;top:42px;font-size:34px;font-weight:400;letter-spacing:-.004em;color:rgba(253,253,253,.30);white-space:nowrap}
+    #up-caret{position:absolute;left:46px;top:104px;width:3px;height:40px;background:rgba(253,253,253,.65);opacity:0}
+    #up-row{position:absolute;left:46px;top:238px;display:flex;align-items:center;gap:28px}
+    .up-pill{height:62px;border-radius:31px;background:rgba(253,253,253,.07);border:2px solid rgba(253,253,253,.13);display:flex;align-items:center;gap:14px;padding:0 26px;font-size:30px;font-weight:600;color:rgba(253,253,253,.9)}
+    .up-chev{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:9px solid rgba(253,253,253,.5)}
+    #up-icons{position:absolute;right:46px;top:238px;display:flex;align-items:center;gap:36px}
+    .up-ic{width:46px;height:46px;color:rgba(253,253,253,.5);display:block}
+    .up-ic svg{width:46px;height:46px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    #up-tip{position:absolute;left:940px;top:552px;height:70px;border-radius:12px;background:rgba(0,11,32,.99);border:2px solid rgba(253,253,253,.2);display:flex;align-items:center;padding:0 26px;opacity:0;box-shadow:0 18px 46px rgba(0,10,30,.85);z-index:9;overflow:hidden}
+    #up-tiptext{font-family:'JetBrains Mono',monospace;font-size:27px;font-weight:500;color:rgba(253,253,253,.92);white-space:nowrap}
+    #up-tipfill{position:absolute;left:0;bottom:0;width:100%;height:4px;background:#5FE6FD;box-shadow:0 0 18px rgba(95,230,253,.9);transform-origin:0% 50%}
+    #up-ptr{position:absolute;left:0;top:0;width:52px;height:52px;opacity:0;z-index:11;filter:drop-shadow(0 4px 10px rgba(0,10,30,.9))}
+    #up-cardglow{position:absolute;inset:-2px;border-radius:22px;pointer-events:none;opacity:0;box-shadow:inset 0 0 130px rgba(1,183,249,.26),0 0 90px rgba(95,230,253,.45)}
+    .up-brk{position:absolute;width:40px;height:40px;border:4px solid #5FE6FD;opacity:0;z-index:10}
+    #up-brk-a{left:914px;top:526px;border-right:0;border-bottom:0}
+    #up-brk-b{left:1584px;top:526px;border-left:0;border-bottom:0}
+    #up-brk-c{left:914px;top:608px;border-right:0;border-top:0}
+    #up-brk-d{left:1584px;top:608px;border-left:0;border-top:0}
+    #up-payoff{position:absolute;left:320px;top:790px;width:1280px;text-align:center;font-size:30px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#5FE6FD;opacity:0;text-shadow:0 0 26px rgba(0,0,0,.8),0 0 44px rgba(95,230,253,.85)}
+  </style>
+
+  <div data-hf-id="up-root" id="up-root" data-composition-id="ui-panel-meter" data-start="0" data-duration="3.25" data-width="1920" data-height="1080">
+    <div data-hf-id="up-shade" id="up-shade"></div>
+
+    <div data-hf-id="up-card" id="up-card">
+      <div data-hf-id="up-ph" id="up-ph">Ask anything</div>
+      <div data-hf-id="up-caret" id="up-caret"></div>
+      <div data-hf-id="up-row" id="up-row"></div>
+      <div data-hf-id="up-icons" id="up-icons">
+        <span data-hf-id="up-ic-a" id="up-ic-a" class="up-ic"><svg data-hf-id="up-sv-a" viewBox="0 0 24 24"><circle data-hf-id="up-a-c" cx="10.6" cy="10.6" r="6.6"/><path data-hf-id="up-a-l" d="M15.6 15.6 L20.4 20.4"/></svg></span>
+        <span data-hf-id="up-ic-b" class="up-ic"><svg data-hf-id="up-sv-b" viewBox="0 0 24 24"><circle data-hf-id="up-b-c" cx="12" cy="12" r="3.6"/><path data-hf-id="up-b-p" d="M15.6 12 v3.1 a3 3 0 0 0 5.4 -1.9 A9 9 0 1 0 16.6 20"/></svg></span>
+        <span data-hf-id="up-ic-c" class="up-ic"><svg data-hf-id="up-sv-c" viewBox="0 0 24 24"><circle data-hf-id="up-c-c" cx="12" cy="12" r="8.6"/><path data-hf-id="up-c-h" d="M3.4 12 H20.6"/><path data-hf-id="up-c-v" d="M12 3.4 a13 13 0 0 1 0 17.2 a13 13 0 0 1 0 -17.2"/></svg></span>
+        <span data-hf-id="up-ic-d" class="up-ic"><svg data-hf-id="up-sv-d" viewBox="0 0 24 24"><rect data-hf-id="up-d-r" x="9.2" y="2.8" width="5.6" height="11.4" rx="2.8"/><path data-hf-id="up-d-a" d="M5.4 11.6 a6.6 6.6 0 0 0 13.2 0"/><path data-hf-id="up-d-s" d="M12 18.2 V21.2"/></svg></span>
+      </div>
+      <div data-hf-id="up-cardglow" id="up-cardglow"></div>
+    </div>
+
+    <div data-hf-id="up-tip" id="up-tip">
+      <span data-hf-id="up-tiptext" id="up-tiptext"></span>
+      <span data-hf-id="up-tipfill" id="up-tipfill"></span>
+    </div>
+
+    <div data-hf-id="up-brk-a" id="up-brk-a" class="up-brk"></div>
+    <div data-hf-id="up-brk-b" id="up-brk-b" class="up-brk"></div>
+    <div data-hf-id="up-brk-c" id="up-brk-c" class="up-brk"></div>
+    <div data-hf-id="up-brk-d" id="up-brk-d" class="up-brk"></div>
+
+    <svg data-hf-id="up-ptr" id="up-ptr" viewBox="0 0 24 24"><path data-hf-id="up-ptr-p" d="M5 2.6 L5 20.2 L9.4 15.9 L12.3 22 L15.3 20.6 L12.4 14.6 L18.6 14.4 Z" fill="#FDFDFD" stroke="rgba(0,11,32,.9)" stroke-width="1.1" stroke-linejoin="round"/></svg>
+
+    <div data-hf-id="up-payoff" id="up-payoff">Persistent</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const upTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const UP = {
+      placeholder: "Ask anything",       // the real composer's real placeholder
+      pills: ["Agent","Model"],          // the real controls, in the real order
+      /* the meter. VERIFY these numbers against the product — never invent. */
+      meterTemplate: "{pct}% · {used}K / 200K context used",
+      meterTo: 96.2,
+      payoff: "Persistent",              // cyan line under the panel
+      pointerTo: {x:1236, y:668},        // where the pointer lands
+      fillFrom: 0.94, fillDur: 1.06
+    };
+    /* ================================================================= */
+
+    document.getElementById("up-ph").textContent=UP.placeholder;
+    const upRow=document.getElementById("up-row");
+    UP.pills.forEach(function(p,i){
+      const d=document.createElement("div");
+      d.className="up-pill"; d.id="up-pill"+i; d.setAttribute("data-hf-id","up-pill"+i);
+      d.innerHTML=p+'<i data-hf-id="up-cv'+i+'" class="up-chev"></i>';
+      upRow.appendChild(d);
+    });
+    document.getElementById("up-payoff").textContent=UP.payoff;
+
+    gsap.set("#up-tipfill",{scaleX:0});
+    const upTip=document.getElementById("up-tiptext"), upCtx={v:0};
+    function upWrite(){
+      upTip.textContent = UP.meterTemplate
+        .replace("{pct}", upCtx.v.toFixed(1))
+        .replace("{used}", (upCtx.v*2).toFixed(1));
+    }
+    upWrite();
+
+    upTl.fromTo("#up-card",{opacity:0,scale:.9,y:38},{opacity:1,scale:1,y:0,duration:.44,ease:"back.out(1.3)"},.04);
+    upTl.fromTo("#up-caret",{opacity:0},{opacity:1,duration:.12},.34);
+
+    /* the pointer travels to the control and opens the readout */
+    upTl.to("#up-ptr",{opacity:1,duration:.14},.22);
+    upTl.to("#up-ptr",{x:UP.pointerTo.x,y:UP.pointerTo.y,duration:.5,ease:"power2.inOut"},.24);
+    upTl.to("#up-ic-a",{color:"#5FE6FD",duration:.2,ease:"power2.out"},.66);
+    upTl.fromTo("#up-tip",{opacity:0,y:14,scale:.94},{opacity:1,y:0,scale:1,duration:.28,ease:"back.out(1.5)"},.68);
+
+    /* the meter fills, slowly and steadily */
+    upTl.to("#up-tipfill",{scaleX:UP.meterTo/100,duration:UP.fillDur,ease:"power1.inOut"},UP.fillFrom);
+    upTl.to(upCtx,{v:UP.meterTo,duration:UP.fillDur,ease:"power1.inOut",onUpdate:upWrite},UP.fillFrom);
+    upTl.fromTo("#up-cardglow",{opacity:0},{opacity:.34,duration:UP.fillDur,ease:"power1.inOut"},UP.fillFrom);
+
+    /* and it HOLDS — the hold is the argument */
+    const upHold=UP.fillFrom+UP.fillDur;
+    upTl.to("#up-cardglow",{opacity:.56,duration:.34,ease:"power2.out"},upHold);
+    upTl.fromTo(".up-brk",{opacity:0,scale:.5},{opacity:1,scale:1,duration:.28,ease:"back.out(1.7)",stagger:.035},upHold-.02);
+    upTl.fromTo("#up-payoff",{opacity:0,y:18},{opacity:1,y:0,duration:.32,ease:"power3.out"},upHold+.08);
+
+    window.__timelines["ui-panel-meter"]=upTl;
+  </script>
+</template>
+</body></html>

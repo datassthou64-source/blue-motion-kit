@@ -1,0 +1,11 @@
+{
+  "duration": 8.4,
+  "maxStaticSec": 1.4,
+  "assertions": [
+    {"type":"appearsBy","selector":"#tu-screen","bySec":0.9},
+    {"type":"appearsBy","selector":"#tu-p0","bySec":2.0},
+    {"type":"appearsBy","selector":"#tu-out","bySec":8.0},
+    {"type":"before","first":"#tu-screen","second":"#tu-out"},
+    {"type":"staysInFrame","selector":"#tu-p0"}
+  ]
+}

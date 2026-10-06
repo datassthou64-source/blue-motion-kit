@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s15-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s15-shade{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 46% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s15-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s15-lane{fill:none;stroke:rgba(253,253,253,.5);stroke-width:5;stroke-linecap:round;stroke-dasharray:14 18;opacity:0}
+    .s15-src{position:absolute;left:60px;top:400px;width:200px;height:280px;border-radius:44px;border:5px solid #fdfdfd;background:rgba(0,22,66,.84);box-shadow:0 0 34px rgba(95,230,253,.22);display:grid;place-items:center;opacity:0}
+    .s15-srcp{width:34px;height:34px;border-radius:50%;background:rgba(253,253,253,.9)}
+    .s15-wall{position:absolute;left:1470px;top:270px;width:34px;height:540px;border-radius:17px;background:#5fe6fd;box-shadow:0 0 60px rgba(95,230,253,.75);opacity:0}
+    .s15-hatch{position:absolute;left:1420px;width:134px;height:5px;border-radius:3px;background:rgba(95,230,253,.55)}
+    .s15-hum{position:absolute;left:1660px;top:400px;width:190px;height:290px;opacity:0}
+    .s15-hh{position:absolute;left:55px;top:0;width:80px;height:80px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.86)}
+    .s15-hb{position:absolute;left:10px;top:100px;width:170px;height:190px;border-radius:85px 85px 28px 28px;border:5px solid #fdfdfd;background:rgba(0,22,66,.86)}
+    .s15-lbl{position:absolute;font-size:26px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s15-lsrc{left:160px;top:716px}.s15-lhum{left:1755px;top:726px}
+    .s15-meta{position:absolute;left:1487px;top:212px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:#5fe6fd;text-shadow:0 0 20px rgba(0,0,0,.9),0 0 34px rgba(95,230,253,.45);opacity:0}
+    .s15-tok{position:absolute;width:250px;height:88px;border-radius:44px;border:4px solid #5fe6fd;background:rgba(0,22,66,.92);box-shadow:0 0 40px rgba(95,230,253,.65);display:grid;place-items:center;font-size:30px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;text-shadow:0 0 22px rgba(0,0,0,.8);opacity:0}
+    .s15-t1{left:300px;top:356px}.s15-t2{left:300px;top:656px}
+    .s15-tag{position:absolute;left:800px;top:930px;font-size:56px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s15-root" id="s15-root" data-composition-id="s15" data-start="0" data-duration="8.5" data-width="1920" data-height="1080">
+    <div data-hf-id="s15-shade" id="s15-shade" class="s15-shade"></div>
+    <svg data-hf-id="s15-svg" id="s15-svg" class="s15-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s15-la" id="s15-la" class="s15-lane" d="M260 400 L1470 400"/>
+      <path data-hf-id="s15-lb" id="s15-lb" class="s15-lane" d="M260 700 L1470 700"/>
+    </svg>
+    <div data-hf-id="s15-src" id="s15-src" class="s15-src"><i data-hf-id="s15-srcp" id="s15-srcp" class="s15-srcp"></i></div>
+    <div data-hf-id="s15-wall" id="s15-wall" class="s15-wall"><i data-hf-id="s15-h1" id="s15-h1" class="s15-hatch" style="top:70px"></i><i data-hf-id="s15-h2" id="s15-h2" class="s15-hatch" style="top:200px"></i><i data-hf-id="s15-h3" id="s15-h3" class="s15-hatch" style="top:330px"></i><i data-hf-id="s15-h4" id="s15-h4" class="s15-hatch" style="top:460px"></i></div>
+    <div data-hf-id="s15-hum" id="s15-hum" class="s15-hum"><i data-hf-id="s15-hh" id="s15-hh" class="s15-hh"></i><i data-hf-id="s15-hb" id="s15-hb" class="s15-hb"></i></div>
+    <div data-hf-id="s15-lsrc" id="s15-lsrc" class="s15-lbl s15-lsrc">AGENTS</div>
+    <div data-hf-id="s15-lhum" id="s15-lhum" class="s15-lbl s15-lhum">YOU</div>
+    <div data-hf-id="s15-meta" id="s15-meta" class="s15-meta">GUARDRAIL</div>
+    <div data-hf-id="s15-t1" id="s15-t1" class="s15-tok s15-t1">PUBLISH</div>
+    <div data-hf-id="s15-t2" id="s15-t2" class="s15-tok s15-t2">SPEND</div>
+    <div data-hf-id="s15-tag" id="s15-tag" class="s15-tag">NOTHING GOES OUT</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s15=gsap.timeline({paused:true});
+    gsap.set(["#s15-lsrc","#s15-lhum","#s15-meta","#s15-tag"],{xPercent:-50});
+
+    s15.fromTo("#s15-src",{opacity:0,x:-70,scale:.78},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},.1);
+    s15.fromTo("#s15-lsrc",{opacity:0,y:14},{opacity:1,y:0,duration:.34,ease:"power3.out"},.45);
+    s15.fromTo(["#s15-la","#s15-lb"],{opacity:0},{opacity:1,duration:.45,ease:"power2.out",stagger:.1},.6);
+    /* the hard blocker drops in */
+    s15.fromTo("#s15-wall",{opacity:0,scaleY:0},{opacity:1,scaleY:1,duration:.42,ease:"power4.out"},1.5);
+    s15.fromTo("#s15-meta",{opacity:0,y:-14},{opacity:1,y:0,duration:.34,ease:"power3.out"},1.9);
+    s15.fromTo("#s15-hum",{opacity:0,x:80,scale:.8},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},3.1);
+    s15.fromTo("#s15-lhum",{opacity:0,y:14},{opacity:1,y:0,duration:.34,ease:"power3.out"},3.5);
+    /* the lanes pressurise against it */
+    s15.to("#s15-la",{stroke:"rgba(95,230,253,.85)",duration:.5,ease:"power2.out"},4.4);
+    s15.to("#s15-lb",{stroke:"rgba(95,230,253,.85)",duration:.5,ease:"power2.out"},4.9);
+    s15.to("#s15-wall",{scaleX:1.35,duration:.3,ease:"power3.out"},5.4);
+    s15.to("#s15-wall",{scaleX:1,duration:.5,ease:"power2.out"},5.7);
+    s15.to("#s15-srcp",{backgroundColor:"#5fe6fd",scale:1.3,duration:.3,ease:"power3.out"},4.4);
+    s15.fromTo("#s15-tag",{opacity:0,scale:1.18},{opacity:1,scale:1,duration:.42,ease:"power4.out"},6.6);
+    s15.to("#s15-wall",{boxShadow:"0 0 96px rgba(95,230,253,.95)",duration:.5,ease:"sine.inOut",yoyo:true,repeat:1},6.7);
+
+    window.__timelines["s15"]=s15;
+  </script>
+</template>
+</body></html>

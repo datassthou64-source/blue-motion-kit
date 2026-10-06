@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s12-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s12-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 70% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s12-node{position:absolute;width:180px;height:180px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.84);box-shadow:0 0 36px rgba(95,230,253,.24);display:grid;place-items:center;opacity:0}
+    .s12-np{width:34px;height:34px;border-radius:50%;background:rgba(253,253,253,.92);box-shadow:0 0 24px rgba(253,253,253,.4)}
+    .s12-n1{left:870px;top:105px}
+    .s12-n2{left:1165px;top:319px}
+    .s12-n3{left:1052px;top:666px}
+    .s12-n4{left:688px;top:666px}
+    .s12-n5{left:575px;top:319px}
+    .s12-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s12-guide{fill:none;stroke:rgba(253,253,253,.28);stroke-width:3;stroke-dasharray:10 14;opacity:0}
+    .s12-fl{fill:none;stroke:#5fe6fd;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    .s12-tag{position:absolute;left:960px;top:898px;font-size:50px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7),0 0 46px rgba(95,230,253,.45);opacity:0}
+    .s12-meta{position:absolute;left:960px;top:972px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+  <div data-hf-id="s12-root" id="s12-root" data-composition-id="s12" data-start="0" data-duration="9.3" data-width="1920" data-height="1080">
+    <div data-hf-id="s12-shade" id="s12-shade" class="s12-shade"></div>
+    <svg data-hf-id="s12-svg" id="s12-svg" class="s12-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s12-gA" id="s12-gA" class="s12-guide" d="M960 195 L1254.8 409.2 L1142.2 755.8 L777.8 755.8 L665.2 409.2 Z"/>
+      <path data-hf-id="s12-gB" id="s12-gB" class="s12-guide" d="M960 195 L1142.2 755.8 M960 195 L777.8 755.8 M1254.8 409.2 L777.8 755.8 M1254.8 409.2 L665.2 409.2 M1142.2 755.8 L665.2 409.2"/>
+      <path data-hf-id="s12-c1" id="s12-c1" class="s12-fl" d="M960 195 L1142.2 755.8"/>
+      <path data-hf-id="s12-c2" id="s12-c2" class="s12-fl" d="M1142.2 755.8 L665.2 409.2"/>
+      <path data-hf-id="s12-c3" id="s12-c3" class="s12-fl" d="M665.2 409.2 L1254.8 409.2"/>
+      <path data-hf-id="s12-c4" id="s12-c4" class="s12-fl" d="M1254.8 409.2 L777.8 755.8"/>
+      <path data-hf-id="s12-c5" id="s12-c5" class="s12-fl" d="M777.8 755.8 L960 195"/>
+    </svg>
+    <div data-hf-id="s12-n1" id="s12-n1" class="s12-node s12-n1"><i data-hf-id="s12-p1" id="s12-p1" class="s12-np"></i></div>
+    <div data-hf-id="s12-n2" id="s12-n2" class="s12-node s12-n2"><i data-hf-id="s12-p2" id="s12-p2" class="s12-np"></i></div>
+    <div data-hf-id="s12-n3" id="s12-n3" class="s12-node s12-n3"><i data-hf-id="s12-p3" id="s12-p3" class="s12-np"></i></div>
+    <div data-hf-id="s12-n4" id="s12-n4" class="s12-node s12-n4"><i data-hf-id="s12-p4" id="s12-p4" class="s12-np"></i></div>
+    <div data-hf-id="s12-n5" id="s12-n5" class="s12-node s12-n5"><i data-hf-id="s12-p5" id="s12-p5" class="s12-np"></i></div>
+    <div data-hf-id="s12-tag" id="s12-tag" class="s12-tag">THEY TALK TO EACH OTHER</div>
+    <div data-hf-id="s12-meta" id="s12-meta" class="s12-meta">AGENT TO AGENT</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s12=gsap.timeline({paused:true});
+    gsap.set(["#s12-tag","#s12-meta"],{xPercent:-50});
+    function s12flow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2;el.style.strokeDashoffset=0;
+      s12.set(sel,{opacity:1},at);
+      s12.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      s12.set(sel,{opacity:0},at+dur);
+    }
+    ["#s12-n1","#s12-n2","#s12-n3","#s12-n4","#s12-n5"].forEach((id,i)=>
+      s12.fromTo(id,{opacity:0,scale:.55},{opacity:1,scale:1,duration:.5,ease:"back.out(1.5)"},.2+i*.24));
+    s12.fromTo(["#s12-gA","#s12-gB"],{opacity:0},{opacity:1,duration:.5,ease:"power2.out"},1.5);
+
+    /* the exchanges accelerate */
+    const s12seq=[
+      {fl:"#s12-c1",to:"#s12-n3",pip:"#s12-p3",at:2.5,dur:.85},
+      {fl:"#s12-c2",to:"#s12-n5",pip:"#s12-p5",at:3.45,dur:.78},
+      {fl:"#s12-c3",to:"#s12-n2",pip:"#s12-p2",at:4.3,dur:.7},
+      {fl:"#s12-c4",to:"#s12-n4",pip:"#s12-p4",at:5.05,dur:.62},
+      {fl:"#s12-c5",to:"#s12-n1",pip:"#s12-p1",at:5.72,dur:.54}
+    ];
+    s12seq.forEach(s=>{
+      s12flow(s.fl,s.at,s.dur);
+      s12.to(s.to,{borderColor:"#5fe6fd",boxShadow:"0 0 60px rgba(95,230,253,.6)",duration:.24,ease:"power3.out"},s.at+s.dur-.1);
+      s12.to(s.pip,{backgroundColor:"#5fe6fd",scale:1.45,duration:.22,ease:"power3.out"},s.at+s.dur-.1);
+      s12.to(s.pip,{scale:1,duration:.3,ease:"power2.out"},s.at+s.dur+.14);
+    });
+    s12.fromTo("#s12-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.42,ease:"power4.out"},6.6);
+    s12.fromTo("#s12-meta",{opacity:0,y:14},{opacity:1,y:0,duration:.36,ease:"power3.out"},6.85);
+    s12.to(["#s12-gA","#s12-gB"],{opacity:.5,duration:.5,ease:"power2.out"},6.6);
+    s12.to(["#s12-n1","#s12-n2","#s12-n3","#s12-n4","#s12-n5"],{scale:1.05,duration:.35,ease:"sine.inOut",yoyo:true,repeat:1,stagger:.07},7.5);
+    window.__timelines["s12"]=s12;
+  </script>
+</template>
+</body></html>

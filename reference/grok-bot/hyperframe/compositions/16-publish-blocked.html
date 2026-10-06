@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s16-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s16-shade{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 46% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s16-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s16-lane{fill:none;stroke:rgba(253,253,253,.5);stroke-width:5;stroke-linecap:round;stroke-dasharray:14 18;opacity:1}
+    .s16-src{position:absolute;left:60px;top:400px;width:200px;height:280px;border-radius:44px;border:5px solid #fdfdfd;background:rgba(0,22,66,.84);box-shadow:0 0 34px rgba(95,230,253,.22);display:grid;place-items:center;opacity:1}
+    .s16-srcp{width:34px;height:34px;border-radius:50%;background:rgba(253,253,253,.9)}
+    .s16-wall{position:absolute;left:1470px;top:270px;width:34px;height:540px;border-radius:17px;background:#5fe6fd;box-shadow:0 0 60px rgba(95,230,253,.75);opacity:1}
+    .s16-hatch{position:absolute;left:1420px;width:134px;height:5px;border-radius:3px;background:rgba(95,230,253,.55)}
+    .s16-hum{position:absolute;left:1660px;top:400px;width:190px;height:290px;opacity:1}
+    .s16-hh{position:absolute;left:55px;top:0;width:80px;height:80px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.86)}
+    .s16-hb{position:absolute;left:10px;top:100px;width:170px;height:190px;border-radius:85px 85px 28px 28px;border:5px solid #fdfdfd;background:rgba(0,22,66,.86)}
+    .s16-lbl{position:absolute;font-size:26px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    .s16-lsrc{left:160px;top:716px}.s16-lhum{left:1755px;top:726px}
+    .s16-meta{position:absolute;left:1487px;top:212px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:#5fe6fd;text-shadow:0 0 20px rgba(0,0,0,.9),0 0 34px rgba(95,230,253,.45);opacity:1}
+    .s16-tok{position:absolute;width:250px;height:88px;border-radius:44px;border:4px solid #5fe6fd;background:rgba(0,22,66,.92);box-shadow:0 0 40px rgba(95,230,253,.65);display:grid;place-items:center;font-size:30px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;text-shadow:0 0 22px rgba(0,0,0,.8);opacity:0}
+    .s16-t1{left:300px;top:356px}.s16-t2{left:300px;top:656px}
+    .s16-tag{position:absolute;left:800px;top:930px;font-size:56px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s16-root" id="s16-root" data-composition-id="s16" data-start="0" data-duration="7.1" data-width="1920" data-height="1080">
+    <div data-hf-id="s16-shade" id="s16-shade" class="s16-shade"></div>
+    <svg data-hf-id="s16-svg" id="s16-svg" class="s16-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s16-la" id="s16-la" class="s16-lane" d="M260 400 L1470 400"/>
+      <path data-hf-id="s16-lb" id="s16-lb" class="s16-lane" d="M260 700 L1470 700"/>
+    </svg>
+    <div data-hf-id="s16-src" id="s16-src" class="s16-src"><i data-hf-id="s16-srcp" id="s16-srcp" class="s16-srcp"></i></div>
+    <div data-hf-id="s16-wall" id="s16-wall" class="s16-wall"><i data-hf-id="s16-h1" id="s16-h1" class="s16-hatch" style="top:70px"></i><i data-hf-id="s16-h2" id="s16-h2" class="s16-hatch" style="top:200px"></i><i data-hf-id="s16-h3" id="s16-h3" class="s16-hatch" style="top:330px"></i><i data-hf-id="s16-h4" id="s16-h4" class="s16-hatch" style="top:460px"></i></div>
+    <div data-hf-id="s16-hum" id="s16-hum" class="s16-hum"><i data-hf-id="s16-hh" id="s16-hh" class="s16-hh"></i><i data-hf-id="s16-hb" id="s16-hb" class="s16-hb"></i></div>
+    <div data-hf-id="s16-lsrc" id="s16-lsrc" class="s16-lbl s16-lsrc">AGENTS</div>
+    <div data-hf-id="s16-lhum" id="s16-lhum" class="s16-lbl s16-lhum">YOU</div>
+    <div data-hf-id="s16-meta" id="s16-meta" class="s16-meta">GUARDRAIL</div>
+    <div data-hf-id="s16-t1" id="s16-t1" class="s16-tok s16-t1">PUBLISH</div>
+    <div data-hf-id="s16-t2" id="s16-t2" class="s16-tok s16-t2">SPEND</div>
+    <div data-hf-id="s16-tag" id="s16-tag" class="s16-tag">HARD BLOCKER</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s16=gsap.timeline({paused:true});
+    gsap.set(["#s16-lsrc","#s16-lhum","#s16-meta","#s16-tag"],{xPercent:-50});
+
+    /* geometry carries straight over the cut */
+    s16.set(["#s16-lsrc","#s16-lhum"],{opacity:1},0);
+    s16.set("#s16-la",{stroke:"rgba(95,230,253,.85)"},0);
+    s16.set("#s16-lb",{stroke:"rgba(95,230,253,.85)"},0);
+    /* PUBLISH races the lane and slams the blocker */
+    s16.fromTo("#s16-t1",{opacity:0,x:-120,scale:.8},{opacity:1,x:0,scale:1,duration:.4,ease:"power3.out"},.25);
+    s16.to("#s16-t1",{x:900,duration:1.1,ease:"power2.in"},.9);
+    s16.to("#s16-wall",{scaleX:1.6,duration:.12,ease:"power4.out"},2.0);
+    s16.to("#s16-wall",{scaleX:1,duration:.5,ease:"elastic.out(1,.5)"},2.12);
+    s16.to("#s16-t1",{x:820,duration:.28,ease:"power2.out"},2.02);
+    s16.to("#s16-wall",{boxShadow:"0 0 120px rgba(95,230,253,1)",duration:.16,ease:"power4.out"},2.0);
+    s16.to("#s16-wall",{boxShadow:"0 0 60px rgba(95,230,253,.75)",duration:.6,ease:"power2.out"},2.16);
+    /* only the human opens it */
+    s16.to("#s16-hum",{scale:1.06,duration:.24,ease:"power3.out"},3.2);
+    s16.to("#s16-hum",{scale:1,duration:.34,ease:"power2.out"},3.45);
+    s16.to(["#s16-hh","#s16-hb"],{borderColor:"#5fe6fd",duration:.4,ease:"power2.out"},3.3);
+    s16.to("#s16-lhum",{color:"#5fe6fd",duration:.4,ease:"power2.out"},3.3);
+    s16.to("#s16-t1",{x:840,duration:1.6,ease:"sine.inOut"},3.7);
+    s16.to("#s16-t1",{x:820,duration:.6,ease:"sine.inOut"},5.31);
+    s16.fromTo("#s16-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.42,ease:"power4.out"},5.85);
+    s16.to("#s16-wall",{scaleX:1.25,duration:.3,ease:"power3.out"},5.9);
+    s16.to("#s16-wall",{scaleX:1,duration:.45,ease:"power2.out"},6.2);
+
+    window.__timelines["s16"]=s16;
+  </script>
+</template>
+</body></html>

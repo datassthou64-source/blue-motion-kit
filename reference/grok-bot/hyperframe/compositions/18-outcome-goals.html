@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s18-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s18-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 74% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s18-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s18-guide{fill:none;stroke:rgba(253,253,253,.38);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .s18-fl{fill:none;stroke:#5fe6fd;stroke-width:7;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.75));opacity:0}
+    .s18-goal{position:absolute;left:730px;top:110px;width:460px;height:150px;border-radius:34px;border:5px solid #fdfdfd;background:rgba(4,26,72,.76);box-shadow:0 0 36px rgba(95,230,253,.2);display:grid;place-items:center;font-size:44px;font-weight:900;letter-spacing:.16em;opacity:0}
+    .s18-eve{position:absolute;left:770px;top:390px;width:380px;height:150px;border-radius:75px;border:6px solid #fdfdfd;background:rgba(0,22,66,.88);box-shadow:0 0 44px rgba(95,230,253,.28);display:grid;place-items:center;font-size:44px;font-weight:900;letter-spacing:.16em;color:#5fe6fd;text-shadow:0 0 24px rgba(0,0,0,.85),0 0 42px rgba(95,230,253,.45);opacity:0}
+    .s18-fn{position:absolute;top:760px;width:220px;height:120px;border-radius:60px;border:5px solid #fdfdfd;background:rgba(0,22,66,.82);box-shadow:0 0 30px rgba(95,230,253,.2);display:grid;place-items:center;opacity:0}
+    .s18-fp{width:26px;height:26px;border-radius:50%;background:rgba(253,253,253,.9)}
+    .s18-a{left:190px}.s18-b{left:680px}.s18-c{left:1170px}.s18-d{left:1660px}
+    .s18-meta{position:absolute;left:960px;top:590px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.84);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+  <div data-hf-id="s18-root" id="s18-root" data-composition-id="s18" data-start="0" data-duration="12.2" data-width="1920" data-height="1080">
+    <div data-hf-id="s18-shade" id="s18-shade" class="s18-shade"></div>
+    <svg data-hf-id="s18-svg" id="s18-svg" class="s18-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s18-ga" id="s18-ga" class="s18-guide" d="M960 540 C960 660 620 680 300 760"/>
+      <path data-hf-id="s18-gb" id="s18-gb" class="s18-guide" d="M960 540 C960 660 880 700 790 760"/>
+      <path data-hf-id="s18-gc" id="s18-gc" class="s18-guide" d="M960 540 C960 660 1040 700 1280 760"/>
+      <path data-hf-id="s18-gd" id="s18-gd" class="s18-guide" d="M960 540 C960 660 1300 680 1770 760"/>
+      <path data-hf-id="s18-fa" id="s18-fa" class="s18-fl" d="M960 540 C960 660 620 680 300 760"/>
+      <path data-hf-id="s18-fb" id="s18-fb" class="s18-fl" d="M960 540 C960 660 880 700 790 760"/>
+      <path data-hf-id="s18-fc" id="s18-fc" class="s18-fl" d="M960 540 C960 660 1040 700 1280 760"/>
+      <path data-hf-id="s18-fd" id="s18-fd" class="s18-fl" d="M960 540 C960 660 1300 680 1770 760"/>
+    </svg>
+    <div data-hf-id="s18-a" id="s18-a" class="s18-fn s18-a"><i data-hf-id="s18-pa" id="s18-pa" class="s18-fp"></i></div>
+    <div data-hf-id="s18-b" id="s18-b" class="s18-fn s18-b"><i data-hf-id="s18-pb" id="s18-pb" class="s18-fp"></i></div>
+    <div data-hf-id="s18-c" id="s18-c" class="s18-fn s18-c"><i data-hf-id="s18-pc" id="s18-pc" class="s18-fp"></i></div>
+    <div data-hf-id="s18-d" id="s18-d" class="s18-fn s18-d"><i data-hf-id="s18-pd" id="s18-pd" class="s18-fp"></i></div>
+    <div data-hf-id="s18-eve" id="s18-eve" class="s18-eve">EVE</div>
+    <div data-hf-id="s18-goal" id="s18-goal" class="s18-goal">GOAL</div>
+    <div data-hf-id="s18-meta" id="s18-meta" class="s18-meta">ARTICULATED DOWNSTREAM</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s18=gsap.timeline({paused:true});
+    gsap.set(["#s18-meta"],{xPercent:-50});
+    function s18flow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2;el.style.strokeDashoffset=0;
+      s18.set(sel,{opacity:1},at);
+      s18.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      s18.set(sel,{opacity:0},at+dur);
+    }
+    ["#s18-a","#s18-b","#s18-c","#s18-d"].forEach((id,i)=>
+      s18.fromTo(id,{opacity:0,y:70,scale:.74},{opacity:1,y:0,scale:1,duration:.5,ease:"power3.out"},.15+i*.16));
+    s18.fromTo("#s18-eve",{opacity:0,scale:.74},{opacity:1,scale:1,duration:.55,ease:"power3.out"},1.05);
+    s18.fromTo(["#s18-ga","#s18-gb","#s18-gc","#s18-gd"],{opacity:0},{opacity:1,duration:.4,ease:"power2.out",stagger:.06},1.6);
+    s18.fromTo("#s18-goal",{opacity:0,y:-70,scale:.8},{opacity:1,y:0,scale:1,duration:.55,ease:"power3.out"},2.9);
+    s18.to("#s18-goal",{borderColor:"#5fe6fd",boxShadow:"0 0 60px rgba(95,230,253,.5)",duration:.5,ease:"power2.out"},4.2);
+
+    /* the goal drops into Eve, who articulates it downstream */
+    s18.to("#s18-goal",{y:250,scale:.72,duration:.8,ease:"power2.inOut"},5.55);
+    s18.to("#s18-goal",{opacity:0,duration:.3,ease:"power2.in"},6.15);
+    s18.to("#s18-eve",{scale:1.1,duration:.2,ease:"power4.out"},6.3);
+    s18.to("#s18-eve",{scale:1,boxShadow:"0 0 90px rgba(95,230,253,.6)",duration:.4,ease:"power2.out"},6.5);
+    s18.fromTo("#s18-meta",{opacity:0,y:14},{opacity:1,y:0,duration:.36,ease:"power3.out"},6.7);
+    const s18br=[{fl:"#s18-fa",n:"#s18-a",p:"#s18-pa"},{fl:"#s18-fb",n:"#s18-b",p:"#s18-pb"},{fl:"#s18-fc",n:"#s18-c",p:"#s18-pc"},{fl:"#s18-fd",n:"#s18-d",p:"#s18-pd"}];
+    s18br.forEach((b,i)=>{
+      const at=7.0+i*.62;
+      s18flow(b.fl,at,.7);
+      s18.to(b.n,{borderColor:"#5fe6fd",boxShadow:"0 0 56px rgba(95,230,253,.55)",duration:.26,ease:"power3.out"},at+.64);
+      s18.to(b.p,{backgroundColor:"#5fe6fd",scale:1.4,duration:.22,ease:"power3.out"},at+.64);
+      s18.to(b.p,{scale:1,duration:.28,ease:"power2.out"},at+.86);
+    });
+    /* the whole tier lands on one beat and holds */
+    s18.to(["#s18-ga","#s18-gb","#s18-gc","#s18-gd"],{opacity:.6,duration:.4,ease:"power2.out"},10.2);
+    s18.to(["#s18-a","#s18-b","#s18-c","#s18-d"],{scale:1.1,duration:.22,ease:"power4.out"},10.35);
+    s18.to(["#s18-a","#s18-b","#s18-c","#s18-d"],{scale:1,duration:.4,ease:"power2.out"},10.57);
+    s18.to(["#s18-pa","#s18-pb","#s18-pc","#s18-pd"],{scale:1.4,duration:.24,ease:"power3.out"},10.35);
+    s18.to(["#s18-pa","#s18-pb","#s18-pc","#s18-pd"],{scale:1,duration:.4,ease:"power2.out"},10.6);
+    s18.to("#s18-eve",{boxShadow:"0 0 118px rgba(95,230,253,.72)",duration:.7,ease:"power2.out"},10.4);
+    s18.to("#s18-meta",{color:"#5fe6fd",textShadow:"0 0 20px rgba(0,0,0,.9),0 0 36px rgba(95,230,253,.45)",duration:.5,ease:"power2.out"},10.4);
+    window.__timelines["s18"]=s18;
+  </script>
+</template>
+</body></html>

@@ -1,0 +1,11 @@
+{
+  "duration": 6.205333,
+  "maxStaticSec": 1.8,
+  "assertions": [
+    {"type":"appearsBy","selector":"#s5-p1","bySec":0.9},
+    {"type":"appearsBy","selector":"#s5-engine","bySec":2.9},
+    {"type":"before","first":"#s5-p1","second":"#s5-engine"},
+    {"type":"staysInFrame","selector":"#s5-engine"},
+    {"type":"keepsMoving","selector":"#s5-ring","fromSec":2.3,"toSec":5.4}
+  ]
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s23-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s23-shade{position:absolute;inset:0;background:radial-gradient(ellipse 70% 74% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s23-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s23-track{fill:none;stroke:rgba(253,253,253,.42);stroke-width:5;stroke-linecap:round;stroke-dasharray:14 18;opacity:0}
+    .s23-node{position:absolute;top:190px;width:340px;height:200px;border-radius:44px;border:5px solid #fdfdfd;background:rgba(0,22,66,.86);box-shadow:0 0 36px rgba(95,230,253,.22);display:grid;place-items:center;font-size:30px;font-weight:900;letter-spacing:.13em;text-align:center;opacity:0}
+    .s23-nl{left:200px}.s23-nr{left:1380px}
+    .s23-rec{position:absolute;left:540px;top:242px;width:150px;height:96px;border-radius:18px;border:4px solid #5fe6fd;background:rgba(0,22,66,.92);box-shadow:0 0 34px rgba(95,230,253,.6);opacity:0}
+    .s23-rec i{position:absolute;left:20px;height:8px;border-radius:4px;background:#5fe6fd}
+    .s23-bar{position:absolute;height:70px;border-radius:16px;border:4px solid rgba(253,253,253,.82);background:rgba(4,26,72,.72);opacity:0}
+    .s23-b1{left:420px;top:600px;width:760px}
+    .s23-b2{left:600px;top:720px;width:760px}
+    .s23-bl{position:absolute;font-size:24px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 22px rgba(0,0,0,.9);opacity:0}
+    .s23-bl1{left:250px;top:618px}.s23-bl2{left:250px;top:738px}
+    .s23-chk{position:absolute;left:1420px;top:588px;width:200px;height:200px;border-radius:48px;border:5px solid #5fe6fd;background:rgba(0,22,66,.9);box-shadow:0 0 60px rgba(95,230,253,.6);opacity:0}
+    .s23-chksvg{position:absolute;inset:0;width:200px;height:200px}
+    .s23-chkp{fill:none;stroke:#5fe6fd;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;opacity:0;filter:drop-shadow(0 0 16px rgba(95,230,253,.9))}
+    .s23-tag{position:absolute;left:830px;top:900px;font-size:50px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s23-root" id="s23-root" data-composition-id="s23" data-start="0" data-duration="10" data-width="1920" data-height="1080">
+    <div data-hf-id="s23-shade" id="s23-shade" class="s23-shade"></div>
+    <svg data-hf-id="s23-svg" id="s23-svg" class="s23-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s23-tr" id="s23-tr" class="s23-track" d="M540 290 L1380 290" />
+    </svg>
+    <div data-hf-id="s23-nl" id="s23-nl" class="s23-node s23-nl">POSTMASTER</div>
+    <div data-hf-id="s23-nr" id="s23-nr" class="s23-node s23-nr">TALIA<br data-hf-id="hf-x5px">CFO</div>
+    <div data-hf-id="s23-rec" id="s23-rec" class="s23-rec"><i data-hf-id="s23-r1" id="s23-r1" style="top:20px;width:96px"></i><i data-hf-id="s23-r2" id="s23-r2" style="top:44px;width:68px"></i><i data-hf-id="s23-r3" id="s23-r3" style="top:68px;width:84px"></i></div>
+    <div data-hf-id="s23-b1" id="s23-b1" class="s23-bar s23-b1"></div>
+    <div data-hf-id="s23-b2" id="s23-b2" class="s23-bar s23-b2"></div>
+    <div data-hf-id="s23-bl1" id="s23-bl1" class="s23-bl s23-bl1">LEDGER</div>
+    <div data-hf-id="s23-bl2" id="s23-bl2" class="s23-bl s23-bl2">STATEMENT</div>
+    <div data-hf-id="s23-chk" id="s23-chk" class="s23-chk"><svg data-hf-id="s23-chksvg" id="s23-chksvg" class="s23-chksvg" viewBox="0 0 200 200"><path data-hf-id="s23-chkp" id="s23-chkp" class="s23-chkp" d="M52 104 L86 138 L150 66" /></svg></div>
+    <div data-hf-id="s23-tag" id="s23-tag" class="s23-tag">DOES THIS MATCH?</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s23=gsap.timeline({paused:true});
+    gsap.set("#s23-tag",{xPercent:-50});
+    const s23c=document.getElementById("s23-chkp"),s23CL=s23c.getTotalLength();
+    s23c.style.strokeDasharray=String(s23CL);s23c.style.strokeDashoffset=String(s23CL);
+
+    s23.fromTo("#s23-nl",{opacity:0,x:-70,scale:.8},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},.1);
+    s23.fromTo("#s23-nr",{opacity:0,x:70,scale:.8},{opacity:1,x:0,scale:1,duration:.55,ease:"power3.out"},2.2);
+    s23.fromTo("#s23-tr",{opacity:0},{opacity:1,duration:.4,ease:"power2.out"},2.7);
+    /* the receipt shuttles between them */
+    s23.fromTo("#s23-rec",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.34,ease:"power3.out"},3.1);
+    s23.to("#s23-rec",{x:840,duration:1.0,ease:"power2.inOut"},3.4);
+    s23.to("#s23-nr",{borderColor:"#5fe6fd",boxShadow:"0 0 66px rgba(95,230,253,.55)",duration:.3,ease:"power3.out"},4.36);
+    s23.to("#s23-rec",{x:0,duration:1.0,ease:"power2.inOut"},4.7);
+    s23.to("#s23-nl",{borderColor:"#5fe6fd",boxShadow:"0 0 66px rgba(95,230,253,.55)",duration:.3,ease:"power3.out"},5.66);
+    s23.to("#s23-rec",{x:420,y:16,scale:.8,duration:.7,ease:"power2.inOut"},5.9);
+
+    /* the ledger and the statement line up */
+    s23.fromTo("#s23-b1",{opacity:0,x:-90},{opacity:1,x:0,duration:.45,ease:"power3.out"},6.2);
+    s23.fromTo("#s23-bl1",{opacity:0,x:-20},{opacity:1,x:0,duration:.35,ease:"power3.out"},6.35);
+    s23.fromTo("#s23-b2",{opacity:0,x:90},{opacity:1,x:0,duration:.45,ease:"power3.out"},6.6);
+    s23.fromTo("#s23-bl2",{opacity:0,x:-20},{opacity:1,x:0,duration:.35,ease:"power3.out"},6.75);
+    s23.to("#s23-b2",{x:-180,duration:.85,ease:"power3.out"},7.6);
+    s23.to(["#s23-b1","#s23-b2"],{borderColor:"#5fe6fd",boxShadow:"0 0 40px rgba(95,230,253,.45)",duration:.4,ease:"power2.out"},8.4);
+    s23.fromTo("#s23-chk",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.4,ease:"back.out(1.5)"},8.5);
+    s23.set("#s23-chkp",{opacity:1},8.75);
+    s23.to("#s23-chkp",{strokeDashoffset:0,duration:.42,ease:"power2.out"},8.75);
+    s23.fromTo("#s23-tag",{opacity:0,scale:1.16},{opacity:1,scale:1,duration:.4,ease:"power4.out"},8.85);
+    window.__timelines["s23"]=s23;
+  </script>
+</template>
+</body></html>

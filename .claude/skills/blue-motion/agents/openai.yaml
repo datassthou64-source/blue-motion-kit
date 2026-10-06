@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blue Motion"
+  short_description: "Turn voiceover audio into researched motion graphics"
+  default_prompt: "Use $blue-motion to transcribe this audio and build a researched, visual-first HyperFrames motion-graphics video."

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<!--
+  TEMPLATE  05-chief-fanout-ack
+  ARGUMENT  "you ask one thing, and it delegates." A person on the left sends a
+            chip to a hub at the top; the hub splits it down N branches; each
+            branch lights; then every branch acknowledges back up. The return
+            trip is what makes it a chain of command instead of a diagram.
+  SWAP      CFG.hubLabel, CFG.branches (2-4 labels), CFG.requestLabel.
+            Drop CFG.person to false for a system-to-system version.
+  PREFIX    cf-
+  ASSETS    a real portrait at assets/people/speaker.jpg, or leave the abstract
+            figure. Never put a stock face on a named person.
+-->
+<template>
+  <style>
+    #cf-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #cf-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 72% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    #cf-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .cf-guide{fill:none;stroke:rgba(253,253,253,.4);stroke-width:4;stroke-linecap:round;stroke-dasharray:12 16;opacity:0}
+    .cf-fl{fill:none;stroke:#5FE6FD;stroke-width:8;stroke-linecap:round;filter:drop-shadow(0 0 16px rgba(95,230,253,.8));opacity:0}
+    #cf-hub{position:absolute;left:770px;top:150px;width:380px;height:150px;border-radius:75px;border:6px solid #FDFDFD;background:rgba(0,22,66,.88);box-shadow:0 0 44px rgba(95,230,253,.28);display:grid;place-items:center;font-size:44px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#5FE6FD;text-shadow:0 0 24px rgba(0,0,0,.8),0 0 40px rgba(95,230,253,.45);opacity:0}
+    .cf-fn{position:absolute;top:740px;width:250px;height:130px;border-radius:65px;border:5px solid #FDFDFD;background:rgba(0,22,66,.82);box-shadow:0 0 32px rgba(95,230,253,.2);display:grid;place-items:center;opacity:0}
+    .cf-fp{width:30px;height:30px;border-radius:50%;background:rgba(253,253,253,.9)}
+    .cf-flbl{position:absolute;top:892px;font-size:26px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 22px rgba(0,0,0,.85);opacity:0}
+    #cf-me{position:absolute;left:120px;top:300px;width:250px;height:250px;border-radius:50%;border:5px solid #FDFDFD;overflow:hidden;background:rgba(0,22,66,.9);box-shadow:0 0 52px rgba(95,230,253,.4);display:grid;place-items:center;opacity:0}
+    #cf-me img{width:100%;height:100%;object-fit:cover;filter:saturate(.86) contrast(1.04)}
+    #cf-figure{display:grid;place-items:center;align-content:center;gap:16px}
+    #cf-fig-head{width:62px;height:62px;border-radius:50%;border:5px solid rgba(253,253,253,.94)}
+    #cf-fig-torso{width:120px;height:74px;border-radius:60px 60px 16px 16px;border:5px solid rgba(253,253,253,.94);border-bottom:0}
+    #cf-you{position:absolute;left:245px;top:582px;font-size:30px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.9),0 4px 18px rgba(0,0,0,.7);opacity:0}
+    #cf-req{position:absolute;left:330px;top:393px;width:200px;height:64px;border-radius:32px;border:3px solid #5FE6FD;background:rgba(0,22,66,.9);box-shadow:0 0 34px rgba(95,230,253,.6);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#5FE6FD;opacity:0}
+  </style>
+
+  <div data-hf-id="cf-root" id="cf-root" data-composition-id="chief-fanout" data-start="0" data-duration="8.7" data-width="1920" data-height="1080">
+    <div data-hf-id="cf-shade" id="cf-shade"></div>
+    <svg data-hf-id="cf-svg" id="cf-svg" viewBox="0 0 1920 1080"></svg>
+    <div data-hf-id="cf-hub" id="cf-hub">Hub</div>
+    <div data-hf-id="cf-me" id="cf-me">
+      <!-- REPLACE with <img data-hf-id="cf-face" src="assets/people/speaker.jpg" alt=""> -->
+      <div data-hf-id="cf-figure" id="cf-figure"><i data-hf-id="cf-fig-head" id="cf-fig-head"></i><i data-hf-id="cf-fig-torso" id="cf-fig-torso"></i></div>
+    </div>
+    <div data-hf-id="cf-you" id="cf-you">You</div>
+    <div data-hf-id="cf-req" id="cf-req" data-layout-allow-overlap>Request</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const cfTl=gsap.timeline({paused:true});
+
+    /* ===== CONFIG ==================================================== */
+    const CF = {
+      hubLabel: "Hub",             // the delegator — one word, uppercase
+      youLabel: "You",
+      requestLabel: "Request",
+      branches: ["","",""],        // 2-4. "" leaves a branch unlabelled
+      splitAt: 3.5,                // when the hub starts delegating
+      branchGap: 0.95,
+      ackAt: 6.55                  // the return trip
+    };
+    /* ================================================================= */
+
+    const cfRoot=document.getElementById("cf-root"), cfSvg=document.getElementById("cf-svg");
+    const cfN=CF.branches.length;
+    document.getElementById("cf-hub").textContent=CF.hubLabel;
+    document.getElementById("cf-you").textContent=CF.youLabel;
+    document.getElementById("cf-req").textContent=CF.requestLabel;
+    gsap.set("#cf-you",{xPercent:-50});
+
+    const cfSpan=Math.min(1080,360*(cfN-1)), cfStep=cfN>1?cfSpan/(cfN-1):0, cfX0=960-cfSpan/2;
+    const cfBr=[];
+    CF.branches.forEach(function(lbl,i){
+      const cx=cfN>1?cfX0+i*cfStep:960, id="cf-b"+i;
+      const d=document.createElement("div");
+      d.className="cf-fn"; d.id=id; d.setAttribute("data-hf-id",id);
+      d.style.left=(cx-125)+"px";
+      d.innerHTML='<i data-hf-id="'+id+'p" id="'+id+'p" class="cf-fp"></i>';
+      cfRoot.appendChild(d);
+
+      if(lbl){
+        const l=document.createElement("div");
+        l.className="cf-flbl"; l.id="cf-t"+i; l.setAttribute("data-hf-id","cf-t"+i);
+        l.style.left=cx+"px"; l.textContent=lbl;
+        cfRoot.appendChild(l); gsap.set("#cf-t"+i,{xPercent:-50});
+      }
+
+      const down="M960 300 C960 480,"+cx+" 560,"+cx+" 740";
+      const up  ="M"+cx+" 740 C"+cx+" 560,960 480,960 300";
+      [["cf-g"+i,"cf-guide",down],["cf-f"+i,"cf-fl",down],["cf-r"+i,"cf-fl",up]].forEach(function(spec){
+        const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+        p.setAttribute("d",spec[2]); p.setAttribute("class",spec[1]);
+        p.id=spec[0]; p.setAttribute("data-hf-id",spec[0]);
+        cfSvg.appendChild(p);
+      });
+      cfBr.push({node:"#"+id,pip:"#"+id+"p",fl:"#cf-f"+i,ack:"#cf-r"+i});
+    });
+
+    function cfFlow(sel,at,dur){
+      const el=document.querySelector(sel),L=el.getTotalLength();
+      el.style.strokeDasharray=90+" "+L*2; el.style.strokeDashoffset=0;
+      cfTl.set(sel,{opacity:1},at);
+      cfTl.fromTo(sel,{strokeDashoffset:0},{strokeDashoffset:-L-90,duration:dur,ease:"power1.inOut",immediateRender:false},at);
+      cfTl.set(sel,{opacity:0},at+dur);
+    }
+
+    /* the cast arrives */
+    cfTl.fromTo("#cf-me",{opacity:0,scale:.7,x:-70},{opacity:1,scale:1,x:0,duration:.6,ease:"power3.out"},.05);
+    cfTl.fromTo("#cf-you",{opacity:0,y:16},{opacity:1,y:0,duration:.36,ease:"power3.out"},.42);
+    cfTl.fromTo("#cf-hub",{opacity:0,scale:.72},{opacity:1,scale:1,duration:.55,ease:"power3.out"},.45);
+    cfBr.forEach(function(b,i){ cfTl.fromTo(b.node,{opacity:0,y:70,scale:.74},{opacity:1,y:0,scale:1,duration:.5,ease:"power3.out"},.78+i*.16); });
+    if(document.querySelector(".cf-flbl")) cfTl.fromTo(".cf-flbl",{opacity:0,y:14},{opacity:1,y:0,duration:.3,ease:"power3.out",stagger:.08},1.2);
+    cfTl.fromTo(".cf-guide",{opacity:0},{opacity:1,duration:.4,ease:"power2.out",stagger:.06},1.35);
+
+    /* the request travels from the person to the hub */
+    cfTl.to("#cf-me",{scale:1.05,duration:.22,ease:"power3.out"},1.6);
+    cfTl.to("#cf-me",{scale:1,duration:.32,ease:"power2.out"},1.82);
+    cfTl.fromTo("#cf-req",{opacity:0,x:-140,scale:.7},{opacity:1,x:0,scale:1,duration:.32,ease:"power3.out"},1.7);
+    cfTl.to("#cf-req",{x:530,y:-200,duration:1.0,ease:"power2.inOut"},2.06);
+    cfTl.to("#cf-req",{opacity:0,scale:.5,duration:.26,ease:"power2.in"},3.02);
+    cfTl.to("#cf-hub",{scale:1.12,duration:.2,ease:"power4.out"},3.08);
+    cfTl.to("#cf-hub",{scale:1,boxShadow:"0 0 88px rgba(95,230,253,.6)",duration:.4,ease:"power2.out"},3.29);
+
+    /* it splits, and each branch lights as its pulse lands */
+    cfBr.forEach(function(b,i){
+      const at=CF.splitAt+i*CF.branchGap;
+      cfFlow(b.fl,at,.82);
+      cfTl.to(b.node,{borderColor:"#5FE6FD",boxShadow:"0 0 62px rgba(95,230,253,.6)",duration:.26,ease:"power3.out"},at+.76);
+      cfTl.to(b.pip,{backgroundColor:"#5FE6FD",scale:1.45,duration:.22,ease:"power3.out"},at+.76);
+      cfTl.to(b.node,{scale:1.08,duration:.16,ease:"power4.out"},at+.76);
+      cfTl.to(b.node,{scale:1,duration:.26,ease:"power2.out"},at+.92);
+    });
+
+    /* and every branch reports back up */
+    cfBr.forEach(function(b,i){ cfFlow(b.ack,CF.ackAt+i*.34,.78); });
+    cfTl.to(".cf-guide",{opacity:.6,duration:.5,ease:"power2.out"},CF.ackAt+.35);
+    const cfLast=CF.ackAt+(cfN-1)*.34+.78;
+    cfTl.to("#cf-hub",{scale:1.09,duration:.2,ease:"power4.out"},cfLast+.53);
+    cfTl.to("#cf-hub",{scale:1,boxShadow:"0 0 100px rgba(95,230,253,.7)",duration:.44,ease:"power2.out"},cfLast+.73);
+    cfTl.to(cfBr.map(function(b){return b.node;}),{scale:1.05,duration:.26,ease:"sine.inOut",yoyo:true,repeat:1,stagger:.1},cfLast+.57);
+
+    window.__timelines["chief-fanout"]=cfTl;
+  </script>
+</template>
+</body></html>

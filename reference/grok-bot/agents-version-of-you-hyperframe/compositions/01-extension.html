@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #ex-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#FDFDFD}
+    #ex-shade{position:absolute;inset:0;background:radial-gradient(ellipse 62% 68% at 50% 48%,rgba(0,22,66,.30),rgba(0,22,66,.80))}
+
+    .ex-fig{position:absolute;top:286px;width:300px;height:392px;border-radius:60px;
+      background:rgba(0,22,66,.80);display:grid;place-items:center;align-content:center;gap:26px;
+      transform-origin:50% 50%;opacity:0}
+    #ex-you{left:492px;border:5px solid rgba(253,253,253,.94);
+      box-shadow:0 0 42px rgba(95,230,253,.18),0 26px 66px rgba(0,22,66,.55)}
+    .ex-head{width:94px;height:94px;border-radius:50%;border:5px solid rgba(253,253,253,.94)}
+    .ex-torso{width:178px;height:118px;border-radius:92px 92px 22px 22px;border:5px solid rgba(253,253,253,.94);border-bottom:0}
+
+    #ex-agent{position:absolute;left:1122px;top:326px;width:312px;height:312px;border-radius:70px;opacity:0;
+      transform-origin:50% 50%}
+    #ex-appicon{position:absolute;inset:0;width:312px;height:312px;display:block;border-radius:70px}
+    #ex-aura{position:absolute;inset:-26px;border-radius:92px;pointer-events:none;
+      box-shadow:0 0 78px rgba(95,230,253,.42),0 26px 70px rgba(0,22,66,.6);opacity:0}
+    #ex-ring{position:absolute;inset:-46px;border-radius:110px;border:4px dashed rgba(95,230,253,.55);opacity:0}
+
+    #ex-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+    #ex-tether{fill:none;stroke:#5FE6FD;stroke-width:6;stroke-linecap:round;opacity:0;
+      filter:drop-shadow(0 0 16px rgba(95,230,253,.75))}
+    #ex-tok{fill:#5FE6FD;opacity:0;filter:drop-shadow(0 0 22px rgba(95,230,253,.95))}
+    #ex-halo{fill:rgba(95,230,253,.22);opacity:0}
+
+    .ex-label{position:absolute;top:726px;width:300px;text-align:center;font-size:32px;font-weight:900;
+      letter-spacing:.14em;text-transform:uppercase;opacity:0;
+      text-shadow:0 0 26px rgba(0,0,0,.78),0 4px 18px rgba(0,0,0,.6),0 0 44px rgba(255,255,255,.24)}
+    #ex-lab-you{left:492px}
+    #ex-lab-agent{left:1122px;width:312px;color:#5FE6FD;
+      text-shadow:0 0 26px rgba(0,0,0,.78),0 0 42px rgba(95,230,253,.85),0 0 66px rgba(95,230,253,.45)}
+
+    .ex-tick{position:absolute;width:3px;height:26px;background:rgba(253,253,253,.34)}
+  </style>
+
+  <div data-hf-id="ex-root" id="ex-root" data-composition-id="extension" data-start="0" data-duration="3.45" data-width="1920" data-height="1080">
+    <div data-hf-id="ex-shade" id="ex-shade"></div>
+
+    <div data-hf-id="ex-t1" class="ex-tick" style="left:180px;top:868px"></div>
+    <div data-hf-id="ex-t2" class="ex-tick" style="left:320px;top:868px"></div>
+    <div data-hf-id="ex-t3" class="ex-tick" style="left:1600px;top:868px"></div>
+    <div data-hf-id="ex-t4" class="ex-tick" style="left:1740px;top:868px"></div>
+
+    <svg data-hf-id="ex-svg" id="ex-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="ex-tether" id="ex-tether" d="M 792 482 L 1114 482" />
+      <circle data-hf-id="ex-halo" id="ex-halo" r="42" cx="792" cy="482" />
+      <circle data-hf-id="ex-tok" id="ex-tok" r="17" cx="792" cy="482" />
+    </svg>
+
+    <div data-hf-id="ex-you" id="ex-you" class="ex-fig">
+      <div data-hf-id="ex-you-head" class="ex-head"></div>
+      <div data-hf-id="ex-you-torso" class="ex-torso"></div>
+    </div>
+
+    <div data-hf-id="ex-agent" id="ex-agent">
+      <div data-hf-id="ex-aura" id="ex-aura"></div>
+      <div data-hf-id="ex-ring" id="ex-ring"></div>
+      <img data-hf-id="ex-appicon" id="ex-appicon" src="assets/logos/grokbot-app-icon.png" alt="" />
+    </div>
+
+    <div data-hf-id="ex-lab-you" id="ex-lab-you" class="ex-label">You</div>
+    <div data-hf-id="ex-lab-agent" id="ex-lab-agent" class="ex-label">First Agent</div>
+  </div>
+
+  <script>
+    window.__timelines=window.__timelines||{};
+    const exTl=gsap.timeline({paused:true});
+
+    gsap.set("#ex-you",{x:318});
+    gsap.set("#ex-agent",{x:-318});
+    gsap.set("#ex-tether",{strokeDasharray:322,strokeDashoffset:322});
+
+    exTl.fromTo("#ex-you",{opacity:0,scale:.72,y:40},{opacity:1,scale:1,y:0,duration:.5,ease:"back.out(1.5)"},.04);
+    exTl.fromTo("#ex-agent",{opacity:0,scale:.82},{opacity:1,scale:1,duration:.34,ease:"back.out(1.4)"},.60);
+    exTl.to("#ex-you",{x:0,duration:.74,ease:"power3.out"},.70);
+    exTl.to("#ex-agent",{x:0,duration:.74,ease:"power3.out"},.70);
+
+    exTl.to("#ex-tether",{opacity:1,duration:.1},1.10);
+    exTl.to("#ex-tether",{strokeDashoffset:0,duration:.55,ease:"power2.inOut"},1.10);
+
+    exTl.fromTo("#ex-ring",{opacity:0,scale:.82},{opacity:1,scale:1,duration:.5,ease:"power3.out"},1.24);
+
+    exTl.fromTo("#ex-lab-you",{opacity:0,y:22},{opacity:1,y:0,duration:.38,ease:"power3.out"},1.42);
+    exTl.fromTo("#ex-lab-agent",{opacity:0,y:22},{opacity:1,y:0,duration:.38,ease:"power3.out"},1.54);
+
+    exTl.to(["#ex-tok","#ex-halo"],{opacity:1,duration:.14},1.60);
+    exTl.to(["#ex-tok","#ex-halo"],{attr:{cx:1114},duration:.52,ease:"power1.inOut"},1.62);
+    exTl.to(["#ex-tok","#ex-halo"],{opacity:0,duration:.16},2.10);
+
+    exTl.fromTo("#ex-aura",{opacity:0},{opacity:1,duration:.32,ease:"power2.out"},2.08);
+    exTl.to("#ex-ring",{scale:1.06,duration:.4,ease:"power2.out"},2.08);
+    exTl.to("#ex-agent",{scale:1.05,duration:.22,ease:"power3.out"},2.08);
+    exTl.to("#ex-agent",{scale:1,duration:.3,ease:"power2.out",overwrite:"auto"},2.32);
+
+    window.__timelines["extension"]=exTl;
+  </script>
+</template>
+</body></html>

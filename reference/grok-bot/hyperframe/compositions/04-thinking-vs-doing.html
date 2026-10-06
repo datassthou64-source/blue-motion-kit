@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s04-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s04-shade{position:absolute;inset:0;background:radial-gradient(ellipse 74% 66% at 50% 50%,rgba(0,22,66,.30),rgba(0,22,66,.78))}
+    .s04-div{position:absolute;left:958px;top:170px;width:4px;height:740px;background:rgba(253,253,253,.32);transform-origin:50% 0%;opacity:0}
+    .s04-head{position:absolute;left:330px;top:360px;width:270px;height:270px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.8);box-shadow:0 0 36px rgba(95,230,253,.24);opacity:0}
+    .s04-brain{position:absolute;left:96px;top:96px;width:78px;height:78px;border-radius:50%;background:rgba(253,253,253,.9);box-shadow:0 0 30px rgba(253,253,253,.4)}
+    .s04-ring{position:absolute;left:330px;top:360px;width:270px;height:270px;border-radius:50%;border:4px solid rgba(95,230,253,.7);opacity:0}
+    .s04-core{position:absolute;left:1230px;top:340px;width:300px;height:300px;border-radius:60px;border:5px solid #fdfdfd;background:#fdfdfd;display:grid;place-items:center;box-shadow:0 24px 62px rgba(0,22,66,.48);opacity:0}
+    .s04-core img{width:60%;height:60%;object-fit:contain}
+    .s04-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s04-arm{fill:none;stroke:#5fe6fd;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 15px rgba(95,230,253,.7));opacity:0}
+    .s04-slot{position:absolute;left:1610px;top:680px;width:180px;height:180px;border-radius:36px;border:4px dashed rgba(95,230,253,.6);opacity:0}
+    .s04-block{position:absolute;left:1625px;top:380px;width:150px;height:150px;border-radius:30px;border:4px solid #fdfdfd;background:rgba(0,22,66,.82);box-shadow:0 0 30px rgba(95,230,253,.28);opacity:0}
+    .s04-lbl{position:absolute;font-size:46px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;text-shadow:0 0 26px rgba(0,0,0,.82),0 4px 18px rgba(0,0,0,.6);opacity:0}
+    .s04-lt{left:465px;top:800px}.s04-ld{left:1360px;top:900px}
+    .s04-sub{position:absolute;font-size:26px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.72);text-shadow:0 0 22px rgba(0,0,0,.8);opacity:0}
+    .s04-st{left:465px;top:868px}.s04-sd{left:1360px;top:968px}
+  </style>
+  <div data-hf-id="s04-root" id="s04-root" data-composition-id="s04" data-start="0" data-duration="4.9" data-width="1920" data-height="1080">
+    <div data-hf-id="s04-shade" id="s04-shade" class="s04-shade"></div>
+    <div data-hf-id="s04-div" id="s04-div" class="s04-div"></div>
+    <div data-hf-id="s04-r1" id="s04-r1" class="s04-ring"></div>
+    <div data-hf-id="s04-r2" id="s04-r2" class="s04-ring"></div>
+    <div data-hf-id="s04-r3" id="s04-r3" class="s04-ring"></div>
+    <div data-hf-id="s04-head" id="s04-head" class="s04-head"><i data-hf-id="s04-brain" id="s04-brain" class="s04-brain"></i></div>
+    <svg data-hf-id="s04-svg" id="s04-svg" class="s04-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s04-arm1" id="s04-arm1" class="s04-arm" d="M1530 490 L1700 490 L1700 660"/>
+    </svg>
+    <div data-hf-id="s04-slot" id="s04-slot" class="s04-slot"></div>
+    <div data-hf-id="s04-block" id="s04-block" class="s04-block"></div>
+    <div data-hf-id="s04-core" id="s04-core" class="s04-core"><img data-hf-id="s04-grok" id="s04-grok" src=".media/logos/grok.svg" alt=""></div>
+    <div data-hf-id="s04-lt" id="s04-lt" class="s04-lbl s04-lt">THINKING</div>
+    <div data-hf-id="s04-st" id="s04-st" class="s04-sub s04-st">IT ANSWERS</div>
+    <div data-hf-id="s04-ld" id="s04-ld" class="s04-lbl s04-ld">DOING</div>
+    <div data-hf-id="s04-sd" id="s04-sd" class="s04-sub s04-sd">IT MOVES THINGS</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s04=gsap.timeline({paused:true});
+    gsap.set(["#s04-lt","#s04-ld","#s04-st","#s04-sd"],{xPercent:-50});
+
+    s04.fromTo("#s04-div",{opacity:0,scaleY:0},{opacity:1,scaleY:1,duration:.5,ease:"power3.out"},0);
+    s04.fromTo("#s04-head",{opacity:0,scale:.7,y:26},{opacity:1,scale:1,y:0,duration:.5,ease:"back.out(1.5)"},.1);
+    s04.fromTo("#s04-lt",{opacity:0,y:18},{opacity:1,y:0,duration:.35,ease:"power3.out"},.5);
+    s04.fromTo("#s04-st",{opacity:0,y:14},{opacity:1,y:0,duration:.35,ease:"power3.out"},.66);
+    /* thought rings expand and dissolve — nothing ever leaves the head */
+    ["#s04-r1","#s04-r2","#s04-r3"].forEach((id,i)=>{
+      const at=.7+i*.62;
+      s04.fromTo(id,{opacity:.85,scale:1},{opacity:0,scale:1.85,duration:1.15,ease:"power2.out"},at);
+    });
+    s04.to("#s04-brain",{scale:1.16,duration:.55,ease:"sine.inOut",yoyo:true,repeat:5},.7);
+
+    /* the doing side */
+    s04.fromTo("#s04-core",{opacity:0,scale:.68},{opacity:1,scale:1,duration:.55,ease:"power3.out"},1.35);
+    s04.fromTo("#s04-block",{opacity:0,scale:.6},{opacity:1,scale:1,duration:.42,ease:"power3.out"},1.7);
+    const s04arm=document.getElementById("s04-arm1"),s04AL=s04arm.getTotalLength();
+    s04arm.style.strokeDasharray=String(s04AL);s04arm.style.strokeDashoffset=String(s04AL);
+    s04.set("#s04-arm1",{opacity:1},1.95);
+    s04.to("#s04-arm1",{strokeDashoffset:0,duration:.62,ease:"power2.inOut"},1.95);
+    s04.fromTo("#s04-slot",{opacity:0,scale:.7},{opacity:1,scale:1,duration:.4,ease:"power3.out"},2.35);
+    /* it physically moves the object into place */
+    s04.to("#s04-block",{x:0,y:315,duration:1.05,ease:"power2.inOut"},2.65);
+    s04.fromTo("#s04-ld",{opacity:0,y:18},{opacity:1,y:0,duration:.35,ease:"power3.out"},2.9);
+    s04.fromTo("#s04-sd",{opacity:0,y:14},{opacity:1,y:0,duration:.35,ease:"power3.out"},3.05);
+
+    /* "doing partner" — right side takes the cyan, left recedes */
+    s04.to(["#s04-head","#s04-lt","#s04-st"],{opacity:.32,duration:.45,ease:"power2.in"},3.75);
+    s04.to("#s04-ld",{color:"#5fe6fd",textShadow:"0 0 26px rgba(0,0,0,.85),0 4px 18px rgba(0,0,0,.6),0 0 46px rgba(95,230,253,.45)",scale:1.1,duration:.4,ease:"power4.out"},3.8);
+    s04.to("#s04-core",{boxShadow:"0 0 90px 10px rgba(95,230,253,.62),0 24px 62px rgba(0,22,66,.48)",duration:.5,ease:"power2.out"},3.8);
+    s04.to("#s04-block",{borderColor:"#5fe6fd",boxShadow:"0 0 46px rgba(95,230,253,.75)",duration:.4,ease:"power2.out"},3.85);
+    s04.to("#s04-slot",{opacity:0,duration:.3,ease:"power2.in"},3.8);
+    window.__timelines["s04"]=s04;
+  </script>
+</template>
+</body></html>

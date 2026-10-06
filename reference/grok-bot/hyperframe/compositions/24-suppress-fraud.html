@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s24-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s24-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 72% at 50% 48%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s24-bar{position:absolute;height:88px;border-radius:20px;border:4px solid rgba(253,253,253,.82);background:rgba(4,26,72,.72);opacity:0}
+    .s24-b1{left:520px;top:400px;width:880px}
+    .s24-b2{left:520px;top:560px;width:520px}
+    .s24-bl{position:absolute;font-size:24px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 22px rgba(0,0,0,.9);opacity:0}
+    .s24-bl1{left:300px;top:426px}.s24-bl2{left:300px;top:586px}
+    .s24-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s24-x{fill:none;stroke:#5fe6fd;stroke-width:12;stroke-linecap:round;filter:drop-shadow(0 0 18px rgba(95,230,253,.85));opacity:0}
+    .s24-gate{position:absolute;left:520px;top:756px;width:880px;height:22px;border-radius:11px;background:#5fe6fd;box-shadow:0 0 46px rgba(95,230,253,.7);transform-origin:50% 50%;opacity:0}
+    .s24-tag{position:absolute;left:960px;top:836px;font-size:56px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+    .s24-meta{position:absolute;left:960px;top:280px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+  </style>
+  <div data-hf-id="s24-root" id="s24-root" data-composition-id="s24" data-start="0" data-duration="6.5" data-width="1920" data-height="1080">
+    <div data-hf-id="s24-shade" id="s24-shade" class="s24-shade"></div>
+    <div data-hf-id="s24-meta" id="s24-meta" class="s24-meta">NEXT PAIR</div>
+    <div data-hf-id="s24-b1" id="s24-b1" class="s24-bar s24-b1"></div>
+    <div data-hf-id="s24-b2" id="s24-b2" class="s24-bar s24-b2"></div>
+    <div data-hf-id="s24-bl1" id="s24-bl1" class="s24-bl s24-bl1">LEDGER</div>
+    <div data-hf-id="s24-bl2" id="s24-bl2" class="s24-bl s24-bl2">STATEMENT</div>
+    <svg data-hf-id="s24-svg" id="s24-svg" class="s24-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s24-x1" id="s24-x1" class="s24-x" d="M1120 392 L1300 656"/>
+      <path data-hf-id="s24-x2" id="s24-x2" class="s24-x" d="M1300 392 L1120 656"/>
+    </svg>
+    <div data-hf-id="s24-gate" id="s24-gate" class="s24-gate"></div>
+    <div data-hf-id="s24-tag" id="s24-tag" class="s24-tag">SUPPRESSED</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s24=gsap.timeline({paused:true});
+    gsap.set(["#s24-tag","#s24-meta"],{xPercent:-50});
+    ["#s24-x1","#s24-x2"].forEach(sel=>{const el=document.querySelector(sel),L=el.getTotalLength();el.style.strokeDasharray=String(L);el.style.strokeDashoffset=String(L);});
+
+    s24.fromTo("#s24-meta",{opacity:0,y:-12},{opacity:1,y:0,duration:.32,ease:"power3.out"},.05);
+    s24.fromTo("#s24-b1",{opacity:0,x:-70},{opacity:1,x:0,duration:.42,ease:"power3.out"},.2);
+    s24.fromTo("#s24-bl1",{opacity:0,x:-18},{opacity:1,x:0,duration:.32,ease:"power3.out"},.35);
+    s24.fromTo("#s24-b2",{opacity:0,x:-70},{opacity:1,x:0,duration:.42,ease:"power3.out"},.5);
+    s24.fromTo("#s24-bl2",{opacity:0,x:-18},{opacity:1,x:0,duration:.32,ease:"power3.out"},.65);
+    /* they refuse to line up */
+    s24.to("#s24-b2",{width:520,x:120,duration:.6,ease:"power2.inOut"},1.2);
+    s24.to("#s24-b2",{x:-40,duration:.6,ease:"power2.inOut"},1.8);
+    s24.to("#s24-b2",{x:60,duration:.5,ease:"power2.inOut"},2.4);
+    /* mismatch — struck out and pushed off frame */
+    s24.set("#s24-x1",{opacity:1},2.95);
+    s24.to("#s24-x1",{strokeDashoffset:0,duration:.24,ease:"power4.out"},2.95);
+    s24.set("#s24-x2",{opacity:1},3.15);
+    s24.to("#s24-x2",{strokeDashoffset:0,duration:.24,ease:"power4.out"},3.15);
+    s24.to(["#s24-b1","#s24-b2","#s24-bl1","#s24-bl2","#s24-x1","#s24-x2"],{x:"+=1500",opacity:0,duration:.78,ease:"power2.in",stagger:.04},3.7);
+    s24.fromTo("#s24-gate",{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:.42,ease:"power4.out"},4.4);
+    s24.fromTo("#s24-tag",{opacity:0,scale:1.2},{opacity:1,scale:1,duration:.42,ease:"power4.out"},4.6);
+    s24.to("#s24-gate",{boxShadow:"0 0 90px rgba(95,230,253,1)",duration:.4,ease:"sine.inOut",yoyo:true,repeat:1},4.8);
+    window.__timelines["s24"]=s24;
+  </script>
+</template>
+</body></html>

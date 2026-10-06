@@ -1,0 +1,19 @@
+# Per-machine
+editor.local.md
+.claude/settings.local.json
+
+# Work product never goes in the kit
+projects/*
+!projects/.gitkeep
+inbox/*
+!inbox/.gitkeep
+
+# Build output
+_render-*.html
+node_modules/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+kit-proposals/

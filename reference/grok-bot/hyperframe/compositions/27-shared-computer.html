@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"><head></head><body>
+<template>
+  <style>
+    #s27-root{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;font-family:Inter,sans-serif;color:#fdfdfd}
+    .s27-shade{position:absolute;inset:0;background:radial-gradient(ellipse 66% 72% at 50% 46%,rgba(0,22,66,.28),rgba(0,22,66,.78))}
+    .s27-screen{position:absolute;left:560px;top:210px;width:800px;height:450px;border-radius:30px;border:6px solid #fdfdfd;background:rgba(4,26,72,.66);box-shadow:inset 0 0 80px rgba(1,183,249,.16),0 0 40px rgba(95,230,253,.2);overflow:hidden;opacity:0}
+    .s27-base{position:absolute;left:490px;top:672px;width:940px;height:22px;border-radius:11px;background:rgba(253,253,253,.88);box-shadow:0 0 26px rgba(95,230,253,.4);transform-origin:50% 50%;opacity:0}
+    .s27-zone{position:absolute;top:0;width:2px;height:450px;background:rgba(253,253,253,.22);opacity:0}
+    .s27-tok{position:absolute;top:170px;width:110px;height:110px;border-radius:50%;border:5px solid #fdfdfd;background:rgba(0,22,66,.9);box-shadow:0 0 28px rgba(95,230,253,.3);display:grid;place-items:center;font-size:34px;font-weight:900;letter-spacing:.06em;opacity:0}
+    .s27-t1{left:50px}.s27-t2{left:250px}.s27-t3{left:450px}.s27-t4{left:640px}
+    .s27-svg{position:absolute;inset:0;width:1920px;height:1080px}
+    .s27-warn{fill:none;stroke:#5fe6fd;stroke-width:8;stroke-linecap:round;filter:drop-shadow(0 0 18px rgba(95,230,253,.9));opacity:0}
+    .s27-meta{position:absolute;left:960px;top:760px;font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:rgba(253,253,253,.86);text-shadow:0 0 20px rgba(0,0,0,.9);opacity:0}
+    .s27-tag{position:absolute;left:960px;top:846px;font-size:56px;font-weight:900;letter-spacing:.15em;color:#5fe6fd;white-space:nowrap;text-shadow:0 0 28px rgba(0,0,0,.92),0 4px 18px rgba(0,0,0,.75),0 0 46px rgba(95,230,253,.45);opacity:0}
+  </style>
+  <div data-hf-id="s27-root" id="s27-root" data-composition-id="s27" data-start="0" data-duration="8.6" data-width="1920" data-height="1080">
+    <div data-hf-id="s27-shade" id="s27-shade" class="s27-shade"></div>
+    <div data-hf-id="s27-screen" id="s27-screen" class="s27-screen">
+      <i data-hf-id="s27-z1" id="s27-z1" class="s27-zone" style="left:198px"></i>
+      <i data-hf-id="s27-z2" id="s27-z2" class="s27-zone" style="left:396px"></i>
+      <i data-hf-id="s27-z3" id="s27-z3" class="s27-zone" style="left:594px"></i>
+      <div data-hf-id="s27-t1" id="s27-t1" class="s27-tok s27-t1">A</div>
+      <div data-hf-id="s27-t2" id="s27-t2" class="s27-tok s27-t2">B</div>
+      <div data-hf-id="s27-t3" id="s27-t3" class="s27-tok s27-t3">C</div>
+      <div data-hf-id="s27-t4" id="s27-t4" class="s27-tok s27-t4">D</div>
+    </div>
+    <div data-hf-id="s27-base" id="s27-base" class="s27-base"></div>
+    <svg data-hf-id="s27-svg" id="s27-svg" class="s27-svg" viewBox="0 0 1920 1080">
+      <path data-hf-id="s27-w1" id="s27-w1" class="s27-warn" d="M758 240 L758 630"/>
+      <path data-hf-id="s27-w2" id="s27-w2" class="s27-warn" d="M956 240 L956 630"/>
+    </svg>
+    <div data-hf-id="s27-meta" id="s27-meta" class="s27-meta">EVERY AGENT, SAME MACHINE</div>
+    <div data-hf-id="s27-tag" id="s27-tag" class="s27-tag">ONE SHARED COMPUTER</div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    const s27=gsap.timeline({paused:true});
+    gsap.set(["#s27-meta","#s27-tag"],{xPercent:-50});
+
+    s27.fromTo("#s27-screen",{opacity:0,scale:.82,y:30},{opacity:1,scale:1,y:0,duration:.6,ease:"power3.out"},.08);
+    s27.fromTo("#s27-base",{opacity:0,scaleX:.25},{opacity:1,scaleX:1,duration:.5,ease:"power3.out"},.42);
+    ["#s27-t1","#s27-t2","#s27-t3","#s27-t4"].forEach((id,i)=>
+      s27.fromTo(id,{opacity:0,y:-140,scale:.6},{opacity:1,y:0,scale:1,duration:.55,ease:"power3.out"},1.4+i*.34));
+    s27.fromTo("#s27-meta",{opacity:0,y:12},{opacity:1,y:0,duration:.34,ease:"power3.out"},3.2);
+    s27.fromTo("#s27-tag",{opacity:0,scale:1.16},{opacity:1,scale:1,duration:.42,ease:"power4.out"},3.9);
+    /* they start to drift inside the one machine */
+    s27.to("#s27-t1",{x:60,y:70,duration:2.2,ease:"sine.inOut"},4.6);
+    s27.to("#s27-t2",{x:-50,y:100,duration:2.2,ease:"sine.inOut"},4.7);
+    s27.to("#s27-t3",{x:70,y:-60,duration:2.2,ease:"sine.inOut"},4.6);
+    s27.to("#s27-t4",{x:-70,y:60,duration:2.2,ease:"sine.inOut"},4.8);
+    s27.fromTo(["#s27-z1","#s27-z2","#s27-z3"],{opacity:0},{opacity:1,duration:.5,ease:"power2.out",stagger:.08},6.6);
+
+    window.__timelines["s27"]=s27;
+  </script>
+</template>
+</body></html>
